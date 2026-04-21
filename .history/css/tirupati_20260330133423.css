@@ -1,0 +1,501 @@
+:root {
+    --primary-gold: #d4af37;
+    --text-dark: #222;
+    --text-light: #666;
+    --white: #fff;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+}
+
+/* CONTAINER */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 70px 0;
+}
+
+/* ===============================
+   SECTION HEADER
+================================= */
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-subtext {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* ===============================
+   HERO
+================================= */
+.tirupati-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-left {
+    flex: 1;
+}
+
+.hero-left h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.hero-left span {
+    color: var(--primary-gold);
+}
+
+.hero-subtext {
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.hero-buttons {
+    margin: 20px 0;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 20px;
+}
+
+.hero-stats h4 {
+    color: var(--primary-gold);
+}
+
+.hero-right {
+    flex: 1;
+}
+
+.carousel {
+    height: 400px;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ===============================
+   PACKAGES (UPDATED)
+================================= */
+.package-detailed {
+    display: flex;
+    gap: 20px;
+}
+
+.package-full-card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 14px;
+
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(8px);
+
+    transition: 0.3s;
+}
+
+.package-full-card:hover {
+    transform: translateY(-8px);
+}
+
+/* TOP IMAGE + TITLE */
+.package-top {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.package-top img {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.package-desc {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+/* LIST */
+.package-full-card ul {
+    padding-left: 18px;
+    margin: 10px 0;
+}
+
+.package-full-card li {
+    font-size: 13px;
+}
+
+/* PRICE */
+.price-row {
+    margin: 10px 0;
+}
+
+.old-price {
+    text-decoration: line-through;
+    font-size: 12px;
+    color: #999;
+}
+
+.new-price {
+    color: var(--primary-gold);
+    font-weight: bold;
+}
+
+/* HIGHLIGHT */
+.highlight {
+    border: 2px solid var(--primary-gold);
+}
+
+/* ===============================
+   SUGGESTED TRIPS (PREMIUM)
+================================= */
+
+.trips-title {
+    font-size: 34px;
+    text-align: center;
+}
+
+.trips-title::after {
+    display: none;
+}
+
+/* GRID */
+.trips-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* CARD */
+.trip-card {
+    padding: 25px;
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255,255,255,0.3);
+
+    transition: 0.35s ease;
+    position: relative;
+}
+
+/* HOVER 🔥 */
+.trip-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 
+        0 15px 35px rgba(0,0,0,0.08),
+        0 0 20px rgba(212,175,55,0.15);
+}
+
+/* TITLE */
+.trip-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+/* TEXT */
+.trip-card p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 12px;
+}
+
+/* LINK */
+.trip-link {
+    font-size: 14px;
+    color: var(--primary-gold);
+    font-weight: 500;
+    position: relative;
+}
+
+.trip-link::after {
+    content: "";
+    width: 0%;
+    height: 1px;
+    background: var(--primary-gold);
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    transition: 0.3s;
+}
+
+.trip-link:hover::after {
+    width: 100%;
+}
+
+/* HIGHLIGHT CARD 🔥 */
+.highlight-trip {
+    background: linear-gradient(
+        135deg,
+        rgba(212,175,55,0.15),
+        rgba(255,255,255,0.7)
+    );
+
+    border: 1px solid rgba(212,175,55,0.3);
+}
+
+/* CUSTOM TEXT */
+.custom-trip {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.custom-trip p {
+    font-size: 15px;
+    color: var(--text-dark);
+}
+
+
+
+/* ===============================
+   ACCOMMODATION
+================================= */
+.accommodation-cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(6px);
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.note {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-light);
+    margin-top: 10px;
+}
+
+/* ===============================
+   PLACES (PREMIUM SCROLL)
+================================= */
+/* WRAPPER */
+.places-wrapper {
+    overflow: hidden;
+    position: relative;
+    margin-top: 40px;
+
+    /* SOFT FADE EDGES */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+/* TRACK */
+.places-track {
+    display: flex;
+    gap: 20px;
+
+    animation: scrollRight 28s linear infinite;
+}
+
+/* CARD */
+.place-card {
+    min-width: 240px;
+    max-width: 250px;
+
+    border-radius: 14px;
+    overflow: hidden;
+
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(8px);
+
+    border: 1px solid rgba(255,255,255,0.4);
+
+    transition: 0.35s ease;
+}
+
+/* HOVER (SUBTLE) */
+.place-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+}
+
+/* IMAGE (FIXED SIZE 🔥) */
+.place-card img {
+    width: 100%;
+    height: 140px;   /* 🔥 reduced from 190 */
+    object-fit: cover;
+    display: block;
+}
+
+/* TEXT */
+.place-info {
+    padding: 12px;
+}
+
+.place-info h3 {
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.place-info p {
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.4;
+}
+
+/* ANIMATION LEFT → RIGHT */
+@keyframes scrollRight {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* PAUSE ON HOVER (PREMIUM TOUCH) */
+.places-track:hover {
+    animation-play-state: paused;
+}
+
+/* ===============================
+   TESTIMONIALS
+================================= */
+.testimonial-cards {
+    display: flex;
+    gap: 20px;
+}
+
+.testimonial-cards .card {
+    text-align: center;
+}
+
+.testimonial-cards span {
+    color: var(--primary-gold);
+    font-size: 13px;
+}
+
+/* ===============================
+   CTA
+================================= */
+.cta {
+    text-align: center;
+}
+
+/* ===============================
+   MOBILE
+================================= */
+@media (max-width: 768px) {
+
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-left h1 {
+        font-size: 26px;
+    }
+
+    .hero-right {
+        width: 100%;
+    }
+
+    .carousel {
+        height: 220px;
+    }
+
+    /* PACKAGES */
+    .package-detailed {
+        flex-direction: column;
+    }
+
+    /* ACCOMMODATION */
+    .accommodation-cards {
+        flex-direction: column;
+    }
+
+    /* TESTIMONIAL */
+    .testimonial-cards {
+        flex-direction: column;
+    }
+
+    .place-card {
+        min-width: 220px;
+    }
+
+    .place-card img {
+        height: 150px;
+    }
+
+    .places-track {
+        animation: scrollRight 15s linear infinite;
+    }
+
+    .trips-grid {
+        display: flex;
+        gap: 15px;
+        overflow-x: auto;
+        padding: 10px;
+
+        scroll-snap-type: x mandatory;
+    }
+
+    .trips-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .trip-card {
+        min-width: 80%;
+        flex: 0 0 auto;
+
+        scroll-snap-align: center;
+        padding: 18px;
+    }
+
+    .trip-card h3 {
+        font-size: 16px;
+    }
+
+    .trip-card p {
+        font-size: 13px;
+    }
+
+    .custom-trip p {
+        font-size: 13px;
+        padding: 0 10px;
+    }
+}

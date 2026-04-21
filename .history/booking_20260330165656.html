@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Book Your Tirupati Trip</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/booking.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<section class="booking-section">
+
+    <div class="container booking-container">
+
+        <!-- LEFT CONTENT -->
+        <div class="booking-left">
+            <h1>Plan Your Sacred Journey</h1>
+
+            <p>
+                Experience a peaceful Tirupati darshan with trusted service,
+                comfortable travel, and complete support from our team.
+            </p>
+
+            <div class="booking-points">
+                <span>✔ 5000+ Happy Pilgrims</span>
+                <span>✔ Trusted Tirupati Travel Partner</span>
+                <span>✔ Smooth & Hassle-Free Darshan</span>
+            </div>
+
+            <div class="booking-call">
+                📞 +91 98765 43210
+            </div>
+        </div>
+
+        <!-- FORM -->
+        <div class="booking-form-box" id="formStart">
+
+            <h2>Book Your Trip</h2>
+
+            <form id="bookingForm">
+
+                <div class="form-group">
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+
+                <!-- PHONE -->
+                <div class="form-group phone-group">
+                    <span>+91</span>
+                    <input 
+                        type="tel" 
+                        id="phone"
+                        placeholder="Enter 10-digit mobile number"
+                        pattern="[6-9]{1}[0-9]{9}"
+                        maxlength="10"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <input type="email" placeholder="Email (Optional)">
+                </div>
+
+                <div class="form-group">
+                    <select required>
+                        <option value="">Select Trip</option>
+                        <option>Tirumala Visit</option>
+                        <option>Tirupati + Tirumala</option>
+                        <option>Complete Package</option>
+                        <option>Custom Trip</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" required>
+                </div>
+
+                <div class="form-group">
+                    <select required>
+                        <option value="">Number of People</option>
+                        <option>1-2</option>
+                        <option>3-5</option>
+                        <option>6-7</option>
+                        <option>8+</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" placeholder="Pickup Location" required>
+                </div>
+
+                <!-- TOGGLE -->
+                <div class="form-group toggle-group">
+                    <div class="toggle-row">
+                        <span>Need Accommodation</span>
+
+                        <label class="switch">
+                            <input type="checkbox" id="stayToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- DYNAMIC FIELD -->
+                <div class="form-group stay-options" id="stayOptions" style="display:none;">
+                    <select>
+                        <option value="">Select Stay Type</option>
+                        <option>Basic Stay (2★)</option>
+                        <option>Standard Stay (3★)</option>
+                        <option>Premium Stay (4★)</option>
+                    </select>
+                </div>
+
+                <!-- SUBMIT BUTTON -->
+                <button type="submit" class="btn-book">
+                    Confirm Booking
+                </button>
+
+            </form>
+
+            <!-- ✅ SUCCESS MESSAGE (OUTSIDE FORM) -->
+            <div class="success-message" id="successMsg">
+                <div class="success-box">
+                    <div class="success-icon">🛕</div>
+                    
+                    <h3>Booking Request Received</h3>
+                    
+                    <p>
+                        🙏 Thank you for choosing <strong>Sri Balaji Travels</strong><br>
+                        Our operator will contact you within <b>15 minutes</b> 
+                        to assist your Tirupati darshan journey.
+                    </p>
+
+                    <span class="blessing-text">
+                        "May Lord Venkateswara bless your journey"
+                    </span>
+                </div>
+            </div>
+
+        </div> <!-- FORM BOX END -->
+
+    </div>
+
+</section>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
+    💬
+</a>
+
+<!-- SCRIPT -->
+<script>
+window.addEventListener("load", () => {
+    const formBox = document.querySelector(".booking-form-box");
+    formBox.scrollIntoView({ behavior: "smooth", block: "center" });
+});
+
+// DATE BLOCK
+const dateInput = document.querySelector('input[type="date"]');
+const today = new Date().toISOString().split("T")[0];
+dateInput.setAttribute("min", today);
+
+// FORM
+const form = document.querySelector("form");
+const success = document.getElementById("successMsg");
+const phoneInput = document.getElementById("phone");
+
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const phonePattern = /^[6-9]\d{9}$/;
+
+    if (!phonePattern.test(phoneInput.value)) {
+        alert("Enter valid Indian mobile number");
+        return;
+    }
+
+    success.style.display = "block";
+    success.scrollIntoView({ behavior: "smooth" });
+
+    form.reset();
+    stayOptions.style.display = "none";
+    toggle.checked = false;
+});
+
+// TOGGLE
+const toggle = document.getElementById("stayToggle");
+const stayOptions = document.getElementById("stayOptions");
+
+toggle.addEventListener("change", () => {
+    stayOptions.style.display = toggle.checked ? "block" : "none";
+});
+</script>
+
+</body>
+</html>

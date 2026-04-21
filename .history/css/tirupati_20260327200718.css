@@ -1,0 +1,225 @@
+/* ===============================
+   SECTION HEADER
+================================= */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.view-more {
+    font-size: 14px;
+    color: var(--primary-gold);
+    font-weight: 500;
+}
+
+.view-more:hover {
+    text-decoration: underline;
+}
+
+
+/* ===============================
+   HERO SECTION
+================================= */
+.tirupati-hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* CONTAINER */
+.hero-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    height: 100%;
+}
+
+/* LEFT SIDE */
+.hero-left {
+    flex: 1;
+}
+
+.hero-left h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.hero-left span {
+    color: var(--primary-gold);
+}
+
+.typing-text {
+    font-size: 18px;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    min-height: 24px;
+}
+
+.hero-buttons {
+    margin-bottom: 15px;
+}
+
+.call-number {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.call-text {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* RIGHT SIDE FULL IMAGE */
+.hero-right {
+    flex: 1;
+    height: 100%;
+    <section class="tirupati-hero">
+    <div class="container hero-container">
+
+        <!-- LEFT CONTENT -->
+        <div class="hero-left">
+
+            <h1>
+                Welcome to <span>Cab Agency</span>
+            </h1>
+
+            <!-- Typing Text -->
+            <p class="typing-text">
+                <span id="type-text"></span>
+            </p>
+
+            <!-- CTA BUTTONS -->
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">Book Now</a>
+                <a href="#" class="btn btn-outline">Contact</a>
+            </div>
+
+            <!-- CALL INFO -->
+            <div class="hero-call">
+                <p class="call-number">📞 +91 1234567890</p>
+                <p class="call-text">Call us for bookings or any queries</p>
+            </div>
+
+        </div>
+
+        <!-- RIGHT IMAGE CAROUSEL -->
+        <div class="hero-right">
+            <div class="carousel">
+
+                <img src="images/t1.jpg" alt="Tirupati temple view" class="active">
+                <img src="images/t2.jpg" alt="Tirupati darshan">
+                <img src="images/t3.jpg" alt="Temple view">
+                <img src="images/t4.jpg" alt="Spiritual journey">
+                <img src="images/t5.jpg" alt="Tirumala hills">
+                <img src="images/t6.jpg" alt="Temple architecture">
+
+            </div>
+        </div>
+
+    </div>
+</section>
+}
+
+/* CAROUSEL FULL */
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* IMAGES FULL COVER */
+.carousel img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+/* ACTIVE IMAGE */
+.carousel img.active {
+    opacity: 1;
+
+    
+}
+
+
+/* ===============================
+   CARDS (COMMON)
+================================= */
+.package-cards,
+.place-cards,
+.accommodation-cards {
+    display: flex;
+    gap: 20px;
+}
+
+/* HIGHLIGHT CARD */
+.highlight {
+    border: 2px solid var(--primary-gold);
+}
+
+
+/* ===============================
+   CTA
+================================= */
+.cta {
+    text-align: center;
+}
+
+
+/* ===============================
+   TESTIMONIALS
+================================= */
+.testimonials .card {
+    text-align: center;
+}
+
+.testimonials .card span {
+    display: block;
+    font-size: 13px;
+    color: var(--primary-gold);
+    margin-top: 5px;
+}
+
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================= */
+@media (max-width: 768px) {
+
+    .tirupati-hero {
+        height: auto;
+        padding: 40px 0;
+    }
+
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-left h1 {
+        font-size: 28px;
+    }
+
+    /* IMAGE SMALL CLEAN */
+    .hero-right {
+        width: 100%;
+        height: 220px;
+        margin-top: 20px;
+    }
+
+    /* SHOW ONLY FIRST IMAGE */
+    .carousel img {
+        position: relative;
+        opacity: 1 !important;
+    }
+
+    .carousel img:not(:first-child) {
+        display: none;
+    }
+}

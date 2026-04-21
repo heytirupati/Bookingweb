@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Book Your Tirupati Trip</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/booking.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<section class="booking-section">
+
+<div class="container booking-container">
+
+<!-- LEFT -->
+<div class="booking-left">
+<h1>Plan Your Sacred Journey</h1>
+
+<p>
+Experience a peaceful Tirupati darshan with trusted service,
+comfortable travel, and complete support from our team.
+</p>
+
+<div class="booking-points">
+<span>✔ 5000+ Happy Pilgrims</span>
+<span>✔ Trusted Tirupati Travel Partner</span>
+<span>✔ Smooth & Hassle-Free Darshan</span>
+</div>
+
+<div class="booking-call">
+📞 +91 98765 43210
+</div>
+</div>
+
+<!-- FORM -->
+<div class="booking-form-box" id="formStart">
+
+<h2>Book Your Trip</h2>
+
+<form id="bookingForm">
+
+<!-- NAME -->
+<div class="form-group">
+<input type="text" name="name" placeholder="Full Name" required>
+</div>
+
+<!-- PHONE -->
+<div class="form-group phone-group">
+<span>+91</span>
+<input 
+type="tel"
+id="phone"
+name="phone"
+placeholder="Enter 10-digit mobile number"
+maxlength="10"
+required
+>
+</div>
+
+<!-- EMAIL -->
+<div class="form-group">
+<input type="email" name="email" placeholder="Email (Optional)">
+</div>
+
+<!-- TRIP -->
+<div class="form-group">
+<select name="trip" required>
+<option value="">Select Trip</option>
+<option>Tirumala Visit</option>
+<option>Tirupati + Tirumala</option>
+<option>Complete Package</option>
+<option>Custom Trip</option>
+</select>
+</div>
+
+<!-- DATE -->
+<div class="form-group">
+<input type="date" name="date" id="dateInput" required>
+</div>
+
+<!-- PEOPLE -->
+<div class="form-group">
+<select name="people" required>
+<option value="">Number of People</option>
+<option>1-2</option>
+<option>3-5</option>
+<option>6-7</option>
+<option>8+</option>
+</select>
+</div>
+
+<!-- PICKUP -->
+<div class="form-group">
+<input type="text" name="pickup" placeholder="Pickup Location" required>
+</div>
+
+<!-- TOGGLE -->
+<div class="form-group toggle-group">
+<div class="toggle-row">
+<span>Need Accommodation</span>
+
+<label class="switch">
+<input type="checkbox" id="stayToggle">
+<span class="slider"></span>
+</label>
+</div>
+</div>
+
+<!-- DYNAMIC STAY -->
+<div class="form-group stay-options" id="stayOptions" style="display:none;">
+<select name="stay">
+<option value="">Select Stay Type</option>
+<option>Basic Stay (2★)</option>
+<option>Standard Stay (3★)</option>
+<option>Premium Stay (4★)</option>
+</select>
+</div>
+
+<!-- NOTES -->
+<div class="form-group">
+<textarea name="notes" placeholder="Additional Notes"></textarea>
+</div>
+
+<!-- BUTTON -->
+<button type="submit" class="btn-book">
+Confirm Booking
+</button>
+
+</form>
+
+<!-- SUCCESS -->
+<div class="success-message" id="successMsg">
+<div class="success-box">
+<div class="success-icon">🛕</div>
+
+<h3>Booking Request Received</h3>
+
+<p>
+🙏 Thank you for choosing <strong>Sri Balaji Travels</strong><br>
+Our operator will contact you within <b>15 minutes</b>
+</p>
+
+<span class="blessing-text">
+"May Lord Venkateswara bless your journey"
+</span>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
+💬
+</a>
+
+<!-- SCRIPT -->
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbwK2iJHY3h7BSFlUR7wPW-Q8FFdgwA5g7lLYM417QIYtT8BIEzMPImFFo4-PKAhUFvR/exec";
+
+// AUTO SCROLL
+window.addEventListener("load", () => {
+document.getElementById("formStart")
+.scrollIntoView({ behavior: "smooth", block: "center" });
+});
+
+// DATE BLOCK
+const dateInput = document.getElementById("dateInput");
+const today = new Date().toISOString().split("T")[0];
+dateInput.setAttribute("min", today);
+
+// ELEMENTS
+const form = document.getElementById("bookingForm");
+const success = document.getElementById("successMsg");
+const phoneInput = document.getElementById("phone");
+const toggle = document.getElementById("stayToggle");
+const stayOptions = document.getElementById("stayOptions");
+
+// TOGGLE
+toggle.addEventListener("change", () => {
+stayOptions.style.display = toggle.checked ? "block" : "none";
+});
+
+// SUBMIT
+form.addEventListener("submit", function(e) {
+e.preventDefault();
+
+const phone = phoneInput.value.trim();
+const phonePattern = /^[6-9]\d{9}$/;
+
+if (!phonePattern.test(phone)) {
+alert("Enter valid 10-digit Indian mobile number (starts with 6-9)");
+return;
+}
+
+// SEND TO GOOGLE SHEETS
+fetch(scriptURL, {
+method: "POST",
+body: new FormData(form)
+})
+.then(() => {
+
+// SHOW SUCCESS
+success.style.display = "block";
+success.scrollIntoView({ behavior: "smooth", block: "center" });
+
+// RESET
+form.reset();
+stayOptions.style.display = "none";
+toggle.checked = false;
+
+})
+.catch(() => {
+alert("Something went wrong. Try again!");
+});
+});
+</script>
+
+</body>
+</html>

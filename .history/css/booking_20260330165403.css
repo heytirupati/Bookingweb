@@ -1,0 +1,402 @@
+:root {
+    --primary-gold: #d4af37;
+    --text-dark: #222;
+    --text-light: #666;
+    --white: #fff;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===============================
+   SECTION
+================================= */
+.booking-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+
+    background: linear-gradient(135deg, #fff9ec, #ffffff);
+}
+
+/* ===============================
+   CONTAINER
+================================= */
+.booking-container {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+}
+
+/* ===============================
+   LEFT CONTENT
+================================= */
+.booking-left {
+    flex: 1;
+}
+
+.booking-left h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.booking-left p {
+    color: var(--text-light);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.booking-points span {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.booking-call {
+    margin-top: 20px;
+    color: var(--primary-gold);
+    font-weight: 600;
+}
+
+/* ===============================
+   FORM BOX
+================================= */
+.booking-form-box {
+    flex: 1;
+    max-width: 420px;
+
+    padding: 30px;
+    border-radius: 20px;
+
+    background: #fff;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+}
+
+/* TITLE */
+.booking-form-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* ===============================
+   FORM ELEMENTS
+================================= */
+.form-group {
+    margin-bottom: 14px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    outline: none;
+
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+/* FOCUS EFFECT */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary-gold);
+    box-shadow: 0 0 0 2px rgba(212,175,55,0.15);
+}
+
+/* TEXTAREA */
+textarea {
+    height: 80px;
+    resize: none;
+}
+
+/* ===============================
+   PHONE GROUP
+================================= */
+.phone-group {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.phone-group span {
+    padding: 12px;
+    background: #f5f5f5;
+    font-size: 14px;
+}
+
+.phone-group input {
+    border: none;
+}
+
+/* ===============================
+   PREMIUM TOGGLE
+================================= */
+.toggle-group {
+    margin-bottom: 14px;
+}
+
+.toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 14px;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    background: #fff;
+    font-size: 14px;
+}
+
+/* SWITCH */
+.switch {
+    position: relative;
+    width: 42px;
+    height: 22px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* SLIDER */
+.slider {
+    position: absolute;
+    cursor: pointer;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: #ccc;
+    border-radius: 30px;
+
+    transition: 0.3s;
+}
+
+/* CIRCLE */
+.slider::before {
+    content: "";
+
+    position: absolute;
+    height: 16px;
+    width: 16px;
+
+    left: 3px;
+    bottom: 3px;
+
+    background: white;
+    border-radius: 50%;
+
+    transition: 0.3s;
+}
+
+/* ACTIVE */
+.switch input:checked + .slider {
+    background: var(--primary-gold);
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(20px);
+}
+
+/* ===============================
+   DYNAMIC STAY FIELD
+================================= */
+.stay-options {
+    display: none;
+    animation: fadeSlide 0.3s ease;
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===============================
+   BUTTON
+================================= */
+.btn-book {
+    width: 100%;
+    padding: 14px;
+
+    border-radius: 12px;
+    border: none;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    background: linear-gradient(135deg, #d4af37, #f1d77a);
+    color: #000;
+
+    transition: 0.3s;
+}
+
+.btn-book:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(212,175,55,0.35);
+}
+
+/* ===============================
+   SUCCESS MESSAGE
+================================= */
+.success-message {
+    display: none;
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 10px;
+
+    background: #fff8e1;
+    border: 1px solid var(--primary-gold);
+
+    text-align: center;
+    font-size: 14px;
+
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===============================
+   WHATSAPP FLOAT
+================================= */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    width: 55px;
+    height: 55px;
+
+    background: #25d366;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    font-size: 22px;
+    text-decoration: none;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+    transition: 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+.success-box p {
+    font-size: 14px;
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+.blessing-text {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #8a6d1d;
+    font-style: italic;
+}
+
+/* animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================= */
+@media (max-width: 768px) {
+
+    .booking-container {
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 30px;
+    }
+
+    .booking-left {
+        text-align: center;
+    }
+
+    .booking-left h1 {
+        font-size: 26px;
+    }
+
+    .booking-form-box {
+        width: 100%;
+        padding: 20px;
+    }
+
+    /* TOGGLE */
+    .toggle-row {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .switch {
+        width: 38px;
+        height: 20px;
+    }
+
+    .slider::before {
+        width: 14px;
+        height: 14px;
+    }
+
+    .switch input:checked + .slider::before {
+        transform: translateX(18px);
+    }
+
+    /* BUTTON */
+    .btn-book {
+        font-size: 14px;
+        padding: 12px;
+    }
+}

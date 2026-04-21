@@ -1,0 +1,17 @@
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.view-more {
+    font-size: 14px;
+    color: var(--primary-gold);
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.view-more:hover {
+    text-decoration: underline;
+}

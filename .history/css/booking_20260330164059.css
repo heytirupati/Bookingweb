@@ -1,0 +1,100 @@
+/* ===============================
+   PREMIUM TOGGLE SWITCH
+================================= */
+
+/* GROUP */
+.toggle-group {
+    margin-bottom: 14px;
+}
+
+/* ROW */
+.toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 14px;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    background: #fff;
+    font-size: 14px;
+}
+
+/* SWITCH */
+.switch {
+    position: relative;
+    width: 42px;
+    height: 22px;
+}
+
+/* HIDE DEFAULT */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* SLIDER */
+.slider {
+    position: absolute;
+    cursor: pointer;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: #ccc;
+    border-radius: 30px;
+
+    transition: 0.3s;
+}
+
+/* CIRCLE */
+.slider::before {
+    content: "";
+
+    position: absolute;
+    height: 16px;
+    width: 16px;
+
+    left: 3px;
+    bottom: 3px;
+
+    background: white;
+    border-radius: 50%;
+
+    transition: 0.3s;
+}
+
+/* ACTIVE STATE */
+.switch input:checked + .slider {
+    background: var(--primary-gold);
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(20px);
+}
+
+/* ===============================
+   STAY OPTIONS (HIDDEN FIELD)
+================================= */
+
+.stay-options {
+    display: none;
+    animation: fadeSlide 0.3s ease;
+}
+
+/* ANIMATION */
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

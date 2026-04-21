@@ -1,0 +1,252 @@
+/* ===============================
+   SECTION HEADER
+================================= */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.view-more {
+    font-size: 14px;
+    color: var(--primary-gold);
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.view-more:hover {
+    text-decoration: underline;
+}
+
+
+/* ===============================
+   HERO SECTION   */
+.tirupati-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* CONTAINER */
+.hero-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+/* LEFT SIDE */
+.hero-left {
+    flex: 1;
+}
+
+/* BADGE */
+.hero-badge {
+    display: inline-block;
+    background: rgba(212,175,55,0.1);
+    color: var(--primary-gold);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+/* TITLE */
+.hero-left h1 {
+    font-size: 46px;
+    line-height: 1.3;
+    margin-bottom: 15px;
+}
+
+.hero-left span {
+    color: var(--primary-gold);
+}
+
+/* SUBTEXT */
+.hero-subtext {
+    font-size: 17px;
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+/* TYPING */
+.typing-text {
+    font-size: 16px;
+    color: var(--primary-gold);
+    margin-bottom: 20px;
+    min-height: 22px;
+}
+
+/* BUTTONS */
+.hero-buttons {
+    margin-bottom: 25px;
+}
+
+/* STATS */
+.hero-stats {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.hero-stats h4 {
+    font-size: 18px;
+    color: var(--primary-gold);
+}
+
+.hero-stats span {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+/* CALL */
+.call-number {
+    font-weight: 600;
+}
+
+.call-text {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+/* RIGHT SIDE */
+.hero-right {
+    flex: 1;
+    position: relative;
+    height: 500px;
+}
+
+/* CAROUSEL */
+.carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+
+    /* 🔥 premium depth */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* IMAGES */
+.carousel img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+/* ACTIVE IMAGE */
+.carousel img.active {
+    opacity: 1;
+}
+
+
+/* ===============================
+   CARDS (COMMON)
+================================= */
+.package-cards,
+.place-cards,
+.accommodation-cards {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* CARD STYLE IMPROVEMENT */
+.card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(6px);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* HIGHLIGHT PACKAGE */
+.highlight {
+    border: 2px solid var(--primary-gold);
+}
+
+
+/* ===============================
+   ACCOMMODATION
+================================= */
+.accommodation .note {
+    margin-top: 15px;
+    font-size: 13px;
+    color: var(--text-light);
+    text-align: center;
+}
+
+
+/* ===============================
+   TESTIMONIALS
+================================= */
+.testimonials .card {
+    text-align: center;
+}
+
+.testimonials .card span {
+    display: block;
+    font-size: 13px;
+    color: var(--primary-gold);
+    margin-top: 5px;
+}
+
+
+/* ===============================
+   CTA
+================================= */
+.cta {
+    text-align: center;
+}
+
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================= */
+@media (max-width: 768px) {
+
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-left h1 {
+        font-size: 28px;
+    }
+
+    .hero-subtext {
+        font-size: 15px;
+    }
+
+    .hero-stats {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .hero-right {
+        width: 100%;
+        height: 240px;
+        margin-top: 20px;
+    }
+
+    /* STOP SLIDER FOR MOBILE */
+    .carousel img {
+        position: relative;
+        opacity: 1 !important;
+    }
+
+    .carousel img:not(:first-child) {
+        display: none;
+    }
+}

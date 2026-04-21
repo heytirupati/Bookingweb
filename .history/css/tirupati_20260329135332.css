@@ -1,0 +1,39 @@
+/* ===============================
+   TIRUPATI PAGE CUSTOM
+================================= */
+
+/* HERO SMALL TWEAK */
+.hero-left h1 {
+    font-size: 40px;
+}
+
+/* PACKAGE TITLE ALIGN */
+.packages-title {
+    text-align: center;
+}
+
+/* CTA ALIGN FIX */
+.cta h2 {
+    margin-bottom: 15px;
+}
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 768px) {
+
+    .hero-left h1 {
+        font-size: 24px;
+    }
+
+    .hero-highlight {
+        font-size: 16px;
+    }
+
+    .hero-subtext {
+        font-size: 13px;
+    }
+
+    .package-cards {
+        margin-top: 10px;
+    }
+
+}

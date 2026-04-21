@@ -1,0 +1,121 @@
+/* SECTION HEADER */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.view-more {
+    font-size: 14px;
+    color: var(--primary-gold);
+    font-weight: 500;
+}
+
+.view-more:hover {
+    text-decoration: underline;
+}
+
+/* HERO */
+.tirupati-hero {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-left {
+    flex: 1;
+}
+
+.hero-left h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    color: var(--primary-gold);
+    margin-bottom: 10px;
+}
+
+.sub-text {
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.hero-right {
+    flex: 1;
+}
+
+/* CAROUSEL */
+.carousel {
+    position: relative;
+}
+
+.carousel img {
+    width: 100%;
+    border-radius: 10px;
+    display: none;
+}
+
+.carousel img.active {
+    display: block;
+}
+
+/* CARDS */
+.package-cards,
+.place-cards,
+.accommodation-cards {
+    display: flex;
+    gap: 20px;
+}
+
+/* HIGHLIGHT PACKAGE */
+.highlight {
+    border: 2px solid var(--primary-gold);
+}
+
+/* CTA */
+.cta {
+    text-align: center;
+}
+
+/* MOBILE */
+@media (max-width:768px) {
+
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .package-cards,
+    .place-cards,
+    .accommodation-cards {
+        flex-direction: column;
+    }
+
+    .section-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero-left h1 {
+        font-size: 28px;
+    }
+}
+
+.testimonials .card {
+    text-align: center;
+}
+
+.testimonials .card span {
+    display: block;
+    font-size: 13px;
+    color: var(--primary-gold);
+    margin-top: 5px;
+}
