@@ -492,9 +492,9 @@
     });
 
     // ── Accommodation toggle ───────────────────────────────
-    // stayToggle?.addEventListener("change", () => {
-    //     stayOptions.style.display = stayToggle.checked ? "block" : "none";
-    // });
+    stayToggle?.addEventListener("change", () => {
+        stayOptions.style.display = stayToggle.checked ? "block" : "none";
+    });
 
     // ── Form submission ────────────────────────────────────
     form.addEventListener("submit", function (e) {

@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Your Tirupati Trip – Yatrahere</title>
+
+    <title>Book Tirupati Darshan Package | Yatrahere Travel Services</title>
+    <meta name="description" content="Book Tirupati darshan packages with Yatrahere. Reliable cab services, professional drivers, and smooth temple visits with no hidden charges.">
+    <meta name="keywords" content="Tirupati booking, Tirumala darshan booking, Tirupati cab packages, temple travel services">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/booking.css">
+
     <style>
         .footer-bottom { text-align:center; padding:12px 0 6px; border-top:1px solid rgba(255,255,255,0.1); margin-top:20px; font-size:0.82rem; color:#aaa; }
         .footer-bottom strong { color:#d4af37; }
@@ -29,33 +34,27 @@
 <!-- NAVBAR -->
 <header class="navbar">
     <div class="container">
-    <div class="logo">
-            <a href="index.html" class="logo-link">
-                <h2>Yatrahere</h2>
-                <div class="hero-badge nav-badge">
-                    Padmavathi Tours and Travels
-                </div>
-            </a>
-        </div>
+        <header class="navbar">
+    <div class="container">
+        <div class="logo">
+    <h2>Yatrahere</h2>
+    <div class="hero-badge nav-badge">
+        Padmavathi Tours and Travels
+    </div>
 </div>
-
         <div class="menu-toggle" id="menuToggle">☰</div>
-
         <nav class="nav-menu" id="navMenu">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="tirupathi.html">Packages</a></li>
 
                 <li class="has-dropdown">
-                    <button class="nav-trigger">
-                        Locations <span class="nav-caret">▾</span>
-                    </button>
+                    <button class="nav-trigger">Locations <span class="nav-caret">▾</span></button>
                     <div class="nav-dropdown">
                         <a href="tirupathi.html">
-                            <span class="nav-dropdown-icon">🛕</span>
                             <span class="nav-dropdown-text">
                                 <strong>Tirupati</strong>
-                                <span>Darshan · Packages · Stays</span>
+                                <span>Darshan · Packages</span>
                             </span>
                         </a>
                     </div>
@@ -64,7 +63,6 @@
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </nav>
-
     </div>
 </header>
 
@@ -74,17 +72,24 @@
 
         <!-- LEFT INFO -->
         <div class="booking-left">
-            <!-- Package banner — shown when coming from a specific package -->
+
             <div class="selected-pkg-banner" id="selectedPkgBanner" style="display:none;"></div>
 
-            <h1>Plan Your Sacred Journey</h1>
-            <p>Experience a peaceful Tirupati darshan with trusted service, comfortable travel, and complete support from our team.</p>
+            <h1>Plan Your Tirupati Journey</h1>
+
+            <p>
+                Book your Tirupati darshan package with reliable cab service, experienced drivers, 
+                and complete travel support. We ensure a smooth and comfortable journey so you can 
+                focus on your spiritual experience.
+            </p>
+
             <div class="booking-points">
-                <span>✔ 5000+ Happy Pilgrims</span>
-                <span>✔ Trusted Tirupati Travel Partner</span>
-                <span>✔ Smooth & Hassle-Free Darshan</span>
+                <span>5000+ Happy Customers</span>
+                <span>Trusted Travel Service</span>
+                <span>Simple and Hassle-Free Booking</span>
             </div>
-            <div class="booking-call">📞 +91 98765 43210</div>
+
+            <div class="booking-call">Call: +91 98765 43210</div>
         </div>
 
         <!-- BOOKING FORM -->
@@ -106,10 +111,19 @@
                     <input type="email" name="email" placeholder="Email (Optional)">
                 </div>
 
-                <!-- PACKAGE SELECT — dynamically built from PACKAGES data -->
+                <!-- PACKAGE SELECT -->
                 <div class="form-group">
                     <select name="trip" id="tripSelect" required>
                         <option value="">Select Package</option>
+                    </select>
+                </div>
+
+                <!-- NEW: CAR TYPE -->
+                <div class="form-group">
+                    <select name="carType" required>
+                        <option value="">Select Vehicle Type</option>
+                        <option>4 Seater</option>
+                        <option>7 Seater</option>
                     </select>
                 </div>
 
@@ -131,25 +145,6 @@
                     <input type="text" name="pickup" placeholder="Pickup Location" required>
                 </div>
 
-                <div class="form-group toggle-group">
-                    <div class="toggle-row">
-                        <span>Need Accommodation</span>
-                        <label class="switch">
-                            <input type="checkbox" id="stayToggle">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group stay-options" id="stayOptions" style="display:none;">
-                    <select name="stay">
-                        <option value="">Select Stay Type</option>
-                        <option>Basic Stay (2★)</option>
-                        <option>Standard Stay (3★)</option>
-                        <option>Premium Stay (4★)</option>
-                    </select>
-                </div>
-
                 <div class="form-group">
                     <textarea name="notes" placeholder="Additional Notes (Optional)"></textarea>
                 </div>
@@ -162,10 +157,13 @@
             <div class="success-popup" id="successPopup">
                 <div class="popup-overlay"></div>
                 <div class="popup-box">
-                    <div class="popup-icon">🛕</div>
+                    <div class="popup-icon"></div>
                     <h3>Booking Request Received</h3>
-                    <p>🙏 Thank you for choosing <strong>Yatrahere</strong><br>Our operator will contact you within <b>15 minutes</b></p>
-                    <span class="popup-blessing">"May Lord Venkateswara bless your journey"</span>
+                    <p>
+                        Thank you for choosing <strong>Yatrahere</strong><br>
+                        Our team will contact you within <b>15 minutes</b>
+                    </p>
+                    <span class="popup-blessing">We wish you a smooth and peaceful journey</span>
                     <button class="popup-btn" id="closePopup">Back to Home</button>
                 </div>
             </div>
@@ -175,16 +173,17 @@
 </section>
 
 <!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">💬</a>
+<a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">Chat</a>
 
 <!-- FOOTER -->
 <footer class="footer" id="contact">
     <div class="container">
         <div class="footer-col">
             <h3>Yatrahere</h3>
-            <p>Your trusted travel partner</p>
-            <p class="footer-domain">🌐 <a href="https://yatra.in" target="_blank">yatra.in</a></p>
+            <p>Reliable travel services for Tirupati journeys</p>
+            <p class="footer-domain"><a href="https://yatra.in" target="_blank">yatra.in</a></p>
         </div>
+
         <div class="footer-col">
             <h4>Quick Links</h4>
             <ul>
@@ -192,12 +191,14 @@
                 <li><a href="tirupathi.html#packages">Packages</a></li>
             </ul>
         </div>
+
         <div class="footer-col">
             <h4>Contact</h4>
             <p>+91 98765 43210</p>
             <p>info@sribalajtravels.com</p>
         </div>
     </div>
+
     <div class="footer-bottom">
         <p>Powered by <strong>Padmavathi Tours and Travels</strong></p>
     </div>

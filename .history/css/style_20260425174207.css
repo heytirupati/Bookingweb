@@ -99,7 +99,7 @@ section { padding: 80px 0; }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 62px;
+    height: 68px;
 }
 
 .logo h2 {
@@ -299,6 +299,9 @@ section { padding: 80px 0; }
 .nav-book-btn::after { display: none !important; }
 .nav-trigger::after  { display: none !important; }
 
+
+
+
 /* ================================
    BUTTONS
 ================================= */
@@ -380,7 +383,7 @@ section { padding: 80px 0; }
 .hero-buttons {
     display: flex;
     gap: 14px;
-    margin-bottom: 18px;
+    margin-bottom: 15px;
 }
 
 .hero-buttons .btn {
@@ -445,16 +448,6 @@ section { padding: 80px 0; }
     backdrop-filter: blur(6px);
 }
 
-/* ================================
-   SERVICES
-================================= */
-.services-title {
-    font-size: 34px;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 10px;
-    letter-spacing: 0.5px;
-}
 /* ── HERO PRICE HIGHLIGHT ── */
         .hero-price-highlight {
             display: flex;
@@ -533,6 +526,17 @@ section { padding: 80px 0; }
         .footer-domain a:hover {
             text-decoration: underline;
         }
+
+/* ================================
+   SERVICES
+================================= */
+.services-title {
+    font-size: 34px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
 
 .services-title::after { display: none; }
 

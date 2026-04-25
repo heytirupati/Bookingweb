@@ -299,6 +299,64 @@ section { padding: 80px 0; }
 .nav-book-btn::after { display: none !important; }
 .nav-trigger::after  { display: none !important; }
 
+
+
+/* Fix logo container alignment */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+/* Main heading */
+.logo h2 {
+    font-size: 18px;
+    margin: 0;
+    line-height: 1.1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Main brand (Yatrahere) */
+.logo h2::first-line {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: var(--text-dark);
+}
+
+/* Sub brand */
+.logo h2 span {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--primary-gold);
+    opacity: 0.8;
+    margin-top: 2px;
+}
+
+/* Premium feel */
+.premium-logo h2 {
+    background: linear-gradient(90deg, #111, #444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Keep subtext gold (important fix) */
+.premium-logo h2 span {
+    -webkit-text-fill-color: var(--primary-gold);
+}
+
+/* Better spacing in navbar */
+.navbar .logo {
+    min-width: 160px;
+}
+
+/* Hover polish */
+.logo:hover h2 span {
+    opacity: 1;
+    letter-spacing: 1.2px;
+}
 /* ================================
    BUTTONS
 ================================= */
@@ -445,16 +503,6 @@ section { padding: 80px 0; }
     backdrop-filter: blur(6px);
 }
 
-/* ================================
-   SERVICES
-================================= */
-.services-title {
-    font-size: 34px;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 10px;
-    letter-spacing: 0.5px;
-}
 /* ── HERO PRICE HIGHLIGHT ── */
         .hero-price-highlight {
             display: flex;
@@ -533,6 +581,17 @@ section { padding: 80px 0; }
         .footer-domain a:hover {
             text-decoration: underline;
         }
+
+/* ================================
+   SERVICES
+================================= */
+.services-title {
+    font-size: 34px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
 
 .services-title::after { display: none; }
 

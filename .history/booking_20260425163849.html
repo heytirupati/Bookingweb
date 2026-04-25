@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Book Tirupati Darshan Package | Yatrahere Travel Booking</title>
+    <meta name="description" content="Book Tirupati darshan packages with Yatrahere. Affordable cab services, smooth darshan planning, and trusted travel support.">
+    <meta name="keywords" content="Tirupati booking, Tirumala darshan booking, Tirupati cab packages, temple travel booking">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/booking.css">
+</head>
+<body>
+
+<section class="top-bar">
+    <div class="container">
+        <div class="top-left">
+            <span>+91 98765 43210</span>
+            <span>info@sribalajtravels.com</span>
+        </div>
+    </div>
+</section>
+
+<header class="navbar">
+    <div class="container">
+        <div class="logo"><a href="index.html"><h2>Yatrahere</h2></a></div>
+        <div class="menu-toggle" id="menuToggle">☰</div>
+        <nav class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tirupathi.html">Packages</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="booking-section">
+    <div class="container booking-container">
+
+        <div class="booking-left">
+            <h1>Plan Your Tirupati Journey</h1>
+            <p>Book your Tirupati darshan package with reliable service, experienced drivers, and complete travel support for a smooth spiritual journey.</p>
+        </div>
+
+        <div class="booking-form-box" id="formStart">
+            <h2>Book Your Trip</h2>
+
+            <form id="bookingForm">
+
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                </div>
+
+                <div class="form-group phone-group">
+                    <span>+91</span>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter 10-digit mobile number" maxlength="10" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email (Optional)">
+                </div>
+
+                <div class="form-group">
+                    <select name="trip" id="tripSelect" required>
+                        <option value="">Select Package</option>
+                    </select>
+                </div>
+
+                <!-- NEW: CAR TYPE -->
+                <div class="form-group">
+                    <select name="carType" required>
+                        <option value="">Select Vehicle</option>
+                        <option>4 Seater</option>
+                        <option>7 Seater</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" name="date" id="dateInput" required>
+                </div>
+
+                <div class="form-group">
+                    <select name="people" required>
+                        <option value="">Number of People</option>
+                        <option>1–2</option>
+                        <option>3–5</option>
+                        <option>6–7</option>
+                        <option>8+</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="pickup" placeholder="Pickup Location" required>
+                </div>
+
+                <div class="form-group">
+                    <textarea name="notes" placeholder="Additional Notes (Optional)"></textarea>
+                </div>
+
+                <button type="submit" class="btn-book">Confirm Booking</button>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<script src="js/packages-data.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
