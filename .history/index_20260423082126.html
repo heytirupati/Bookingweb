@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tirupati Travels — Sacred Journeys</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">🛕</span>
+      <span class="logo-text">Tirupati<span>Travels</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="tirupati.html" class="nav-link">Tirupati</a>
+      <a href="#packages" class="nav-link">Packages</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+    <a href="#packages" class="btn btn-nav">Book Now</a>
+    <button class="nav-burger" id="navBurger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">✦ Sacred Pilgrimage Specialists ✦</p>
+    <h1 class="hero-title">
+      Where Every Journey<br/>
+      <em>Becomes Darshan</em>
+    </h1>
+    <p class="hero-sub">Premium cab service for Tirumala, Tirupati & beyond. Comfortable, honest, and devotion-first.</p>
+    <div class="hero-actions">
+      <a href="#packages" class="btn btn-gold">
+        <span>Explore Packages</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+      <a href="tel:+919999999999" class="btn btn-ghost">
+        <span>📞 Call Now</span>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><strong>5000+</strong><span>Happy Pilgrims</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><strong>8 Yrs</strong><span>Trusted Service</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><strong>100%</strong><span>Safe Journeys</span></div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── PACKAGES ─── -->
+<section class="packages-section" id="packages">
+  <div class="section-header">
+    <p class="section-eyebrow">✦ Choose Your Sacred Path ✦</p>
+    <h2 class="section-title">Our Packages</h2>
+    <p class="section-sub">All-inclusive, honest pricing — no hidden charges ever</p>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All Packages</button>
+    <button class="filter-btn" data-filter="tirupati">Tirupati</button>
+    <button class="filter-btn" data-filter="outstation">Outstation</button>
+  </div>
+
+  <div class="cards-grid" id="cardsGrid">
+    <!-- Injected by script.js -->
+  </div>
+</section>
+
+<!-- ─── WHY US ─── -->
+<section class="why-section">
+  <div class="why-inner">
+    <div class="why-text">
+      <p class="section-eyebrow">✦ Why Choose Us ✦</p>
+      <h2 class="section-title">Travel With<br/><em>Complete Trust</em></h2>
+      <p class="why-para">We've been serving pilgrims for over 8 years. Every driver is vetted, every vehicle is maintained, and every rupee is accounted for. No surprises, ever.</p>
+      <a href="#packages" class="btn btn-gold">View All Packages</a>
+    </div>
+    <div class="why-features">
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>Zero Hidden Charges</h3>
+        <p>What you see is what you pay. Tolls, parking, fuel — all included upfront.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚗</div>
+        <h3>Premium AC Vehicles</h3>
+        <p>Clean, well-maintained cars with experienced, courteous drivers.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🙏</div>
+        <h3>Devotion-First Service</h3>
+        <p>We understand the sacred nature of your journey and honour it fully.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⏰</div>
+        <h3>Flexible Timings</h3>
+        <p>Early morning or afternoon — we work around your darshan schedule.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer" id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo-icon">🛕</span>
+      <span class="logo-text">Tirupati<span>Travels</span></span>
+      <p>Sacred journeys, made comfortable.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="tirupati.html">Tirupati Packages</a>
+      <a href="#packages">All Packages</a>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <a href="tel:+919999999999">📞 +91 99999 99999</a>
+      <a href="https://wa.me/919999999999">💬 WhatsApp Us</a>
+      <a href="mailto:info@tirupatitravels.com">✉️ info@tirupatitravels.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Tirupati Travels. Made with devotion.</p>
+  </div>
+</footer>
+
+<script src="packages-data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

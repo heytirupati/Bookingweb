@@ -1,0 +1,235 @@
+/* =========================================
+   PREMIUM ENHANCEMENTS (ADD-ON ONLY)
+========================================= */
+
+/* GLOBAL SMOOTHNESS */
+body {
+    background: linear-gradient(to bottom, #fffdf7, #fff);
+}
+
+/* subtle luxury texture */
+.pkg-section,
+.pkg-book-card,
+.related-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.pkg-section::before,
+.pkg-book-card::before,
+.related-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(212,175,55,0.08), transparent 60%);
+    opacity: 0;
+    transition: 0.4s ease;
+}
+
+.pkg-section:hover::before,
+.pkg-book-card:hover::before,
+.related-card:hover::after {
+    opacity: 1;
+}
+
+/* =========================================
+   HERO PREMIUM DEPTH
+========================================= */
+
+.pkg-hero-overlay {
+    background:
+        linear-gradient(110deg, rgba(0,0,0,0.85), rgba(0,0,0,0.45), rgba(0,0,0,0.2)),
+        radial-gradient(circle at right, rgba(212,175,55,0.2), transparent 60%);
+}
+
+/* title glow */
+.pkg-title {
+    text-shadow: 0 6px 20px rgba(0,0,0,0.6);
+}
+
+/* tag glow */
+.pkg-hero-tag {
+    box-shadow: 0 4px 14px rgba(212,175,55,0.35);
+}
+
+/* =========================================
+   SECTION PREMIUM CARD
+========================================= */
+
+.pkg-section {
+    transition: all 0.35s ease;
+}
+
+.pkg-section:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* section title upgrade */
+.pkg-section-title {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* =========================================
+   HIGHLIGHT CHIP PREMIUM
+========================================= */
+
+.hl-chip {
+    backdrop-filter: blur(6px);
+}
+
+.hl-chip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(212,175,55,0.25);
+}
+
+/* =========================================
+   TEMPLE FLOW PREMIUM
+========================================= */
+
+.tf-icon-wrap {
+    box-shadow: 0 8px 20px rgba(212,175,55,0.25);
+}
+
+.tf-card {
+    backdrop-filter: blur(8px);
+}
+
+.tf-item:hover .tf-card {
+    transform: translateY(-3px);
+}
+
+/* =========================================
+   ROUTE ENHANCEMENT
+========================================= */
+
+.route-dot {
+    box-shadow: 0 0 0 4px rgba(212,175,55,0.08);
+}
+
+/* =========================================
+   BOOKING CARD PREMIUM
+========================================= */
+
+.pkg-book-card {
+    transition: 0.35s;
+}
+
+.pkg-book-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.18);
+}
+
+/* price glow */
+.pkg-price-value {
+    text-shadow: 0 4px 12px rgba(212,175,55,0.25);
+}
+
+/* CTA stronger */
+.btn-book-pkg {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-book-pkg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.btn-book-pkg:hover::after {
+    opacity: 1;
+    animation: shine 1s;
+}
+
+@keyframes shine {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+
+/* =========================================
+   RELATED CARD PREMIUM
+========================================= */
+
+.related-card {
+    backdrop-filter: blur(6px);
+}
+
+.related-card:hover {
+    transform: translateY(-12px) scale(1.01);
+}
+
+/* image overlay shine */
+.related-img-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    opacity: 0;
+}
+
+.related-card:hover .related-img-wrap::after {
+    opacity: 1;
+    animation: shine 1.2s;
+}
+
+/* =========================================
+   MICRO ANIMATIONS
+========================================= */
+
+.pkg-section,
+.related-card,
+.pkg-book-card {
+    animation: fadeUp 0.6s ease both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* stagger effect */
+.pkg-section:nth-child(2) { animation-delay: 0.05s; }
+.pkg-section:nth-child(3) { animation-delay: 0.1s; }
+.pkg-section:nth-child(4) { animation-delay: 0.15s; }
+
+/* =========================================
+   MOBILE PREMIUM FIXES
+========================================= */
+
+@media (max-width: 768px) {
+
+    .pkg-section:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .related-card:hover {
+        transform: none;
+    }
+
+    .pkg-book-card:hover {
+        transform: none;
+    }
+
+    /* tighter spacing */
+    .pkg-section {
+        margin-bottom: 20px;
+    }
+
+    /* improve hero readability */
+    .pkg-hero-overlay {
+        background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4));
+    }
+
+}

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Details – Sri Balaji Travels</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/package.css">
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<section class="top-bar">
+    <div class="container">
+        <div class="top-left">
+            <span>+91 98765 43210</span>
+            <span>info@sribalajtravels.com</span>
+        </div>
+    </div>
+</section>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="container">
+        <div class="logo"><a href="index.html"><h2>Sri Balaji Travels</h2></a></div>
+        <div class="menu-toggle" id="menuToggle">☰</div>
+        <nav class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tirupathi.html" class="active">Packages</a></li>
+                <li class="has-dropdown">
+                    <button class="nav-trigger">Locations <span class="nav-caret">▾</span></button>
+                    <div class="nav-dropdown">
+                        <a href="tirupathi.html">
+                            <span class="nav-dropdown-icon">🛕</span>
+                            <span class="nav-dropdown-text">
+                                <strong>Tirupati</strong>
+                                <span>Darshan · Packages · Stays</span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li><a href="index.html#contact">Contact</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- PACKAGE DETAIL -->
+<main id="packageDetail">
+    <div class="pkg-loading">
+        <div class="pkg-loading-spinner"></div>
+        <p>Loading package details…</p>
+    </div>
+</main>
+
+<!-- RELATED -->
+<section class="related-section" id="relatedSection" style="display:none;">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="packages-title">You May Also Like</h2>
+            <p class="section-subtext">Handpicked packages that devotees love</p>
+        </div>
+    </div>
+
+    <div class="related-scroll-wrapper">
+        <div class="related-track" id="relatedCards"></div>
+    </div>
+</section>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">💬</a>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+    <div class="container">
+        <div class="footer-col">
+            <h3>Sri Balaji Travels</h3>
+            <p>Your trusted travel partner</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tirupathi.html#packages">Packages</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>+91 98765 43210</p>
+            <p>info@sribalajtravels.com</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/packages-data.js"></script>
+<script src="js/script.js"></script>
+
+<!-- <script>
+(function () {
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const pkg = PACKAGES.find(p => p.id === id);
+    const detail = document.getElementById("packageDetail");
+
+    // ❌ NOT FOUND
+    if (!pkg) {
+        detail.innerHTML = `
+            <div class="pkg-error">
+                <div class="pkg-error-icon">🛕</div>
+                <h2>Package Not Found</h2>
+                <p>Please select a valid package.</p>
+                <a href="tirupathi.html#packages" class="btn btn-primary">Browse Packages</a>
+            </div>`;
+        return;
+    }
+
+    document.title = pkg.name + " – Sri Balaji Travels";
+
+    // ================================
+    // BUILD DATA
+    // ================================
+
+    const includesHTML = pkg.includes.map(i =>
+        `<li><span class="inc-icon">✓</span><span>${i}</span></li>`).join('');
+
+    const excludesHTML = pkg.excludes.map(e =>
+        `<li><span class="exc-icon">✗</span><span>${e}</span></li>`).join('');
+
+    const highlightsHTML = pkg.highlights.map(h =>
+        `<div class="hl-chip">${h}</div>`).join('');
+
+    const routeHTML = pkg.routeFull.map((stop, i) => `
+        <div class="route-node">
+            <div class="route-dot ${i === 0 || i === pkg.routeFull.length - 1 ? 'route-dot-end' : ''}"></div>
+            <span>${stop}</span>
+        </div>
+        ${i < pkg.routeFull.length - 1 ? '<div class="route-connector"></div>' : ''}
+    `).join('');
+
+    const templeFlowHTML = (pkg.templeFlow || []).map((stop, i) => `
+        <div class="tf-item ${i % 2 !== 0 ? 'tf-reverse' : ''}">
+            <div class="tf-icon-col">
+                <div class="tf-icon-wrap">
+                    <span>${stop.icon}</span>
+                </div>
+                ${i < pkg.templeFlow.length - 1 ? '<div class="tf-vline"></div>' : ''}
+            </div>
+            <div class="tf-content-col">
+                <div class="tf-card">
+                    <span class="tf-step">Stop ${i + 1}</span>
+                    <h3>${stop.name}</h3>
+                    <p>${stop.desc}</p>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    // ================================
+    // MAIN UI
+    // ================================
+
+    detail.innerHTML = `
+
+        <div class="pkg-breadcrumb">
+            <div class="container">
+                <a href="index.html">Home</a>
+                <span class="bc-sep">›</span>
+                <a href="tirupathi.html#packages">Packages</a>
+                <span class="bc-sep">›</span>
+                <span>${pkg.name}</span>
+            </div>
+        </div>
+
+        <div class="pkg-hero-strip">
+            <div class="pkg-hero-img">
+                <img src="${pkg.image}" alt="${pkg.name}">
+                <div class="pkg-hero-overlay"></div>
+            </div>
+
+            <div class="container pkg-hero-content">
+                <span class="pkg-hero-tag ${pkg.tagClass || ''}">${pkg.tag}</span>
+                <h1 class="pkg-title">${pkg.name}</h1>
+                <p class="pkg-hero-subtitle">${pkg.routeShort}</p>
+
+                <div class="pkg-hero-meta">
+                    <span>⏱ ${pkg.duration}</span>
+                    <span>🚗 Pickup Included</span>
+                    <span>📞 24/7 Support</span>
+                </div>
+
+                <div class="pkg-hero-actions">
+                    <a href="booking.html?package=${pkg.id}" class="btn btn-primary">Book This Package</a>
+
+                    <a href="https://wa.me/919876543210?text=Hi, I'm interested in ${encodeURIComponent(pkg.name)}"
+                       target="_blank" class="btn btn-outline">
+                       💬 WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container pkg-body">
+
+            <div class="pkg-left">
+
+                <div class="pkg-section">
+                    <h2 class="pkg-section-title">About This Package</h2>
+                    <p class="pkg-description">${pkg.description}</p>
+                    ${pkg.note ? `<div class="pkg-note">💡 ${pkg.note}</div>` : ''}
+                </div>
+
+                <div class="pkg-section">
+                    <h2 class="pkg-section-title">Highlights</h2>
+                    <div class="pkg-highlights">${highlightsHTML}</div>
+                </div>
+
+                ${pkg.templeFlow?.length ? `
+                <div class="pkg-section pkg-section-tf">
+                    <h2 class="pkg-section-title">Your Journey</h2>
+                    <div class="temple-flow">${templeFlowHTML}</div>
+                </div>` : ''}
+
+                <div class="pkg-section">
+                    <h2 class="pkg-section-title">Route</h2>
+                    <div class="pkg-route-full">${routeHTML}</div>
+                </div>
+
+                <div class="pkg-section pkg-inc-exc">
+                    <div class="pkg-inc">
+                        <h2 class="pkg-section-title">Included</h2>
+                        <ul>${includesHTML}</ul>
+                    </div>
+
+                    <div class="pkg-exc">
+                        <h2 class="pkg-section-title">Not Included</h2>
+                        <ul>${excludesHTML}</ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pkg-right">
+                <div class="pkg-book-card">
+
+                    <div class="pkg-price-block">
+                        <span class="pkg-price-label">Starting from</span>
+                        <span class="pkg-price-value">₹${pkg.price.toLocaleString('en-IN')}</span>
+                        <span class="pkg-price-sub">${pkg.duration}</span>
+                    </div>
+
+                    <a href="booking.html?package=${pkg.id}" class="btn-book-pkg">
+                        🛕 Book Now
+                    </a>
+
+                    <a href="https://wa.me/919876543210"
+                       class="btn-whatsapp-pkg" target="_blank">
+                       💬 Ask on WhatsApp
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    `;
+
+    // ================================
+    // RELATED PACKAGES (CLICKABLE)
+    // ================================
+
+    const related = PACKAGES
+        .filter(p => p.id !== pkg.id)
+        .sort((a, b) => (b.popular === true) - (a.popular === true))
+        .slice(0, 6);
+
+    if (related.length) {
+
+        document.getElementById("relatedSection").style.display = "block";
+
+        document.getElementById("relatedCards").innerHTML = related.map(p => `
+
+            <a href="package.html?id=${p.id}" class="related-card">
+
+                <div class="related-img-wrap">
+                    <img src="${p.image}" alt="${p.name}">
+                    ${p.tag ? `<span class="related-tag ${p.tagClass || ''}">${p.tag}</span>` : ''}
+                </div>
+
+                <div class="related-body">
+                    <h3>${p.name}</h3>
+                    <p>${p.routeShort}</p>
+
+                    <div class="related-footer">
+                        <span class="related-price">₹${p.price.toLocaleString('en-IN')}</span>
+                        <span class="related-btn btn btn-outline">View</span>
+                    </div>
+                </div>
+
+            </a>
+
+        `).join('');
+    }
+
+})();
+</script> -->
+
+<script>
+// ── UNIFIED NAVBAR JS ─────────────────────────────────────
+(function() {
+    const toggle   = document.getElementById("menuToggle");
+    const navMenu  = document.getElementById("navMenu");
+    const triggers = document.querySelectorAll(".nav-trigger");
+
+    if (toggle && navMenu) {
+        toggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle("active");
+            toggle.textContent = navMenu.classList.contains("active") ? "✕" : "☰";
+        });
+        navMenu.querySelectorAll("a").forEach(link =>
+            link.addEventListener("click", () => {
+                navMenu.classList.remove("active");
+                toggle.textContent = "☰";
+            })
+        );
+    }
+
+    triggers.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const li = btn.closest("li");
+            const isOpen = li.classList.contains("open");
+            document.querySelectorAll(".has-dropdown").forEach(el => el.classList.remove("open"));
+            if (!isOpen) li.classList.add("open");
+        });
+    });
+
+    document.addEventListener("click", () => {
+        document.querySelectorAll(".has-dropdown").forEach(el => el.classList.remove("open"));
+    });
+})();
+</script>
+
+</body>
+</html>

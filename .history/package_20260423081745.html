@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Package Details — Tirupati Travels</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="package.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="pkg-body">
+
+<!-- ─── NAV ─── -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">🛕</span>
+      <span class="logo-text">Tirupati<span>Travels</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="tirupati.html" class="nav-link">Tirupati</a>
+      <a href="index.html#packages" class="nav-link">Packages</a>
+      <a href="index.html#contact" class="nav-link">Contact</a>
+    </div>
+    <a href="#" class="btn btn-nav" id="navBookBtn">Book Now</a>
+    <button class="nav-burger" id="navBurger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── NOT FOUND (hidden by default) ─── -->
+<div class="pkg-not-found" id="notFound" style="display:none">
+  <div class="nf-inner">
+    <div class="nf-icon">🛕</div>
+    <h2>Package Not Found</h2>
+    <p>The package you're looking for doesn't exist.</p>
+    <a href="index.html#packages" class="btn btn-gold">View All Packages</a>
+  </div>
+</div>
+
+<!-- ─── MAIN CONTENT ─── -->
+<main class="pkg-main" id="pkgMain">
+
+  <!-- ── HERO ── -->
+  <section class="pkg-hero" id="pkgHero">
+    <div class="pkg-hero-bg" id="pkgHeroBg"></div>
+    <div class="pkg-hero-overlay"></div>
+    <div class="pkg-hero-content">
+      <a href="index.html#packages" class="pkg-back-btn">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>All Packages</span>
+      </a>
+      <div class="pkg-hero-badge" id="pkgBadge"></div>
+      <h1 class="pkg-hero-title" id="pkgHeroTitle">Loading…</h1>
+      <p class="pkg-hero-tagline" id="pkgHeroTagline"></p>
+      <div class="pkg-hero-meta">
+        <div class="pkg-meta-pill" id="pkgMetaDuration">
+          <span class="pill-icon">⏱</span><span id="pkgDuration"></span>
+        </div>
+        <div class="pkg-meta-pill">
+          <span class="pill-icon">🗺</span><span id="pkgRoute"></span>
+        </div>
+      </div>
+      <div class="pkg-hero-price-row">
+        <div class="pkg-hero-price">
+          <span class="price-label">Starting from</span>
+          <div class="price-main">
+            <span class="price-original" id="pkgOriginalPrice"></span>
+            <span class="price-actual" id="pkgPrice"></span>
+          </div>
+          <span class="price-note">per cab · all inclusive</span>
+        </div>
+        <a href="#" class="btn btn-gold btn-xl pkg-book-cta" id="pkgHeroBookBtn">
+          <span>Book This Package</span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M11 5l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INTRO ── -->
+  <section class="pkg-section pkg-intro-section">
+    <div class="pkg-container">
+      <div class="pkg-intro-inner">
+        <div class="pkg-intro-text">
+          <p class="pkg-section-eyebrow" id="pkgIntroEyebrow">About This Package</p>
+          <p class="pkg-intro-body" id="pkgIntroBody"></p>
+        </div>
+        <div class="pkg-includes-excludes">
+          <div class="inc-exc-col inc-col">
+            <h4>✅ Includes</h4>
+            <ul id="pkgIncludesList"></ul>
+          </div>
+          <div class="inc-exc-col exc-col">
+            <h4>❌ Excludes</h4>
+            <ul id="pkgExcludesList"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HIGHLIGHTS ── -->
+  <section class="pkg-section pkg-highlights-section">
+    <div class="pkg-container">
+      <p class="pkg-section-eyebrow">What's Covered</p>
+      <h2 class="pkg-section-title">Package <em>Highlights</em></h2>
+      <div class="highlights-grid" id="highlightsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ── TEMPLE FLOW (Zig-Zag) ── -->
+  <section class="pkg-section pkg-route-section">
+    <div class="pkg-container">
+      <p class="pkg-section-eyebrow">Your Sacred Route</p>
+      <h2 class="pkg-section-title">Temple <em>Journey</em></h2>
+      <div class="route-flow" id="routeFlow"></div>
+    </div>
+  </section>
+
+  <!-- ── ADD-ONS ── -->
+  <section class="pkg-section pkg-addons-section" id="addOnsSection">
+    <div class="pkg-container">
+      <p class="pkg-section-eyebrow">Enhance Your Trip</p>
+      <h2 class="pkg-section-title">Optional <em>Add-ons</em></h2>
+      <div class="addons-grid" id="addonsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ── NOTES ── -->
+  <section class="pkg-section pkg-notes-section">
+    <div class="pkg-container">
+      <p class="pkg-section-eyebrow">Before You Book</p>
+      <h2 class="pkg-section-title">Important <em>Notes</em></h2>
+      <div class="notes-grid" id="notesGrid"></div>
+    </div>
+  </section>
+
+  <!-- ── YOU MAY ALSO LIKE ── -->
+  <section class="pkg-section pkg-similar-section" id="similarSection">
+    <div class="pkg-container">
+      <p class="pkg-section-eyebrow">Explore More</p>
+      <h2 class="pkg-section-title">You May Also <em>Like</em></h2>
+    </div>
+    <div class="similar-track-wrap">
+      <button class="similar-arrow similar-arrow-left" id="similarLeft">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 5L7 10l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="similar-track" id="similarTrack"></div>
+      <button class="similar-arrow similar-arrow-right" id="similarRight">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ── CTA BANNER ── -->
+  <section class="pkg-cta-banner">
+    <div class="pkg-cta-inner">
+      <p class="cta-eyebrow">Ready for your pilgrimage?</p>
+      <h2 class="cta-title">Begin Your Sacred Journey</h2>
+      <p class="cta-sub">Transparent pricing · No hidden charges · Pickup included</p>
+      <div class="cta-actions">
+        <a href="#" class="btn btn-gold btn-xl" id="pkgBottomBookBtn">
+          <span>Book This Package</span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M11 5l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </a>
+        <a href="tel:+919999999999" class="btn btn-ghost-light">
+          <span>📞 Call to Book</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer" id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo-icon">🛕</span>
+      <span class="logo-text">Tirupati<span>Travels</span></span>
+      <p>Sacred journeys, made comfortable.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="tirupati.html">Tirupati Packages</a>
+      <a href="index.html#packages">All Packages</a>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <a href="tel:+919999999999">📞 +91 99999 99999</a>
+      <a href="https://wa.me/919999999999">💬 WhatsApp Us</a>
+      <a href="mailto:info@tirupatitravels.com">✉️ info@tirupatitravels.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Tirupati Travels. Made with devotion.</p>
+  </div>
+</footer>
+
+<script src="packages-data.js"></script>
+<script src="script.js"></script>
+<script src="package.js"></script>
+</body>
+</html>
