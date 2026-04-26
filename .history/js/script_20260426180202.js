@@ -185,6 +185,48 @@
             renderCards(this.dataset.filter);
         });
     });
+
+    // ── Hero "Book Now" modal (Tirupati/Tirumala packages only) ──
+    const TIRUPATI_CATS = ["tirumala", "tirupati"];
+    const modal      = document.getElementById("pkgModal");
+    const modalList  = document.getElementById("pkgModalList");
+    const closeModal = document.getElementById("pkgModalClose");
+    const heroBtn    = document.getElementById("heroBookBtn");
+
+    function buildModal() {
+        const pkgs = PACKAGES.filter(p => TIRUPATI_CATS.includes(p.category));
+        modalList.innerHTML = pkgs.map(p => `
+            <a href="booking.html?package=${p.id}" class="modal-pkg-row">
+                <div class="modal-pkg-info">
+                    <span class="modal-pkg-tag ${p.tagClass || ''}">${p.tag}</span>
+                    <strong>${p.name}</strong>
+                    <span class="modal-pkg-route">${p.routeShort}</span>
+                </div>
+                <div class="modal-pkg-right">
+                    <span class="modal-pkg-price">₹${p.price.toLocaleString("en-IN")}</span>
+                    <span class="modal-pkg-duration">${p.duration}</span>
+                </div>
+            </a>
+        `).join("");
+    }
+
+    heroBtn?.addEventListener("click", () => {
+        buildModal();
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+    });
+
+    closeModal?.addEventListener("click", () => {
+        modal.style.display = "none";
+        document.body.style.overflow = "";
+    });
+
+    modal?.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.style.display = "none";
+            document.body.style.overflow = "";
+        }
+    });
 })();
 
 
@@ -368,51 +410,52 @@
 
 
 // ============================================================
-//  9. BOOKING PAGE
-//     Runs only when #bookingForm exists (booking.html)
+//  9. BOOKING PAGE (UPDATED LOGIC)
 // ============================================================
 (function initBookingPage() {
     const form = document.getElementById("bookingForm");
     if (!form || typeof PACKAGES === "undefined") return;
 
     const SCRIPT_URL  = "https://script.google.com/macros/s/AKfycbwK2iJHY3h7BSFlUR7wPW-Q8FFdgwA5g7lLYM417QIYtT8BIEzMPImFFo4-PKAhUFvR/exec";
+
     const tripSelect  = document.getElementById("tripSelect");
+    const customMain  = document.getElementById("customTripMain");
+    const customBox   = document.getElementById("customTripOptions");
+    const customList  = document.getElementById("customTripList");
+
     const dateInput   = document.getElementById("dateInput");
     const phoneInput  = document.getElementById("phone");
+
     const popup       = document.getElementById("successPopup");
     const closeBtn    = document.getElementById("closePopup");
     const submitBtn   = document.querySelector(".btn-book");
 
-    // ── Build package dropdown ─────────────────────────────
-    const CATEGORY_LABELS = {
-        tirumala:    "— Tirumala Darshan —",
-        tirupati:    "— Tirupati Temples —",
-        outstation:  "— Outstation —",
-        "one-day":   "— One-Day Routes —",
-        "multi-day": "— Multi-Day —",
-        transfer:    "— Transfers —"
-    };
-
+    // =============================
+    // BUILD PACKAGE DROPDOWN
+    // =============================
     const grouped = {};
     PACKAGES.forEach(p => {
         if (!grouped[p.category]) grouped[p.category] = [];
         grouped[p.category].push(p);
     });
 
-    Object.entries(CATEGORY_LABELS).forEach(([cat, label]) => {
-        if (!grouped[cat]) return;
+    Object.keys(grouped).forEach(cat => {
         const optgroup = document.createElement("optgroup");
-        optgroup.label = label;
+        optgroup.label = cat.toUpperCase();
+
         grouped[cat].forEach(p => {
             const opt = document.createElement("option");
-            opt.value       = p.id;
-            opt.textContent = p.name + " — ₹" + p.price.toLocaleString("en-IN");
+            opt.value = p.id;
+            opt.textContent = `${p.name} — ₹${p.price.toLocaleString("en-IN")}`;
             optgroup.appendChild(opt);
         });
+
         tripSelect.appendChild(optgroup);
     });
 
-    // ── Pre-select package from URL ────────────────────────
+    // =============================
+    // PRESELECT PACKAGE
+    // =============================
     const pkgId = new URLSearchParams(window.location.search).get("package");
     if (pkgId) {
         const foundPkg = PACKAGES.find(p => p.id === pkgId);
@@ -424,189 +467,127 @@
                 banner.style.display = "block";
                 banner.innerHTML = `
                     <div class="pkg-banner-inner">
-                        <span class="pkg-banner-tag ${foundPkg.tagClass || ''}">${foundPkg.tag}</span>
-                        <div class="pkg-banner-name">${foundPkg.name}</div>
-                        <div class="pkg-banner-meta">
-                            <span>⏱ ${foundPkg.duration}</span>
-                            <span>₹${foundPkg.price.toLocaleString("en-IN")}</span>
-                        </div>
-                        <p class="pkg-banner-route">${foundPkg.routeShort}</p>
+                        <strong>${foundPkg.name}</strong>
+                        <span>₹${foundPkg.price.toLocaleString("en-IN")}</span>
                     </div>
                 `;
             }
         }
     }
 
-    // ── Minimum date = today ───────────────────────────────
+    // =============================
+    // DATE VALIDATION
+    // =============================
     if (dateInput) {
-        dateInput.setAttribute("min", new Date().toISOString().split("T")[0]);
+        dateInput.min = new Date().toISOString().split("T")[0];
     }
 
-    // ── Scroll form into view on load ─────────────────────
-    window.addEventListener("load", () => {
-        document.getElementById("formStart")?.scrollIntoView({ behavior: "smooth", block: "center" });
-    });
-
-    // ── Helper: Show error message below field ─────────────
-    function showError(field, message) {
-        clearError(field);
-        field.classList.add("error");
-        const errorSpan = document.createElement("span");
-        errorSpan.className = "error-text";
-        errorSpan.textContent = message;
-        field.parentElement.appendChild(errorSpan);
-    }
-
-    function clearError(field) {
-        field.classList.remove("error");
-        const existingError = field.parentElement.querySelector(".error-text");
-        if (existingError) existingError.remove();
-    }
-
-    // ── Phone validation on input ──────────────────────────
-    phoneInput?.addEventListener("input", function() {
-        // Remove non-digit characters
-        this.value = this.value.replace(/\D/g, "");
-        
-        // Limit to 10 digits
-        if (this.value.length > 10) {
-            this.value = this.value.slice(0, 10);
-        }
-
-        // Clear error while typing
-        clearError(this);
-    });
-
-    // ── Phone validation on blur ───────────────────────────
-    phoneInput?.addEventListener("blur", function() {
-        const phone = this.value.trim();
-        
-        if (phone.length === 0) {
-            clearError(this);
-            return;
-        }
-
-        if (phone.length < 10) {
-            showError(this, "Please enter 10 digits");
-        } else if (!/^[6-9]/.test(phone)) {
-            showError(this, "start with 6, 7, 8, or 9");
+    // =============================
+    // CUSTOM TRIP TOGGLE
+    // =============================
+    customMain?.addEventListener("change", () => {
+        if (customMain.value) {
+            customBox.style.display = "block";
+            tripSelect.value = "";
+            tripSelect.disabled = true;
         } else {
-            clearError(this);
+            customBox.style.display = "none";
+            tripSelect.disabled = false;
         }
     });
 
-    // ── Clear error on focus ───────────────────────────────
-    document.querySelectorAll("input, select, textarea").forEach(field => {
-        field.addEventListener("focus", function() {
-            clearError(this);
-            this.style.borderColor = "#d4af37";
-            this.style.boxShadow = "0 0 0 2px rgba(212,175,55,0.15)";
-        });
-
-        field.addEventListener("blur", function() {
-            if (!this.classList.contains("error")) {
-                this.style.borderColor = "#ddd";
-                this.style.boxShadow = "none";
-            }
-        });
+    // =============================
+    // PACKAGE SELECT
+    // =============================
+    tripSelect?.addEventListener("change", () => {
+        if (tripSelect.value) {
+            customMain.value = "";
+            customBox.style.display = "none";
+        }
     });
 
-    // ── Form submission ────────────────────────────────────
-    let isSubmitting = false;
+    // =============================
+    // PHONE VALIDATION (LIVE)
+    // =============================
+    phoneInput.addEventListener("input", () => {
+        phoneInput.value = phoneInput.value.replace(/\D/g, "").slice(0, 10);
 
+        if (/^[6-9]\d{9}$/.test(phoneInput.value)) {
+            phoneInput.style.borderColor = "green";
+        } else {
+            phoneInput.style.borderColor = "red";
+        }
+    });
+
+    // =============================
+    // FORM SUBMIT
+    // =============================
     form.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        // Prevent double submission
-        if (isSubmitting) return;
-
-        // Clear all previous errors
-        document.querySelectorAll(".error-text").forEach(err => err.remove());
-        document.querySelectorAll(".error").forEach(field => field.classList.remove("error"));
-
-        // Validate phone number
         const phone = phoneInput.value.trim();
-        if (phone.length === 0) {
-            showError(phoneInput, "Mobile number is required");
+        const pkg   = tripSelect.value;
+        const custom = customList
+            ? Array.from(customList.selectedOptions).map(o => o.value)
+            : [];
+
+        // ❌ Must choose one
+        if (!pkg && custom.length === 0) {
+            alert("Please select Package OR Design Your Trip");
             return;
         }
-        if (phone.length !== 10) {
-            showError(phoneInput, "Please enter exactly 10 digits");
+
+        // ❌ Cannot choose both
+        if (pkg && custom.length > 0) {
+            alert("Choose either Package OR Custom Trip, not both");
             return;
         }
+
+        // ❌ Phone validation
         if (!/^[6-9]\d{9}$/.test(phone)) {
-            showError(phoneInput, "Invalid mobile number. Must start with 6-9");
+            alert("Invalid phone number");
+            phoneInput.focus();
             return;
         }
 
-        // Validate other required fields
-        const nameField = form.querySelector('[name="name"]');
-        if (!nameField.value.trim()) {
-            showError(nameField, "Name is required");
-            return;
-        }
-
-        const tripField = form.querySelector('[name="trip"]');
-        if (!tripField.value) {
-            showError(tripField, "Please select a package");
-            return;
-        }
-
-        const dateField = form.querySelector('[name="date"]');
-        if (!dateField.value) {
-            showError(dateField, "Please select a date");
-            return;
-        }
-
-        const peopleField = form.querySelector('[name="people"]');
-        if (!peopleField.value) {
-            showError(peopleField, "Please select number of people");
-            return;
-        }
-
-        const pickupField = form.querySelector('[name="pickup"]');
-        if (!pickupField.value.trim()) {
-            showError(pickupField, "Pickup location is required");
-            return;
-        }
-
-        const vehicleField = form.querySelector('[name="vehicle"]');
-        if (!vehicleField.value) {
-            showError(vehicleField, "Please select a vehicle type");
-            return;
-        }
-
-        // All validations passed - submit form
-        isSubmitting = true;
-        submitBtn.disabled = true;
+        submitBtn.disabled  = true;
         submitBtn.innerText = "Processing...";
-        submitBtn.style.opacity = "0.6";
-        submitBtn.style.cursor = "not-allowed";
 
-        fetch(SCRIPT_URL, { method: "POST", body: new FormData(form) })
-            .then(() => {
-                if (popup) popup.style.display = "block";
-                form.reset();
-                isSubmitting = false;
-            })
-            .catch(() => {
-                showError(submitBtn, "Something went wrong. Please try again!");
-                isSubmitting = false;
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Confirm Booking";
-                submitBtn.style.opacity = "1";
-                submitBtn.style.cursor = "pointer";
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Confirm Booking";
-                submitBtn.style.opacity = "1";
-                submitBtn.style.cursor = "pointer";
-            });
+        // Attach custom trip
+        if (custom.length > 0) {
+            const hidden = document.createElement("input");
+            hidden.type = "hidden";
+            hidden.name = "customTrip";
+            hidden.value = custom.join(", ");
+            form.appendChild(hidden);
+        }
+
+        fetch(SCRIPT_URL, {
+            method: "POST",
+            body: new FormData(form)
+        })
+        .then(() => {
+            popup.style.display = "block";
+            form.reset();
+
+            customBox.style.display = "none";
+            tripSelect.disabled = false;
+
+            submitBtn.disabled  = false;
+            submitBtn.innerText = "Confirm Booking";
+        })
+        .catch(() => {
+            alert("Something went wrong. Try again!");
+            submitBtn.disabled  = false;
+            submitBtn.innerText = "Confirm Booking";
+        });
     });
 
-    // ── Close popup → go home ──────────────────────────────
+    // =============================
+    // CLOSE POPUP
+    // =============================
     closeBtn?.addEventListener("click", () => {
         window.location.href = "index.html";
     });
+
 })();

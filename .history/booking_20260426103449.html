@@ -1,0 +1,234 @@
+<!-- ============================================================
+     BOOKING FORM STRUCTURE - booking.html
+     This is the updated form structure with:
+     - Optional pickup location
+     - Vehicle type (4-seater / 6-seater)
+     - Design Your Trip feature
+     - Removed accommodation toggle
+     - Mutual exclusivity (package OR custom trip)
+     ============================================================ -->
+
+<section class="booking-section">
+    <div class="container booking-container">
+        
+        <!-- LEFT INFO PANEL -->
+        <div class="booking-left">
+            <h1>Book Your Divine Journey</h1>
+            <p>Fill in your details and we'll make your pilgrimage memorable</p>
+            
+            <!-- Selected Package Banner (shown when coming from package page) -->
+            <div id="selectedPkgBanner" class="selected-pkg-banner" style="display: none;">
+                <!-- Populated by JavaScript -->
+            </div>
+            
+            <div class="booking-points">
+                <span>✓ Experienced drivers with route knowledge</span>
+                <span>✓ Clean, well-maintained vehicles</span>
+                <span>✓ Flexible pickup locations</span>
+                <span>✓ 24/7 customer support</span>
+            </div>
+            
+            <p class="booking-call">
+                📞 Need help? Call us at <strong>+91 98765 43210</strong>
+            </p>
+        </div>
+
+        <!-- BOOKING FORM BOX -->
+        <div class="booking-form-box">
+            <h2 id="formStart">🛕 Booking Details</h2>
+            
+            <form id="bookingForm">
+                
+                <!-- NAME -->
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+
+                <!-- PHONE -->
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <div class="phone-group">
+                        <span>+91</span>
+                        <input type="tel" id="phone" name="phone" placeholder="9876543210" maxlength="10" required>
+                    </div>
+                </div>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+                    <label for="email">Email (Optional)</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com">
+                </div>
+
+                <!-- TRAVEL DATE -->
+                <div class="form-group">
+                    <label for="dateInput">Travel Date *</label>
+                    <input type="date" id="dateInput" name="date" required>
+                </div>
+
+                <!-- NUMBER OF PEOPLE -->
+                <div class="form-group">
+                    <label for="people">Number of People *</label>
+                    <input type="number" id="people" name="people" placeholder="e.g., 4" min="1" max="50" required>
+                </div>
+
+                <!-- VEHICLE TYPE (NEW) -->
+                <div class="form-group">
+                    <label for="vehicleType">Vehicle Type *</label>
+                    <select id="vehicleType" name="vehicleType" required>
+                        <option value="">Select vehicle type</option>
+                        <option value="4-seater">4-Seater (Sedan)</option>
+                        <option value="6-seater">6-Seater (SUV/Innova)</option>
+                    </select>
+                </div>
+
+                <!-- PICKUP LOCATION (NOW OPTIONAL) -->
+                <div class="form-group">
+                    <label for="pickup">Pickup Location (Optional)</label>
+                    <input type="text" id="pickup" name="pickup" placeholder="e.g., Tirupati Railway Station">
+                </div>
+
+                <!-- PACKAGE SELECTION -->
+                <div class="form-group">
+                    <label for="tripSelect">Select Package</label>
+                    <select id="tripSelect" name="trip">
+                        <option value="">Choose a package...</option>
+                        <!-- Populated by JavaScript with grouped options -->
+                    </select>
+                </div>
+
+                <!-- OR DESIGN YOUR OWN TRIP -->
+                <div class="form-group">
+                    <button type="button" id="designTripBtn" class="design-trip-btn">
+                        🗺️ Design Your Own Trip
+                    </button>
+                </div>
+
+                <!-- CUSTOM TRIP AREA (hidden by default) -->
+                <div id="customTripArea" class="custom-trip-area">
+                    <div class="trip-area-header">
+                        <h3>Select Destinations</h3>
+                        <span id="selectedCount" class="selected-count">0 selected</span>
+                    </div>
+                    
+                    <div id="destinationGrid" class="destination-grid">
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-tirumala" class="dest-checkbox" value="Tirumala" name="destinations[]">
+                            <label for="dest-tirumala" class="dest-label">Tirumala</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-tirupati" class="dest-checkbox" value="Tirupati" name="destinations[]">
+                            <label for="dest-tirupati" class="dest-label">Tirupati</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-tirupati-sight" class="dest-checkbox" value="Tirupati Sightseeing" name="destinations[]">
+                            <label for="dest-tirupati-sight" class="dest-label">Tirupati Sightseeing</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-tirumala-sight" class="dest-checkbox" value="Tirumala Sightseeing" name="destinations[]">
+                            <label for="dest-tirumala-sight" class="dest-label">Tirumala Sightseeing</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-srikalahasti" class="dest-checkbox" value="Srikalahasti" name="destinations[]">
+                            <label for="dest-srikalahasti" class="dest-label">Srikalahasti</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-kanipakam" class="dest-checkbox" value="Kanipakam" name="destinations[]">
+                            <label for="dest-kanipakam" class="dest-label">Kanipakam</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-golden-temple" class="dest-checkbox" value="Golden Temple Vellore" name="destinations[]">
+                            <label for="dest-golden-temple" class="dest-label">Golden Temple Vellore</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-arunachalam" class="dest-checkbox" value="Arunachalam" name="destinations[]">
+                            <label for="dest-arunachalam" class="dest-label">Arunachalam</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-tiruttani" class="dest-checkbox" value="Tiruttani" name="destinations[]">
+                            <label for="dest-tiruttani" class="dest-label">Tiruttani</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-kanchipuram" class="dest-checkbox" value="Kanchipuram" name="destinations[]">
+                            <label for="dest-kanchipuram" class="dest-label">Kanchipuram</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-appalayagunta" class="dest-checkbox" value="Appalayagunta" name="destinations[]">
+                            <label for="dest-appalayagunta" class="dest-label">Appalayagunta</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-ontimitta" class="dest-checkbox" value="Ontimitta" name="destinations[]">
+                            <label for="dest-ontimitta" class="dest-label">Ontimitta</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-chennai" class="dest-checkbox" value="Chennai" name="destinations[]">
+                            <label for="dest-chennai" class="dest-label">Chennai</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-bangalore" class="dest-checkbox" value="Bangalore" name="destinations[]">
+                            <label for="dest-bangalore" class="dest-label">Bangalore</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-hyderabad" class="dest-checkbox" value="Hyderabad" name="destinations[]">
+                            <label for="dest-hyderabad" class="dest-label">Hyderabad</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-srisailam" class="dest-checkbox" value="Srisailam" name="destinations[]">
+                            <label for="dest-srisailam" class="dest-label">Srisailam</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-pondicherry" class="dest-checkbox" value="Pondicherry" name="destinations[]">
+                            <label for="dest-pondicherry" class="dest-label">Pondicherry</label>
+                        </div>
+                        
+                        <div class="dest-option">
+                            <input type="checkbox" id="dest-other-temple" class="dest-checkbox" value="Other Temple" name="destinations[]">
+                            <label for="dest-other-temple" class="dest-label">Other Temple</label>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- SPECIAL REQUESTS -->
+                <div class="form-group">
+                    <label for="notes">Special Requests (Optional)</label>
+                    <textarea id="notes" name="notes" placeholder="Any special requirements or preferences..."></textarea>
+                </div>
+
+                <!-- SUBMIT BUTTON -->
+                <button type="submit" class="btn-book">Confirm Booking</button>
+                
+            </form>
+        </div>
+        
+    </div>
+</section>
+
+<!-- SUCCESS POPUP -->
+<div id="successPopup" class="success-popup">
+    <div class="popup-overlay"></div>
+    <div class="popup-box">
+        <div class="popup-icon">🙏</div>
+        <h3>Booking Confirmed!</h3>
+        <p>Your booking request has been received. Our team will contact you shortly to confirm details.</p>
+        <span class="popup-blessing">Om Namo Venkatesaya 🕉️</span>
+        <button id="closePopup" class="popup-btn">Return Home</button>
+    </div>
+</div>

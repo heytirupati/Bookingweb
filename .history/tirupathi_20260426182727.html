@@ -57,6 +57,18 @@
     </div>
 </header>
 
+<!-- PACKAGE MODAL -->
+<div class="pkg-modal-overlay" id="pkgModal" style="display:none;">
+    <div class="pkg-modal-box">
+        <div class="pkg-modal-header">
+            <h3>Select a Tirupati Package</h3>
+            <button class="pkg-modal-close" id="pkgModalClose">Close</button>
+        </div>
+        <div class="pkg-modal-list" id="pkgModalList"></div>
+        <a href="booking.html" class="pkg-modal-skip">Proceed to booking page</a>
+    </div>
+</div>
+
 <!-- HERO -->
 <section class="hero">
     <div class="container hero-container">
@@ -98,7 +110,7 @@
     </div>
 
     <div class="hero-buttons">
-        <a href="booking.html" class="btn btn-primary">Book Now</a>
+        <button class="btn btn-primary" id="heroBookBtn">Book Now</button>
         <a href="#contact" class="btn btn-outline">Contact</a>
     </div>
 

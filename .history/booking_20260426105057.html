@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Trip — Sri Balaji Travels</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Your global stylesheet (adjust path as needed) -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Booking page styles -->
+    <link rel="stylesheet" href="booking.css">
+
+    <style>
+        /* ── Minimal base resets so the page works standalone ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --primary-gold : #c9a84c;
+            --text-dark    : #f0ead8;
+            --text-light   : #b0a890;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background  : #0e0c08;
+            color       : #f0ead8;
+            min-height  : 100vh;
+        }
+
+        /* Container utility (matches your style.css) */
+        .container {
+            width    : 90%;
+            max-width: 1200px;
+            margin   : 0 auto;
+        }
+
+        /* ── Shake animation for submit error ── */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%       { transform: translateX(-6px); }
+            40%       { transform: translateX(6px); }
+            60%       { transform: translateX(-4px); }
+            80%       { transform: translateX(4px); }
+        }
+        .shake { animation: shake 0.45s ease; }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+         OPTIONAL: paste your <nav> / header here if needed
+         ============================================================ -->
+
+    <!-- ============================================================
+         BOOKING SECTION
+         ============================================================ -->
+    <section class="booking-section">
+        <div class="container booking-container">
+
+            <!-- LEFT INFO PANEL -->
+            <div class="booking-left">
+                <h1>Book Your<br><em>Divine Journey</em></h1>
+                <p>Fill in your details and we'll craft an unforgettable pilgrimage experience for you.</p>
+
+                <!-- Selected Package Banner (populated by JS when coming from package page) -->
+                <div id="selectedPkgBanner" class="selected-pkg-banner" style="display:none;"></div>
+
+                <div class="booking-points">
+                    <span>Experienced drivers with deep route knowledge</span>
+                    <span>Clean, well-maintained vehicles</span>
+                    <span>Flexible pickup from any location</span>
+                    <span>24/7 customer support</span>
+                </div>
+
+                <p class="booking-call">
+                    📞&nbsp;<span>Need help? Call us at <strong>+91 98765 43210</strong></span>
+                </p>
+            </div>
+
+            <!-- BOOKING FORM BOX -->
+            <div class="booking-form-box">
+                <h2 id="formStart">🛕 Booking Details</h2>
+
+                <!-- Top-level error toast (shown on failed submit) -->
+                <div id="formToast" class="form-toast" style="display:none;">
+                    <span class="toast-icon">⚠️</span>
+                    <span id="formToastMsg">Please fix the errors below before submitting.</span>
+                </div>
+
+                <form id="bookingForm" novalidate autocomplete="off">
+
+                    <!-- ── PERSONAL DETAILS ───────────────────── -->
+                    <div class="form-section-label">Personal Details</div>
+
+                    <!-- NAME -->
+                    <div class="form-group">
+                        <label for="name">
+                            Full Name <span class="required-star">*</span>
+                        </label>
+                        <input
+                            type="text" id="name" name="name"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            minlength="2" maxlength="60"
+                            required
+                        >
+                    </div>
+
+                    <!-- PHONE -->
+                    <div class="form-group">
+                        <label for="phone">
+                            Phone Number <span class="required-star">*</span>
+                        </label>
+                        <div class="phone-group" id="phoneGroup">
+                            <span>+91</span>
+                            <input
+                                type="tel" id="phone" name="phone"
+                                placeholder="9876543210"
+                                maxlength="10"
+                                inputmode="numeric"
+                                pattern="[6-9][0-9]{9}"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- EMAIL -->
+                    <div class="form-group">
+                        <label for="email">
+                            Email <span class="optional-tag">(Optional)</span>
+                        </label>
+                        <input
+                            type="email" id="email" name="email"
+                            placeholder="your.email@example.com"
+                            autocomplete="email"
+                        >
+                    </div>
+
+                    <!-- ── TRIP DETAILS ───────────────────────── -->
+                    <div class="form-section-label">Trip Details</div>
+
+                    <!-- TRAVEL DATE -->
+                    <div class="form-group">
+                        <label for="dateInput">
+                            Travel Date <span class="required-star">*</span>
+                        </label>
+                        <input type="date" id="dateInput" name="date" required>
+                    </div>
+
+                    <!-- NUMBER OF PEOPLE -->
+                    <div class="form-group">
+                        <label for="people">
+                            Number of People <span class="required-star">*</span>
+                        </label>
+                        <input
+                            type="number" id="people" name="people"
+                            placeholder="e.g., 4"
+                            min="1" max="50"
+                            inputmode="numeric"
+                            required
+                        >
+                    </div>
+
+                    <!-- VEHICLE TYPE -->
+                    <div class="form-group">
+                        <label for="vehicleType">
+                            Vehicle Type <span class="required-star">*</span>
+                        </label>
+                        <select id="vehicleType" name="vehicleType" required>
+                            <option value="">Select vehicle type</option>
+                            <option value="4-seater">🚗 4-Seater (Sedan)</option>
+                            <option value="6-seater">🚙 6-Seater (SUV / Innova)</option>
+                        </select>
+                    </div>
+
+                    <!-- PICKUP LOCATION (optional) -->
+                    <div class="form-group">
+                        <label for="pickup">
+                            Pickup Location <span class="optional-tag">(Optional)</span>
+                        </label>
+                        <input
+                            type="text" id="pickup" name="pickup"
+                            placeholder="e.g., Tirupati Railway Station"
+                        >
+                    </div>
+
+                    <!-- ── CHOOSE YOUR TRIP ───────────────────── -->
+                    <div class="form-section-label">Choose Your Trip</div>
+
+                    <!-- PACKAGE SELECTION -->
+                    <div class="form-group">
+                        <label for="tripSelect">
+                            Select Package
+                            <span class="required-star" id="pkgStar">*</span>
+                        </label>
+                        <select id="tripSelect" name="trip">
+                            <option value="">Choose a package...</option>
+                            <!-- Populated dynamically by script.js -->
+                        </select>
+                    </div>
+
+                    <!-- OR DIVIDER -->
+                    <div class="or-divider">or</div>
+
+                    <!-- DESIGN YOUR OWN TRIP BUTTON -->
+                    <div class="form-group">
+                        <button type="button" id="designTripBtn" class="design-trip-btn">
+                            🗺️ Design Your Own Trip
+                        </button>
+                    </div>
+
+                    <!-- CUSTOM TRIP AREA (hidden by default) -->
+                    <div id="customTripArea" class="custom-trip-area">
+                        <div class="trip-area-header">
+                            <h3>Select Destinations</h3>
+                            <span id="selectedCount" class="selected-count">0 selected</span>
+                        </div>
+
+                        <div id="destinationGrid" class="destination-grid">
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-tirumala"       class="dest-checkbox" value="Tirumala"              name="destinations[]">
+                                <label for="dest-tirumala"       class="dest-label">Tirumala</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-tirupati"       class="dest-checkbox" value="Tirupati"              name="destinations[]">
+                                <label for="dest-tirupati"       class="dest-label">Tirupati</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-tirupati-sight" class="dest-checkbox" value="Tirupati Sightseeing"  name="destinations[]">
+                                <label for="dest-tirupati-sight" class="dest-label">Tirupati Sightseeing</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-tirumala-sight" class="dest-checkbox" value="Tirumala Sightseeing"  name="destinations[]">
+                                <label for="dest-tirumala-sight" class="dest-label">Tirumala Sightseeing</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-srikalahasti"   class="dest-checkbox" value="Srikalahasti"          name="destinations[]">
+                                <label for="dest-srikalahasti"   class="dest-label">Srikalahasti</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-kanipakam"      class="dest-checkbox" value="Kanipakam"             name="destinations[]">
+                                <label for="dest-kanipakam"      class="dest-label">Kanipakam</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-golden-temple"  class="dest-checkbox" value="Golden Temple Vellore" name="destinations[]">
+                                <label for="dest-golden-temple"  class="dest-label">Golden Temple Vellore</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-arunachalam"    class="dest-checkbox" value="Arunachalam"           name="destinations[]">
+                                <label for="dest-arunachalam"    class="dest-label">Arunachalam</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-tiruttani"      class="dest-checkbox" value="Tiruttani"             name="destinations[]">
+                                <label for="dest-tiruttani"      class="dest-label">Tiruttani</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-kanchipuram"    class="dest-checkbox" value="Kanchipuram"           name="destinations[]">
+                                <label for="dest-kanchipuram"    class="dest-label">Kanchipuram</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-appalayagunta"  class="dest-checkbox" value="Appalayagunta"         name="destinations[]">
+                                <label for="dest-appalayagunta"  class="dest-label">Appalayagunta</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-ontimitta"      class="dest-checkbox" value="Ontimitta"             name="destinations[]">
+                                <label for="dest-ontimitta"      class="dest-label">Ontimitta</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-chennai"        class="dest-checkbox" value="Chennai"               name="destinations[]">
+                                <label for="dest-chennai"        class="dest-label">Chennai</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-bangalore"      class="dest-checkbox" value="Bangalore"             name="destinations[]">
+                                <label for="dest-bangalore"      class="dest-label">Bangalore</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-hyderabad"      class="dest-checkbox" value="Hyderabad"             name="destinations[]">
+                                <label for="dest-hyderabad"      class="dest-label">Hyderabad</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-srisailam"      class="dest-checkbox" value="Srisailam"             name="destinations[]">
+                                <label for="dest-srisailam"      class="dest-label">Srisailam</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-pondicherry"    class="dest-checkbox" value="Pondicherry"           name="destinations[]">
+                                <label for="dest-pondicherry"    class="dest-label">Pondicherry</label>
+                            </div>
+
+                            <div class="dest-option">
+                                <input type="checkbox" id="dest-other-temple"   class="dest-checkbox" value="Other Temple"          name="destinations[]">
+                                <label for="dest-other-temple"   class="dest-label">Other Temple</label>
+                            </div>
+
+                        </div><!-- /destination-grid -->
+
+                        <!-- Inline error for custom destinations -->
+                        <div id="customTripError" class="custom-trip-error" style="display:none;">
+                            Please select at least one destination
+                        </div>
+
+                    </div><!-- /customTripArea -->
+
+                    <!-- SPECIAL REQUESTS -->
+                    <div class="form-group" style="margin-top:20px;">
+                        <label for="notes">
+                            Special Requests <span class="optional-tag">(Optional)</span>
+                        </label>
+                        <textarea
+                            id="notes" name="notes"
+                            placeholder="Any special requirements, preferences, or notes..."
+                        ></textarea>
+                    </div>
+
+                    <!-- SUBMIT -->
+                    <button type="submit" class="btn-book" id="submitBtn">
+                        Confirm Booking
+                    </button>
+
+                </form>
+            </div><!-- /booking-form-box -->
+
+        </div><!-- /booking-container -->
+    </section>
+
+
+    <!-- ============================================================
+         SUCCESS POPUP
+         ============================================================ -->
+    <div id="successPopup" class="success-popup">
+        <div class="popup-overlay"></div>
+        <div class="popup-box">
+            <div class="popup-icon">🙏</div>
+            <h3>Booking Confirmed!</h3>
+            <p>Your request has been received. Our team will contact you shortly to confirm the details.</p>
+            <span class="popup-blessing">Om Namo Venkatesaya 🕉️</span>
+            <button id="closePopup" class="popup-btn">Return Home</button>
+        </div>
+    </div>
+
+
+    <!-- ============================================================
+         SCRIPTS — load packages data first, then script.js
+         Adjust paths to match your project structure.
+         ============================================================ -->
+    <script src="packages.js"></script><!-- your PACKAGES array -->
+    <script src="script.js"></script>
+
+</body>
+</html>

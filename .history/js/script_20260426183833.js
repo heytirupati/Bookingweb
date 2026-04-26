@@ -489,7 +489,7 @@
         if (phone.length < 10) {
             showError(this, "Please enter 10 digits");
         } else if (!/^[6-9]/.test(phone)) {
-            showError(this, "start with 6, 7, 8, or 9");
+            showError(this, "M");
         } else {
             clearError(this);
         }

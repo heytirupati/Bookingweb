@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Your Tirupati Trip – Yatrahere</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/booking.css">
+
     <style>
         .footer-bottom { text-align:center; padding:12px 0 6px; border-top:1px solid rgba(255,255,255,0.1); margin-top:20px; font-size:0.82rem; color:#aaa; }
         .footer-bottom strong { color:#d4af37; }
@@ -37,33 +39,33 @@
                 </div>
             </a>
         </div>
-
-        <div class="menu-toggle" id="menuToggle">☰</div>
-
-        <nav class="nav-menu" id="navMenu">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="tirupathi.html">Packages</a></li>
-
-                <li class="has-dropdown">
-                    <button class="nav-trigger">
-                        Locations <span class="nav-caret">▾</span>
-                    </button>
-                    <div class="nav-dropdown">
-                        <a href="tirupathi.html">
-                            <span class="nav-dropdown-icon">🛕</span>
-                            <span class="nav-dropdown-text">
-                                <strong>Tirupati</strong>
-                                <span>Darshan · Packages · Stays</span>
-                            </span>
-                        </a>
-                    </div>
-                </li>
-
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-        </nav>
     </div>
+
+    <div class="menu-toggle" id="menuToggle">☰</div>
+
+    <nav class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tirupathi.html">Packages</a></li>
+
+            <li class="has-dropdown">
+                <button class="nav-trigger">
+                    Locations <span class="nav-caret">▾</span>
+                </button>
+                <div class="nav-dropdown">
+                    <a href="tirupathi.html">
+                        <span class="nav-dropdown-icon">🛕</span>
+                        <span class="nav-dropdown-text">
+                            <strong>Tirupati</strong>
+                            <span>Darshan · Packages</span>
+                        </span>
+                    </a>
+                </div>
+            </li>
+
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
 </header>
 
 <!-- BOOKING SECTION -->
@@ -72,49 +74,90 @@
 
         <!-- LEFT INFO -->
         <div class="booking-left">
-            <!-- Package banner — shown when coming from a specific package -->
             <div class="selected-pkg-banner" id="selectedPkgBanner" style="display:none;"></div>
 
             <h1>Plan Your Sacred Journey</h1>
             <p>Experience a peaceful Tirupati darshan with trusted service, comfortable travel, and complete support from our team.</p>
+
             <div class="booking-points">
                 <span>✔ 5000+ Happy Pilgrims</span>
                 <span>✔ Trusted Tirupati Travel Partner</span>
                 <span>✔ Smooth & Hassle-Free Darshan</span>
             </div>
+
             <div class="booking-call">📞 +91 98765 43210</div>
         </div>
 
-        <!-- BOOKING FORM -->
+        <!-- FORM -->
         <div class="booking-form-box" id="formStart">
             <h2>Book Your Trip</h2>
 
             <form id="bookingForm">
 
+                <!-- NAME -->
                 <div class="form-group">
                     <input type="text" name="name" placeholder="Full Name" required>
                 </div>
 
+                <!-- PHONE -->
                 <div class="form-group phone-group">
                     <span>+91</span>
                     <input type="tel" id="phone" name="phone" placeholder="Enter 10-digit mobile number" maxlength="10" required>
                 </div>
 
+                <!-- EMAIL -->
                 <div class="form-group">
                     <input type="email" name="email" placeholder="Email (Optional)">
                 </div>
 
-                <!-- PACKAGE SELECT — dynamically built from PACKAGES data -->
+                <!-- PACKAGE -->
                 <div class="form-group">
-                    <select name="trip" id="tripSelect" required>
+                    <select name="trip" id="tripSelect">
                         <option value="">Select Package</option>
                     </select>
                 </div>
 
+                <!-- <div class="or-divider">
+    <span>OR</span>
+</div>
+
+                DESIGN YOUR TRIP
+                <div class="form-group">
+                    <select id="customTripMain">
+                        <option value="">Design Your Trip</option>
+                        <option value="tirupati">Tirupati</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="customTripOptions" style="display:none;">
+                    <select id="customTripList" multiple>
+                        <option value="tirumala">Tirumala</option>
+                        <option value="tirupati_local">Tirupati</option>
+                        <option value="tirupati_sightseeing">Tirupati Sightseeing</option>
+                        <option value="tirumala_sightseeing">Tirumala Sightseeing</option>
+                        <option value="srikalahastri">Srikalahastri</option>
+                        <option value="kanipakam">Kanipakam</option>
+                        <option value="vellore">Golden Temple Vellore</option>
+                        <option value="arunachalam">Arunachalam</option>
+                        <option value="tiruttani">Tiruttani</option>
+                        <option value="kanchipuram">Kanchipuram</option>
+                        <option value="appalayagunta">Appalayagunta</option>
+                        <option value="ontimitta">Ontimitta</option>
+                        <option value="chennai">Chennai</option>
+                        <option value="bangalore">Bangalore</option>
+                        <option value="hyderabad">Hyderabad</option>
+                        <option value="srisailam">Srisailam</option>
+                        <option value="pondicherry">Pondicherry</option>
+                        <option value="other">Other Temple</option>
+                    </select>
+                </div> -->
+
+                <!-- DATE -->
                 <div class="form-group">
                     <input type="date" name="date" id="dateInput" required>
                 </div>
 
+                <!-- PEOPLE -->
                 <div class="form-group">
                     <select name="people" required>
                         <option value="">Number of People</option>
@@ -125,29 +168,36 @@
                     </select>
                 </div>
 
+                <!-- VEHICLE -->
                 <div class="form-group">
-                    <input type="text" name="pickup" placeholder="Pickup Location" required>
+                    <select name="vehicle" required>
+                        <option value="">Vehicle Type</option>
+                        <option value="4 Seater">4 Seater</option>
+                        <option value="6 Seater">6 Seater</option>
+                    </select>
                 </div>
 
+                <!-- PICKUP OPTIONAL -->
                 <div class="form-group">
-                    <select name="vehicle" id="vehicleSelect" required>
-                        <option value="">Select Vehicle Type</option>
-                        <option value="4-seater">4 Seater (Sedan)</option>
-                        <option value="7-seater">7 Seater (SUV/MUV)</option>
-                    </select>
+                    <input type="text" name="pickup" placeholder="Pickup Location (Optional)">
+                </div>
+
+                <!-- NOTES -->
+                <div class="form-group">
+                    <textarea name="notes" placeholder="Additional Notes (Optional)"></textarea>
                 </div>
 
                 <button type="submit" class="btn-book">Confirm Booking</button>
 
             </form>
 
-            <!-- SUCCESS POPUP -->
+            <!-- SUCCESS -->
             <div class="success-popup" id="successPopup">
                 <div class="popup-overlay"></div>
                 <div class="popup-box">
                     <div class="popup-icon">🛕</div>
                     <h3>Booking Request Received</h3>
-                    <p>🙏 Thank you for choosing <strong>Yatrahere</strong><br>Our operator will contact you within <b>15 minutes</b></p>
+                    <p> Thank you for choosing <strong>Yatrahere</strong><br>Our operator will contact you within <b>15 minutes</b></p>
                     <span class="popup-blessing">"May Lord Venkateswara bless your journey"</span>
                     <button class="popup-btn" id="closePopup">Back to Home</button>
                 </div>
@@ -157,7 +207,7 @@
     </div>
 </section>
 
-<!-- WHATSAPP FLOAT -->
+<!-- WHATSAPP -->
 <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">💬</a>
 
 <!-- FOOTER -->
@@ -168,6 +218,7 @@
             <p>Your trusted travel partner</p>
             <p class="footer-domain">🌐 <a href="https://yatra.in" target="_blank">yatra.in</a></p>
         </div>
+
         <div class="footer-col">
             <h4>Quick Links</h4>
             <ul>
@@ -175,12 +226,14 @@
                 <li><a href="tirupathi.html#packages">Packages</a></li>
             </ul>
         </div>
+
         <div class="footer-col">
             <h4>Contact</h4>
             <p>+91 98765 43210</p>
             <p>info@sribalajtravels.com</p>
         </div>
     </div>
+
     <div class="footer-bottom">
         <p>Powered by <strong>Padmavathi Tours and Travels</strong></p>
     </div>

@@ -29,7 +29,7 @@
 <!-- NAVBAR -->
 <header class="navbar">
     <div class="container">
-        <div class="logo">
+    <div class="logo">
             <a href="index.html" class="logo-link">
                 <h2>Yatrahere</h2>
                 <div class="hero-badge nav-badge">
@@ -37,6 +37,7 @@
                 </div>
             </a>
         </div>
+</div>
 
         <div class="menu-toggle" id="menuToggle">☰</div>
 
@@ -63,6 +64,7 @@
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </nav>
+
     </div>
 </header>
 
@@ -105,11 +107,11 @@
                 </div>
 
                 <!-- PACKAGE SELECT — dynamically built from PACKAGES data -->
-                <div class="form-group">
-                    <select name="trip" id="tripSelect" required>
-                        <option value="">Select Package</option>
-                    </select>
-                </div>
+    <div class="form-group">
+    <select name="trip" id="tripSelect">
+        <option value="">Select Package</option>
+    </select>
+        </div>
 
                 <div class="form-group">
                     <input type="date" name="date" id="dateInput" required>
@@ -129,12 +131,27 @@
                     <input type="text" name="pickup" placeholder="Pickup Location" required>
                 </div>
 
-                <div class="form-group">
-                    <select name="vehicle" id="vehicleSelect" required>
-                        <option value="">Select Vehicle Type</option>
-                        <option value="4-seater">4 Seater (Sedan)</option>
-                        <option value="7-seater">7 Seater (SUV/MUV)</option>
+                <div class="form-group toggle-group">
+                    <div class="toggle-row">
+                        <span>Need Accommodation</span>
+                        <label class="switch">
+                            <input type="checkbox" id="stayToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group stay-options" id="stayOptions" style="display:none;">
+                    <select name="stay">
+                        <option value="">Select Stay Type</option>
+                        <option>Basic Stay (2★)</option>
+                        <option>Standard Stay (3★)</option>
+                        <option>Premium Stay (4★)</option>
                     </select>
+                </div>
+
+                <div class="form-group">
+                    <textarea name="notes" placeholder="Additional Notes (Optional)"></textarea>
                 </div>
 
                 <button type="submit" class="btn-book">Confirm Booking</button>

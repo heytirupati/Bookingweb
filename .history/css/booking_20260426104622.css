@@ -1,0 +1,916 @@
+/* ============================================================
+   booking.css — Premium Booking Page Styles
+   Sri Balaji Travels
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+    --gold         : #c9a84c;
+    --gold-light   : #e8c96a;
+    --gold-dim     : rgba(201,168,76,0.15);
+    --gold-border  : rgba(201,168,76,0.3);
+    --dark         : #0e0c08;
+    --dark-card    : #1a1710;
+    --dark-mid     : #242018;
+    --ivory        : #fdf8ef;
+    --text-light   : #b0a890;
+    --error        : #e05757;
+    --success      : #5aad82;
+    --radius-lg    : 20px;
+    --radius-md    : 12px;
+    --radius-sm    : 8px;
+    --transition   : 0.25s cubic-bezier(0.4,0,0.2,1);
+    --shadow-card  : 0 32px 80px rgba(0,0,0,0.45);
+    --shadow-glow  : 0 0 40px rgba(201,168,76,0.18);
+}
+
+/* ============================================================
+   1. BOOKING SECTION LAYOUT
+   ============================================================ */
+.booking-section {
+    min-height : 100vh;
+    display    : flex;
+    align-items: center;
+    background : linear-gradient(160deg, #100e09 0%, #1c1810 40%, #0f0d08 100%);
+    position   : relative;
+    overflow   : hidden;
+    padding    : 80px 0;
+}
+
+/* Ambient background glow */
+.booking-section::before {
+    content  : '';
+    position : absolute;
+    top      : -200px;
+    right    : -200px;
+    width    : 600px;
+    height   : 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.booking-section::after {
+    content  : '';
+    position : absolute;
+    bottom   : -150px;
+    left     : -100px;
+    width    : 400px;
+    height   : 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.booking-container {
+    display    : flex;
+    gap        : 72px;
+    align-items: flex-start;
+    position   : relative;
+    z-index    : 1;
+}
+
+
+/* ============================================================
+   2. LEFT INFO PANEL
+   ============================================================ */
+.booking-left {
+    flex      : 1;
+    padding-top: 20px;
+    position  : sticky;
+    top       : 100px;
+}
+
+.booking-left h1 {
+    font-family  : 'Cormorant Garamond', serif;
+    font-size    : 48px;
+    font-weight  : 700;
+    line-height  : 1.15;
+    color        : #fff;
+    margin-bottom: 14px;
+    letter-spacing: -0.5px;
+}
+
+.booking-left h1 em {
+    font-style: italic;
+    color      : var(--gold-light);
+}
+
+.booking-left > p {
+    color        : var(--text-light);
+    font-size    : 15px;
+    line-height  : 1.7;
+    margin-bottom: 32px;
+    font-family  : 'DM Sans', sans-serif;
+}
+
+.booking-points {
+    display       : flex;
+    flex-direction: column;
+    gap           : 12px;
+    margin-bottom : 36px;
+}
+
+.booking-points span {
+    display    : flex;
+    align-items: center;
+    gap        : 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size  : 14px;
+    color      : #d0c8b0;
+}
+
+.booking-points span::before {
+    content      : '';
+    display      : inline-block;
+    width        : 20px;
+    height       : 20px;
+    min-width    : 20px;
+    border-radius: 50%;
+    background   : var(--gold-dim);
+    border       : 1px solid var(--gold-border);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat  : no-repeat;
+    background-position: center;
+}
+
+.booking-call {
+    display      : flex;
+    align-items  : center;
+    gap          : 12px;
+    padding      : 16px 20px;
+    border-radius: var(--radius-md);
+    background   : var(--gold-dim);
+    border       : 1px solid var(--gold-border);
+    font-family  : 'DM Sans', sans-serif;
+    font-size    : 14px;
+    color        : #e0d4a8;
+    margin-top   : 0;
+}
+
+.booking-call strong {
+    color      : var(--gold-light);
+    font-weight: 600;
+}
+
+/* Selected package banner */
+.selected-pkg-banner {
+    margin-bottom: 32px;
+    animation    : fadeSlide 0.4s ease;
+}
+
+.pkg-banner-inner {
+    padding      : 20px 24px;
+    border-radius: var(--radius-lg);
+    background   : linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.04));
+    border       : 1px solid var(--gold-border);
+    box-shadow   : 0 4px 24px rgba(201,168,76,0.08);
+}
+
+.pkg-banner-tag {
+    display       : inline-block;
+    padding       : 3px 12px;
+    border-radius : 20px;
+    font-size     : 11px;
+    font-weight   : 600;
+    font-family   : 'DM Sans', sans-serif;
+    background    : var(--gold-dim);
+    color         : var(--gold);
+    margin-bottom : 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border        : 1px solid var(--gold-border);
+}
+
+.pkg-banner-tag.tag-popular { background: var(--gold); color: #000; border-color: var(--gold); }
+.pkg-banner-tag.tag-premium { background: linear-gradient(135deg, #a07020, #c9a84c); color: #fff; border-color: transparent; }
+
+.pkg-banner-name {
+    font-family  : 'Cormorant Garamond', serif;
+    font-size    : 20px;
+    font-weight  : 600;
+    color        : #fff;
+    margin-bottom: 10px;
+    line-height  : 1.3;
+}
+
+.pkg-banner-meta {
+    display    : flex;
+    gap        : 20px;
+    font-size  : 14px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    color      : var(--gold);
+    margin-bottom: 6px;
+}
+
+.pkg-banner-route {
+    font-size  : 13px;
+    color      : var(--text-light);
+    margin     : 0;
+    font-family: 'DM Sans', sans-serif;
+}
+
+
+/* ============================================================
+   3. BOOKING FORM BOX
+   ============================================================ */
+.booking-form-box {
+    flex         : 1;
+    max-width    : 500px;
+    padding      : 40px;
+    border-radius: var(--radius-lg);
+    background   : var(--dark-card);
+    border       : 1px solid rgba(255,255,255,0.06);
+    box-shadow   : var(--shadow-card), var(--shadow-glow);
+    position     : relative;
+}
+
+/* Top decorative line */
+.booking-form-box::before {
+    content      : '';
+    position     : absolute;
+    top          : 0;
+    left         : 40px;
+    right        : 40px;
+    height       : 2px;
+    background   : linear-gradient(90deg, transparent, var(--gold), transparent);
+    border-radius: 1px;
+}
+
+.booking-form-box h2 {
+    font-family  : 'Cormorant Garamond', serif;
+    font-size    : 26px;
+    font-weight  : 600;
+    color        : #fff;
+    text-align   : center;
+    margin-bottom: 28px;
+    letter-spacing: 0.2px;
+}
+
+/* Section dividers within form */
+.form-section-label {
+    font-family   : 'DM Sans', sans-serif;
+    font-size     : 10px;
+    font-weight   : 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color         : var(--gold);
+    margin        : 22px 0 14px;
+    display       : flex;
+    align-items   : center;
+    gap           : 10px;
+}
+
+.form-section-label::after {
+    content   : '';
+    flex      : 1;
+    height    : 1px;
+    background: var(--gold-border);
+}
+
+
+/* ============================================================
+   4. FORM ELEMENTS
+   ============================================================ */
+.form-group {
+    margin-bottom: 16px;
+    position     : relative;
+}
+
+label {
+    display      : block;
+    margin-bottom: 7px;
+    font-size    : 13px;
+    font-weight  : 500;
+    font-family  : 'DM Sans', sans-serif;
+    color        : #c8bfa0;
+    letter-spacing: 0.1px;
+}
+
+label .required-star {
+    color       : var(--gold);
+    margin-left : 2px;
+}
+
+label .optional-tag {
+    font-size  : 11px;
+    color      : var(--text-light);
+    font-weight: 400;
+    margin-left: 4px;
+}
+
+input,
+select,
+textarea {
+    width        : 100%;
+    padding      : 13px 16px;
+    border-radius: var(--radius-md);
+    border       : 1.5px solid rgba(255,255,255,0.08);
+    outline      : none;
+    font-size    : 14px;
+    font-family  : 'DM Sans', sans-serif;
+    font-weight  : 400;
+    transition   : border-color var(--transition), box-shadow var(--transition), background var(--transition);
+    background   : rgba(255,255,255,0.04);
+    color        : #f0ead8;
+    box-sizing   : border-box;
+    -webkit-appearance: none;
+    appearance   : none;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(176,168,144,0.5);
+}
+
+select {
+    background-image   : url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%23c9a84c' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat  : no-repeat;
+    background-position: right 14px center;
+    padding-right      : 42px;
+    cursor             : pointer;
+}
+
+select option {
+    background: #1a1710;
+    color     : #f0ead8;
+}
+
+select optgroup {
+    color      : var(--gold);
+    font-weight: 600;
+    font-size  : 12px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--gold);
+    box-shadow  : 0 0 0 3px rgba(201,168,76,0.12);
+    background  : rgba(201,168,76,0.04);
+}
+
+input:disabled,
+select:disabled {
+    opacity: 0.35;
+    cursor : not-allowed;
+}
+
+textarea {
+    height    : 90px;
+    resize    : none;
+    line-height: 1.6;
+}
+
+/* Valid state */
+input.valid,
+select.valid {
+    border-color: var(--success);
+}
+
+input.valid::after {
+    content: '✓';
+}
+
+/* Error state */
+input.error,
+select.error,
+textarea.error {
+    border-color: var(--error);
+    background  : rgba(224,87,87,0.05);
+    box-shadow  : 0 0 0 3px rgba(224,87,87,0.1);
+}
+
+.error-text {
+    color      : var(--error);
+    font-size  : 12px;
+    font-family: 'DM Sans', sans-serif;
+    margin-top : 6px;
+    display    : flex;
+    align-items: center;
+    gap        : 5px;
+    animation  : errorSlide 0.2s ease;
+}
+
+.error-text::before {
+    content     : '⚠';
+    font-size   : 11px;
+    flex-shrink : 0;
+}
+
+@keyframes errorSlide {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Valid checkmark overlay */
+.field-valid-icon {
+    position   : absolute;
+    right      : 14px;
+    top        : 42px;
+    color      : var(--success);
+    font-size  : 14px;
+    pointer-events: none;
+    animation  : fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+
+/* ============================================================
+   5. PHONE INPUT GROUP
+   ============================================================ */
+.phone-group {
+    display      : flex;
+    border       : 1.5px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-md);
+    overflow     : hidden;
+    background   : rgba(255,255,255,0.04);
+    transition   : border-color var(--transition), box-shadow var(--transition);
+}
+
+.phone-group span {
+    padding     : 13px 14px;
+    background  : rgba(201,168,76,0.08);
+    font-size   : 14px;
+    font-family : 'DM Sans', sans-serif;
+    font-weight : 600;
+    color       : var(--gold);
+    white-space : nowrap;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    min-width   : 52px;
+    text-align  : center;
+}
+
+.phone-group input {
+    border       : none;
+    border-radius: 0;
+    flex         : 1;
+    background   : transparent;
+    box-shadow   : none !important;
+}
+
+.phone-group:focus-within {
+    border-color: var(--gold);
+    box-shadow  : 0 0 0 3px rgba(201,168,76,0.12);
+}
+
+.phone-group.error {
+    border-color: var(--error);
+    box-shadow  : 0 0 0 3px rgba(224,87,87,0.1);
+}
+
+.phone-group.valid {
+    border-color: var(--success);
+}
+
+
+/* ============================================================
+   6. DESIGN YOUR TRIP BUTTON
+   ============================================================ */
+.design-trip-btn {
+    width        : 100%;
+    padding      : 13px 16px;
+    border-radius: var(--radius-md);
+    border       : 1.5px dashed rgba(201,168,76,0.4);
+    background   : rgba(201,168,76,0.04);
+    color        : var(--gold);
+    font-size    : 14px;
+    font-weight  : 500;
+    font-family  : 'DM Sans', sans-serif;
+    cursor       : pointer;
+    transition   : all var(--transition);
+    text-align   : center;
+    letter-spacing: 0.2px;
+    position     : relative;
+    overflow     : hidden;
+}
+
+.design-trip-btn::before {
+    content   : '';
+    position  : absolute;
+    inset     : 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), transparent);
+    opacity   : 0;
+    transition: opacity var(--transition);
+}
+
+.design-trip-btn:hover {
+    border-color: var(--gold);
+    color       : var(--gold-light);
+}
+
+.design-trip-btn:hover::before { opacity: 1; }
+
+.design-trip-btn.active {
+    background   : linear-gradient(135deg, rgba(201,168,76,0.18), rgba(201,168,76,0.08));
+    border-color : var(--gold);
+    border-style : solid;
+    color        : var(--gold-light);
+    font-weight  : 600;
+}
+
+/* OR divider */
+.or-divider {
+    display    : flex;
+    align-items: center;
+    gap        : 12px;
+    margin     : 4px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size  : 12px;
+    color      : var(--text-light);
+}
+
+.or-divider::before,
+.or-divider::after {
+    content   : '';
+    flex      : 1;
+    height    : 1px;
+    background: rgba(255,255,255,0.07);
+}
+
+
+/* ============================================================
+   7. CUSTOM TRIP AREA
+   ============================================================ */
+.custom-trip-area {
+    display      : none;
+    margin-top   : 16px;
+    padding      : 20px;
+    border-radius: var(--radius-md);
+    background   : rgba(201,168,76,0.04);
+    border       : 1px solid var(--gold-border);
+    animation    : fadeSlide 0.3s ease;
+}
+
+.trip-area-header {
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+    margin-bottom  : 16px;
+}
+
+.trip-area-header h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size  : 14px;
+    font-weight: 600;
+    color      : #e0d4a8;
+    letter-spacing: 0.2px;
+}
+
+.selected-count {
+    font-size  : 12px;
+    font-family: 'DM Sans', sans-serif;
+    color      : var(--gold);
+    font-weight: 600;
+    background : var(--gold-dim);
+    padding    : 3px 10px;
+    border-radius: 20px;
+    border     : 1px solid var(--gold-border);
+}
+
+.destination-grid {
+    display              : grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap                  : 8px;
+}
+
+.dest-option { position: relative; }
+
+.dest-checkbox {
+    position: absolute;
+    opacity : 0;
+    width   : 0;
+    height  : 0;
+}
+
+.dest-label {
+    display       : block;
+    padding       : 10px 12px;
+    border-radius : var(--radius-sm);
+    border        : 1px solid rgba(255,255,255,0.08);
+    background    : rgba(255,255,255,0.03);
+    font-size     : 13px;
+    font-weight   : 400;
+    font-family   : 'DM Sans', sans-serif;
+    text-align    : center;
+    cursor        : pointer;
+    transition    : all var(--transition);
+    color         : #b0a890;
+}
+
+.dest-label:hover {
+    border-color: var(--gold-border);
+    background  : rgba(201,168,76,0.07);
+    color       : #e0d4a8;
+}
+
+.dest-checkbox:checked + .dest-label {
+    border-color: var(--gold);
+    background  : rgba(201,168,76,0.14);
+    color       : var(--gold-light);
+    font-weight : 600;
+}
+
+.dest-checkbox:checked + .dest-label::before {
+    content    : "✓ ";
+    font-size  : 11px;
+}
+
+/* Custom trip validation error */
+.custom-trip-error {
+    color      : var(--error);
+    font-size  : 12px;
+    font-family: 'DM Sans', sans-serif;
+    margin-top : 10px;
+    display    : flex;
+    align-items: center;
+    gap        : 5px;
+    animation  : errorSlide 0.2s ease;
+}
+
+.custom-trip-error::before {
+    content    : '⚠';
+    font-size  : 11px;
+    flex-shrink: 0;
+}
+
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============================================================
+   8. CHARACTER COUNTER (for phone, name)
+   ============================================================ */
+.char-hint {
+    font-size  : 11px;
+    font-family: 'DM Sans', sans-serif;
+    color      : var(--text-light);
+    text-align : right;
+    margin-top : 5px;
+}
+
+
+/* ============================================================
+   9. SUBMIT BUTTON
+   ============================================================ */
+.btn-book {
+    width        : 100%;
+    padding      : 15px;
+    border-radius: var(--radius-md);
+    border       : none;
+    font-size    : 15px;
+    font-weight  : 600;
+    font-family  : 'DM Sans', sans-serif;
+    cursor       : pointer;
+    background   : linear-gradient(135deg, #b8891e, #d4a832, #e8c55a, #d4a832, #b8891e);
+    background-size: 200% 100%;
+    color        : #1a1200;
+    transition   : all 0.4s ease;
+    margin-top   : 24px;
+    letter-spacing: 0.3px;
+    position     : relative;
+    overflow     : hidden;
+}
+
+.btn-book::after {
+    content   : '';
+    position  : absolute;
+    top       : 0;
+    left      : -100%;
+    width     : 60%;
+    height    : 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.btn-book:hover:not(:disabled) {
+    background-position: right center;
+    transform  : translateY(-2px);
+    box-shadow : 0 12px 32px rgba(201,168,76,0.4);
+}
+
+.btn-book:hover::after { left: 150%; }
+
+.btn-book:active:not(:disabled) {
+    transform : translateY(0);
+    box-shadow: none;
+}
+
+.btn-book:disabled {
+    opacity   : 0.55;
+    cursor    : not-allowed;
+    transform : none;
+    box-shadow: none;
+}
+
+/* Loading spinner in button */
+.btn-book.loading {
+    color  : transparent;
+    pointer-events: none;
+}
+
+.btn-book.loading::before {
+    content      : '';
+    position     : absolute;
+    top          : 50%;
+    left         : 50%;
+    width        : 20px;
+    height       : 20px;
+    margin       : -10px 0 0 -10px;
+    border       : 2px solid rgba(26,18,0,0.3);
+    border-top   : 2px solid #1a1200;
+    border-radius: 50%;
+    animation    : spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+
+/* ============================================================
+   10. SUCCESS POPUP
+   ============================================================ */
+.success-popup {
+    position: fixed;
+    inset   : 0;
+    display : none;
+    z-index : 9999;
+}
+
+.popup-overlay {
+    position       : absolute;
+    width          : 100%;
+    height         : 100%;
+    background     : rgba(0,0,0,0.75);
+    backdrop-filter: blur(8px);
+}
+
+.popup-box {
+    position     : absolute;
+    top          : 50%;
+    left         : 50%;
+    transform    : translate(-50%, -50%) scale(0.85);
+    width        : 90%;
+    max-width    : 400px;
+    padding      : 44px 36px;
+    border-radius: var(--radius-lg);
+    background   : var(--dark-card);
+    border       : 1px solid var(--gold-border);
+    text-align   : center;
+    box-shadow   : 0 40px 100px rgba(0,0,0,0.6), 0 0 60px rgba(201,168,76,0.1);
+    animation    : popupFade 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+
+.popup-box::before {
+    content      : '';
+    position     : absolute;
+    top          : 0;
+    left         : 60px;
+    right        : 60px;
+    height       : 2px;
+    background   : linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.popup-icon {
+    font-size    : 48px;
+    margin-bottom: 14px;
+    animation    : iconBounce 0.6s 0.3s ease both;
+}
+
+@keyframes iconBounce {
+    from { transform: scale(0) rotate(-20deg); }
+    to   { transform: scale(1) rotate(0deg); }
+}
+
+.popup-box h3 {
+    font-family  : 'Cormorant Garamond', serif;
+    font-size    : 26px;
+    font-weight  : 700;
+    color        : #fff;
+    margin-bottom: 10px;
+}
+
+.popup-box p {
+    font-size  : 14px;
+    color      : var(--text-light);
+    line-height: 1.6;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.popup-blessing {
+    display      : block;
+    margin-top   : 14px;
+    font-size    : 14px;
+    color        : var(--gold);
+    font-family  : 'Cormorant Garamond', serif;
+    font-style   : italic;
+    font-size    : 16px;
+}
+
+.popup-btn {
+    margin-top   : 24px;
+    padding      : 13px 32px;
+    border       : none;
+    border-radius: var(--radius-md);
+    background   : linear-gradient(135deg, #b8891e, #d4a832);
+    cursor       : pointer;
+    font-weight  : 600;
+    font-family  : 'DM Sans', sans-serif;
+    font-size    : 14px;
+    color        : #1a1200;
+    transition   : all var(--transition);
+}
+
+.popup-btn:hover {
+    transform : translateY(-2px);
+    box-shadow: 0 8px 20px rgba(201,168,76,0.3);
+}
+
+@keyframes popupFade {
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+
+/* ============================================================
+   11. TOAST NOTIFICATION (inline errors summary)
+   ============================================================ */
+.form-toast {
+    display      : flex;
+    align-items  : center;
+    gap          : 12px;
+    padding      : 14px 18px;
+    border-radius: var(--radius-md);
+    background   : rgba(224,87,87,0.1);
+    border       : 1px solid rgba(224,87,87,0.25);
+    margin-bottom: 20px;
+    font-family  : 'DM Sans', sans-serif;
+    font-size    : 13px;
+    color        : #f0a0a0;
+    animation    : errorSlide 0.25s ease;
+}
+
+.form-toast .toast-icon { font-size: 16px; flex-shrink: 0; }
+
+
+/* ============================================================
+   12. MOBILE (≤ 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+
+    .booking-section {
+        align-items: flex-start;
+        padding    : 40px 0 60px;
+    }
+
+    .booking-container {
+        flex-direction: column;
+        padding       : 20px 16px 40px;
+        gap           : 32px;
+    }
+
+    .booking-left {
+        text-align: center;
+        width     : 100%;
+        position  : static;
+        padding-top: 0;
+    }
+
+    .booking-left h1 {
+        font-size: 32px;
+    }
+
+    .booking-points {
+        align-items: flex-start;
+        text-align : left;
+    }
+
+    .booking-form-box {
+        width     : 100%;
+        max-width : 100%;
+        padding   : 28px 20px;
+    }
+
+    .booking-form-box::before { left: 20px; right: 20px; }
+
+    .destination-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap                  : 6px;
+    }
+
+    .dest-label {
+        padding  : 9px 10px;
+        font-size: 12px;
+    }
+
+    .btn-book { font-size: 14px; padding: 13px; }
+
+    .pkg-banner-name { font-size: 17px; }
+    .pkg-banner-meta { font-size: 13px; gap: 14px; }
+}

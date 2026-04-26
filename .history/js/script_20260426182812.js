@@ -455,6 +455,7 @@
         errorSpan.className = "error-text";
         errorSpan.textContent = message;
         field.parentElement.appendChild(errorSpan);
+        field.focus();
     }
 
     function clearError(field) {
@@ -473,8 +474,12 @@
             this.value = this.value.slice(0, 10);
         }
 
-        // Clear error while typing
         clearError(this);
+
+        // Show error if user moves to next field with incomplete number
+        if (this.value.length > 0 && this.value.length < 10) {
+            showError(this, "Please enter 10 digits");
+        }
     });
 
     // ── Phone validation on blur ───────────────────────────
@@ -489,7 +494,7 @@
         if (phone.length < 10) {
             showError(this, "Please enter 10 digits");
         } else if (!/^[6-9]/.test(phone)) {
-            showError(this, "start with 6, 7, 8, or 9");
+            showError(this, "Mobile number must start with 6, 7, 8, or 9");
         } else {
             clearError(this);
         }
@@ -498,9 +503,10 @@
     // ── Clear error on focus ───────────────────────────────
     document.querySelectorAll("input, select, textarea").forEach(field => {
         field.addEventListener("focus", function() {
-            clearError(this);
-            this.style.borderColor = "#d4af37";
-            this.style.boxShadow = "0 0 0 2px rgba(212,175,55,0.15)";
+            if (!this.classList.contains("error")) {
+                this.style.borderColor = "#d4af37";
+                this.style.boxShadow = "0 0 0 2px rgba(212,175,55,0.15)";
+            }
         });
 
         field.addEventListener("blur", function() {

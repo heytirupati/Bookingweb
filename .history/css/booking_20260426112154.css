@@ -155,11 +155,9 @@ textarea {
 }
 
 /* Validation states */
-input.error,
-select.error {
-    border-color: #ff4d4d !important;
+input.error {
+    border-color: #ff4d4d;
     background  : #fff5f5;
-    box-shadow  : 0 0 0 2px rgba(255, 77, 77, 0.15) !important;
 }
 
 .error-text {
@@ -167,13 +165,6 @@ select.error {
     font-size  : 12px;
     margin-top : 5px;
     display    : block;
-    font-weight: 500;
-    animation  : errorSlide 0.3s ease;
-}
-
-@keyframes errorSlide {
-    from { opacity: 0; transform: translateY(-5px); }
-    to   { opacity: 1; transform: translateY(0); }
 }
 
 
@@ -207,7 +198,74 @@ select.error {
 
 
 /* ============================================================
-   6. SUBMIT BUTTON
+   6. ACCOMMODATION TOGGLE
+   ============================================================ */
+.toggle-row {
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+    padding        : 12px 14px;
+    border         : 1px solid #ddd;
+    border-radius  : 10px;
+    background     : #fff;
+    font-size      : 14px;
+}
+
+/* Toggle switch */
+.switch {
+    position: relative;
+    width   : 42px;
+    height  : 22px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width  : 0;
+    height : 0;
+}
+
+.slider {
+    position     : absolute;
+    cursor       : pointer;
+    inset        : 0;
+    background   : #ccc;
+    border-radius: 30px;
+    transition   : 0.3s;
+}
+
+.slider::before {
+    content      : "";
+    position     : absolute;
+    height       : 16px;
+    width        : 16px;
+    left         : 3px;
+    bottom       : 3px;
+    background   : white;
+    border-radius: 50%;
+    transition   : 0.3s;
+}
+
+.switch input:checked + .slider            { background: var(--primary-gold); }
+.switch input:checked + .slider::before   { transform: translateX(20px); }
+
+
+/* ============================================================
+   7. STAY OPTIONS (animated reveal)
+   ============================================================ */
+.stay-options {
+    display  : none;
+    animation: fadeSlide 0.3s ease;
+}
+
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============================================================
+   8. SUBMIT BUTTON
    ============================================================ */
 .btn-book {
     width        : 100%;
@@ -228,15 +286,9 @@ select.error {
     box-shadow: 0 10px 25px rgba(212,175,55,0.35);
 }
 
-.btn-book:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-}
-
 
 /* ============================================================
-   7. SUCCESS POPUP
+   9. SUCCESS POPUP
    ============================================================ */
 .success-popup {
     position: fixed;
@@ -302,9 +354,38 @@ select.error {
     to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 }
 
+.or-divider {
+    text-align: center;
+    margin: 10px 0;
+    position: relative;
+}
+
+.or-divider span {
+    background: #fff;
+    padding: 0 10px;
+    color: #999;
+    font-size: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.or-divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #ddd;
+}
+.btn-book:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
 
 /* ============================================================
-   8. MOBILE (≤ 768 px)
+   10. MOBILE (≤ 768 px)
    ============================================================ */
 @media (max-width: 768px) {
 
@@ -327,6 +408,17 @@ select.error {
         width  : 100%;
         padding: 20px 16px;
     }
+
+    .toggle-row {
+        padding  : 10px 12px;
+        font-size: 13px;
+    }
+
+    .switch { width: 38px; height: 20px; }
+
+    .slider::before { width: 14px; height: 14px; }
+
+    .switch input:checked + .slider::before { transform: translateX(18px); }
 
     .btn-book {
         font-size: 14px;

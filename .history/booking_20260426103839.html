@@ -1,0 +1,136 @@
+<section class="booking-section">
+    <div class="container booking-container">
+        
+        <!-- LEFT INFO PANEL -->
+        <div class="booking-left">
+            <h1>Book Your Divine Journey</h1>
+            <p>Fill in your details and we'll make your pilgrimage memorable</p>
+            
+            <div id="selectedPkgBanner" class="selected-pkg-banner" style="display: none;"></div>
+            
+            <div class="booking-points">
+                <span>✓ Experienced drivers with route knowledge</span>
+                <span>✓ Clean, well-maintained vehicles</span>
+                <span>✓ Flexible pickup locations</span>
+                <span>✓ 24/7 customer support</span>
+            </div>
+            
+            <p class="booking-call">
+                📞 Need help? Call us at <strong>+91 98765 43210</strong>
+            </p>
+        </div>
+
+        <!-- FORM -->
+        <div class="booking-form-box">
+            <h2 id="formStart">🛕 Booking Details</h2>
+            
+            <form id="bookingForm" novalidate>
+                
+                <!-- NAME -->
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="name" required>
+                    <small class="error"></small>
+                </div>
+
+                <!-- PHONE -->
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <div class="phone-group">
+                        <span>+91</span>
+                        <input type="tel" id="phone" maxlength="10" required>
+                    </div>
+                    <small class="error"></small>
+                </div>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email">
+                    <small class="error"></small>
+                </div>
+
+                <!-- DATE -->
+                <div class="form-group">
+                    <label>Travel Date *</label>
+                    <input type="date" id="dateInput" required>
+                    <small class="error"></small>
+                </div>
+
+                <!-- PEOPLE -->
+                <div class="form-group">
+                    <label>Number of People *</label>
+                    <input type="number" id="people" min="1" max="50" required>
+                    <small class="error"></small>
+                </div>
+
+                <!-- VEHICLE -->
+                <div class="form-group">
+                    <label>Vehicle Type *</label>
+                    <select id="vehicleType" required>
+                        <option value="">Select vehicle</option>
+                        <option value="4-seater">4-Seater</option>
+                        <option value="6-seater">6-Seater</option>
+                    </select>
+                    <small class="error"></small>
+                </div>
+
+                <!-- PICKUP -->
+                <div class="form-group">
+                    <label>Pickup Location</label>
+                    <input type="text" id="pickup">
+                </div>
+
+                <!-- PACKAGE -->
+                <div class="form-group">
+                    <label>Select Package</label>
+                    <select id="tripSelect">
+                        <option value="">Choose package...</option>
+                        <option value="tirumala">Tirumala Darshan</option>
+                        <option value="tirupati">Tirupati Local</option>
+                    </select>
+                </div>
+
+                <!-- DESIGN TRIP -->
+                <div class="form-group">
+                    <button type="button" id="designTripBtn" class="design-trip-btn">
+                        🗺️ Design Your Own Trip
+                    </button>
+                </div>
+
+                <!-- CUSTOM -->
+                <div id="customTripArea" class="custom-trip-area">
+                    <h3>Select Destinations</h3>
+                    <span id="selectedCount">0 selected</span>
+
+                    <div class="destination-grid">
+                        <label><input type="checkbox" class="dest-checkbox"> Tirumala</label>
+                        <label><input type="checkbox" class="dest-checkbox"> Tirupati</label>
+                        <label><input type="checkbox" class="dest-checkbox"> Srikalahasti</label>
+                        <label><input type="checkbox" class="dest-checkbox"> Kanipakam</label>
+                    </div>
+                </div>
+
+                <!-- NOTES -->
+                <div class="form-group">
+                    <label>Special Requests</label>
+                    <textarea id="notes"></textarea>
+                </div>
+
+                <button type="submit" class="btn-book">Confirm Booking</button>
+            </form>
+        </div>
+        
+    </div>
+</section>
+
+<!-- SUCCESS -->
+<div id="successPopup" class="success-popup">
+    <div class="popup-overlay"></div>
+    <div class="popup-box">
+        <div class="popup-icon">🙏</div>
+        <h3>Booking Confirmed!</h3>
+        <p>We will contact you shortly.</p>
+        <button id="closePopup">Return Home</button>
+    </div>
+</div>
