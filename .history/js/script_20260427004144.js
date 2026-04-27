@@ -375,7 +375,7 @@
     const form = document.getElementById("bookingForm");
     if (!form || typeof PACKAGES === "undefined") return;
 
-    const SCRIPT_URL  = "https://script.google.com/macros/s/AKfycbz4AXCP7oBO-8ZjpkPnORqK4Zf9SUuyDaSAK-9YEZToU1gLfNmsTphHvfS_3LjWu3vmOA/exec";
+    const SCRIPT_URL  = "https://s";
     const tripSelect  = document.getElementById("tripSelect");
     const dateInput   = document.getElementById("dateInput");
     const phoneInput  = document.getElementById("phone");
@@ -583,22 +583,24 @@
         submitBtn.style.opacity = "0.6";
         submitBtn.style.cursor = "not-allowed";
 
-        // ✅ URLSearchParams so Apps Script e.postData.contents can parse correctly
+        // ✅ no-cors required for Google Apps Script (CORS blocked by browser otherwise)
         const params = new URLSearchParams(new FormData(form));
-        fetch(SCRIPT_URL, { method: "POST", body: params })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === "success") {
-                    if (popup) popup.style.display = "block";
-                    form.reset();
-                } else {
-                    showError(submitBtn, "Submission failed: " + (data.message || "Unknown error"));
-                }
-                isSubmitting = false;
-            })
-            .catch(() => {
-                showError(submitBtn, "Something went wrong. Please try again!");
-                isSubmitting = false;
+        fetch(SCRIPT_URL, {
+    method: "POST",
+    body: params
+})
+.then(res => res.json())
+.then(data => {
+    if (data.status === "success") {
+        if (popup) popup.style.display = "block";
+        form.reset();
+    } else {
+        alert("Error submitting form");
+    }
+})
+.catch(() => {
+    alert("Network error. Try again.");
+});
             })
             .finally(() => {
                 submitBtn.disabled = false;

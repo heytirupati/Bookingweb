@@ -583,30 +583,35 @@
         submitBtn.style.opacity = "0.6";
         submitBtn.style.cursor = "not-allowed";
 
-        // ✅ URLSearchParams so Apps Script e.postData.contents can parse correctly
-        const params = new URLSearchParams(new FormData(form));
-        fetch(SCRIPT_URL, { method: "POST", body: params })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === "success") {
-                    if (popup) popup.style.display = "block";
-                    form.reset();
-                } else {
-                    showError(submitBtn, "Submission failed: " + (data.message || "Unknown error"));
-                }
-                isSubmitting = false;
-            })
-            .catch(() => {
-                showError(submitBtn, "Something went wrong. Please try again!");
-                isSubmitting = false;
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Confirm Booking";
-                submitBtn.style.opacity = "1";
-                submitBtn.style.cursor = "pointer";
-            });
-    });
+        // ✅ no-cors required for Google Apps Script (CORS blocked by browser otherwise)
+       const params = new URLSearchParams(new FormData(form));
+
+fetch(SCRIPT_URL, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: params
+})
+.then(res => res.json())   // ✅ now we can read response
+.then(data => {
+    if (data.status === "success") {
+        if (popup) popup.style.display = "block";
+        form.reset();
+    } else {
+        throw new Error(data.message || "Submission failed");
+    }
+})
+.catch(() => {
+    showError(submitBtn, "❌ Error submitting form. Please try again.");
+})
+.finally(() => {
+    isSubmitting = false;
+    submitBtn.disabled = false;
+    submitBtn.innerText = "Confirm Booking";
+    submitBtn.style.opacity = "1";
+    submitBtn.style.cursor = "pointer";
+});
 
     // ── Close popup → go home ──────────────────────────────
     closeBtn?.addEventListener("click", () => {

@@ -375,7 +375,7 @@
     const form = document.getElementById("bookingForm");
     if (!form || typeof PACKAGES === "undefined") return;
 
-    const SCRIPT_URL  = "https://script.google.com/macros/s/AKfycbz4AXCP7oBO-8ZjpkPnORqK4Zf9SUuyDaSAK-9YEZToU1gLfNmsTphHvfS_3LjWu3vmOA/exec";
+    const SCRIPT_URL  = "";
     const tripSelect  = document.getElementById("tripSelect");
     const dateInput   = document.getElementById("dateInput");
     const phoneInput  = document.getElementById("phone");

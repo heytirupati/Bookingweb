@@ -4,6 +4,12 @@
 //  the presence of key elements in the DOM).
 // ============================================================
 
+// ============================================================
+//  GOOGLE APPS SCRIPT URL — REPLACE WITH YOUR ACTUAL URL
+// ============================================================
+const SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+// Example: https://script.google.com/macros/s/AKfycbx.../exec
+
 
 // ============================================================
 //  1. MOBILE MENU TOGGLE
@@ -206,204 +212,105 @@
                 <div class="pkg-error-icon">🛕</div>
                 <h2>Package Not Found</h2>
                 <p>Please select a valid package.</p>
-                <a href="tirupathi.html#packages" class="btn btn-primary">Browse Packages</a>
-            </div>`;
+                <a href="tirupathi.html" class="btn btn-primary">Browse Packages</a>
+            </div>
+        `;
         return;
     }
 
-    document.title = pkg.name + " – Sri Balaji Travels";
-
-    // ── Build HTML fragments ───────────────────────────────
-    const includesHTML = pkg.includes.map(i =>
-        `<li><span class="inc-icon">✓</span><span>${i}</span></li>`).join("");
-
-    const excludesHTML = pkg.excludes.map(e =>
-        `<li><span class="exc-icon">✗</span><span>${e}</span></li>`).join("");
-
-    const highlightsHTML = pkg.highlights.map(h =>
-        `<div class="hl-chip">${h}</div>`).join("");
-
-    const routeHTML = pkg.routeFull.map((stop, i) => `
-        <div class="route-node">
-            <div class="route-dot ${i === 0 || i === pkg.routeFull.length - 1 ? "route-dot-end" : ""}"></div>
-            <span>${stop}</span>
-        </div>
-        ${i < pkg.routeFull.length - 1 ? '<div class="route-connector"></div>' : ""}
-    `).join("");
-
-    const templeFlowHTML = (pkg.templeFlow || []).map((stop, i) => `
-        <div class="tf-item ${i % 2 !== 0 ? "tf-reverse" : ""}">
-            <div class="tf-icon-col">
-                <div class="tf-icon-wrap"><span>${stop.icon}</span></div>
-                ${i < pkg.templeFlow.length - 1 ? '<div class="tf-vline"></div>' : ""}
-            </div>
-            <div class="tf-content-col">
-                <div class="tf-card">
-                    <span class="tf-step">Stop ${i + 1}</span>
-                    <h3>${stop.name}</h3>
-                    <p>${stop.desc}</p>
-                </div>
-            </div>
-        </div>
-    `).join("");
-
-    // ── Main UI ────────────────────────────────────────────
+    // ── Render full detail ─────────────────────────────────
     detail.innerHTML = `
-        <div class="pkg-breadcrumb">
-            <div class="container">
-                <a href="index.html">Home</a>
-                <span class="bc-sep">›</span>
-                <a href="tirupathi.html#packages">Packages</a>
-                <span class="bc-sep">›</span>
-                <span>${pkg.name}</span>
-            </div>
-        </div>
-
-        <div class="pkg-hero-strip">
-            <div class="pkg-hero-img">
-                <img src="${pkg.image}" alt="${pkg.name}">
-                <div class="pkg-hero-overlay"></div>
-            </div>
-            <div class="container pkg-hero-content">
-                <span class="pkg-hero-tag ${pkg.tagClass || ''}">${pkg.tag}</span>
-                <h1 class="pkg-title">${pkg.name}</h1>
-                <p class="pkg-hero-subtitle">${pkg.routeShort}</p>
-                <div class="pkg-hero-meta">
+        <div class="pkg-banner">
+            <img src="${pkg.image}" alt="${pkg.name}">
+            <div class="pkg-banner-overlay">
+                <span class="pkg-banner-tag ${pkg.tagClass || ''}">${pkg.tag}</span>
+                <h1>${pkg.name}</h1>
+                <div class="pkg-banner-meta">
                     <span>⏱ ${pkg.duration}</span>
-                    <span>🚗 Pickup Included</span>
-                    <span>📞 24/7 Support</span>
-                </div>
-                <div class="pkg-hero-actions">
-                    <a href="booking.html?package=${pkg.id}" class="btn btn-primary">Book This Package</a>
-                    <a href="https://wa.me/919876543210?text=Hi, I'm interested in ${encodeURIComponent(pkg.name)}"
-                       target="_blank" class="btn btn-outline">💬 WhatsApp</a>
+                    <span>₹${pkg.price.toLocaleString("en-IN")}</span>
                 </div>
             </div>
         </div>
 
-        <div class="container pkg-body">
-            <div class="pkg-left">
-                <div class="pkg-section">
-                    <h2 class="pkg-section-title">About This Package</h2>
-                    <p class="pkg-description">${pkg.description}</p>
-                    ${pkg.note ? `<div class="pkg-note">💡 ${pkg.note}</div>` : ""}
-                </div>
-
-                <div class="pkg-section">
-                    <h2 class="pkg-section-title">Highlights</h2>
-                    <div class="pkg-highlights">${highlightsHTML}</div>
-                </div>
-
-                ${pkg.templeFlow?.length ? `
-                <div class="pkg-section pkg-section-tf">
-                    <h2 class="pkg-section-title">Your Journey</h2>
-                    <div class="temple-flow">${templeFlowHTML}</div>
-                </div>` : ""}
-
-                <div class="pkg-section">
-                    <h2 class="pkg-section-title">Route</h2>
-                    <div class="pkg-route-full">${routeHTML}</div>
-                </div>
-
-                <div class="pkg-section pkg-inc-exc">
-                    <div class="pkg-inc">
-                        <h2 class="pkg-section-title">Included</h2>
-                        <ul>${includesHTML}</ul>
-                    </div>
-                    <div class="pkg-exc">
-                        <h2 class="pkg-section-title">Not Included</h2>
-                        <ul>${excludesHTML}</ul>
-                    </div>
+        <div class="pkg-content">
+            <div class="pkg-section">
+                <h2>Package Details</h2>
+                <p class="pkg-route">${pkg.routeShort}</p>
+                <div class="pkg-highlights-grid">
+                    ${pkg.highlights.map(h => `<div class="pkg-highlight-item">${h}</div>`).join("")}
                 </div>
             </div>
 
-            <div class="pkg-right">
-                <div class="pkg-book-card">
-                    <div class="pkg-price-block">
-                        <span class="pkg-price-label">Starting from</span>
-                        <span class="pkg-price-value">₹${pkg.price.toLocaleString("en-IN")}</span>
-                        <span class="pkg-price-sub">${pkg.duration}</span>
-                    </div>
-                    <a href="booking.html?package=${pkg.id}" class="btn-book-pkg">🛕 Book Now</a>
-                    <a href="https://wa.me/919876543210" class="btn-whatsapp-pkg" target="_blank">
-                        💬 Ask on WhatsApp
-                    </a>
+            ${pkg.itinerary ? `
+            <div class="pkg-section">
+                <h2>Itinerary</h2>
+                <div class="pkg-itinerary">
+                    ${pkg.itinerary.map((day, idx) => `
+                        <div class="itinerary-day">
+                            <div class="itinerary-day-number">Day ${idx + 1}</div>
+                            <div class="itinerary-day-content">
+                                ${day.split("\n").map(line => `<p>${line}</p>`).join("")}
+                            </div>
+                        </div>
+                    `).join("")}
                 </div>
+            </div>
+            ` : ""}
+
+            ${pkg.inclusions ? `
+            <div class="pkg-section">
+                <h2>What's Included</h2>
+                <ul class="pkg-list">
+                    ${pkg.inclusions.map(inc => `<li>${inc}</li>`).join("")}
+                </ul>
+            </div>
+            ` : ""}
+
+            ${pkg.exclusions ? `
+            <div class="pkg-section">
+                <h2>What's Not Included</h2>
+                <ul class="pkg-list">
+                    ${pkg.exclusions.map(exc => `<li>${exc}</li>`).join("")}
+                </ul>
+            </div>
+            ` : ""}
+
+            <div class="pkg-booking-cta">
+                <a href="booking.html?package=${pkg.id}" class="btn btn-primary btn-large">
+                    Book This Package →
+                </a>
             </div>
         </div>
     `;
-
-    // ── Related packages ───────────────────────────────────
-    const related = PACKAGES
-        .filter(p => p.id !== pkg.id)
-        .sort((a, b) => (b.popular === true) - (a.popular === true))
-        .slice(0, 6);
-
-    if (related.length) {
-        const relatedSection = document.getElementById("relatedSection");
-        const relatedCards   = document.getElementById("relatedCards");
-
-        if (relatedSection) relatedSection.style.display = "block";
-
-        if (relatedCards) {
-            relatedCards.innerHTML = related.map(p => `
-                <a href="package.html?id=${p.id}" class="related-card">
-                    <div class="related-img-wrap">
-                        <img src="${p.image}" alt="${p.name}">
-                        ${p.tag ? `<span class="related-tag ${p.tagClass || ''}">${p.tag}</span>` : ""}
-                    </div>
-                    <div class="related-body">
-                        <h3>${p.name}</h3>
-                        <p>${p.routeShort}</p>
-                        <div class="related-footer">
-                            <span class="related-price">₹${p.price.toLocaleString("en-IN")}</span>
-                            <span class="related-btn btn btn-outline">View</span>
-                        </div>
-                    </div>
-                </a>
-            `).join("");
-        }
-    }
 })();
 
 
 // ============================================================
-//  9. BOOKING PAGE
-//     Runs only when #bookingForm exists (booking.html)
+//  9. BOOKING PAGE — FORM LOGIC + VALIDATION + SUBMISSION
 // ============================================================
-(function initBookingPage() {
+(function initBookingForm() {
     const form = document.getElementById("bookingForm");
-    if (!form || typeof PACKAGES === "undefined") return;
+    if (!form) return;
 
-    const SCRIPT_URL  = "https://script.google.com/macros/s/AKfycbz4AXCP7oBO-8ZjpkPnORqK4Zf9SUuyDaSAK-9YEZToU1gLfNmsTphHvfS_3LjWu3vmOA/exec";
     const tripSelect  = document.getElementById("tripSelect");
     const dateInput   = document.getElementById("dateInput");
     const phoneInput  = document.getElementById("phone");
+    const submitBtn   = form.querySelector('[type="submit"]');
     const popup       = document.getElementById("successPopup");
     const closeBtn    = document.getElementById("closePopup");
-    const submitBtn   = document.querySelector(".btn-book");
 
-    // ── Build package dropdown ─────────────────────────────
-    const CATEGORY_LABELS = {
-        tirumala:    "— Tirumala Darshan —",
-        tirupati:    "— Tirupati Temples —",
-        outstation:  "— Outstation —",
-        "one-day":   "— One-Day Routes —",
-        "multi-day": "— Multi-Day —",
-        transfer:    "— Transfers —"
-    };
+    if (!tripSelect || typeof PACKAGES === "undefined") return;
 
-    const grouped = {};
-    PACKAGES.forEach(p => {
-        if (!grouped[p.category]) grouped[p.category] = [];
-        grouped[p.category].push(p);
-    });
-
-    Object.entries(CATEGORY_LABELS).forEach(([cat, label]) => {
-        if (!grouped[cat]) return;
+    // ── Build package dropdown with categories ─────────────
+    const categories = [...new Set(PACKAGES.map(p => p.category))];
+    
+    categories.forEach(cat => {
+        const pkgList = PACKAGES.filter(p => p.category === cat);
+        
         const optgroup = document.createElement("optgroup");
-        optgroup.label = label;
-        grouped[cat].forEach(p => {
+        optgroup.label = cat.charAt(0).toUpperCase() + cat.slice(1) + " Packages";
+        
+        pkgList.forEach(p => {
             const opt = document.createElement("option");
             opt.value       = p.id;
             opt.textContent = p.name + " — ₹" + p.price.toLocaleString("en-IN");
@@ -528,14 +435,17 @@
         const phone = phoneInput.value.trim();
         if (phone.length === 0) {
             showError(phoneInput, "Mobile number is required");
+            phoneInput.focus();
             return;
         }
         if (phone.length !== 10) {
             showError(phoneInput, "Please enter exactly 10 digits");
+            phoneInput.focus();
             return;
         }
         if (!/^[6-9]\d{9}$/.test(phone)) {
             showError(phoneInput, "Invalid mobile number. Must start with 6-9");
+            phoneInput.focus();
             return;
         }
 
@@ -543,36 +453,42 @@
         const nameField = form.querySelector('[name="name"]');
         if (!nameField.value.trim()) {
             showError(nameField, "Name is required");
+            nameField.focus();
             return;
         }
 
         const tripField = form.querySelector('[name="trip"]');
         if (!tripField.value) {
             showError(tripField, "Please select a package");
+            tripField.focus();
             return;
         }
 
         const dateField = form.querySelector('[name="date"]');
         if (!dateField.value) {
             showError(dateField, "Please select a date");
+            dateField.focus();
             return;
         }
 
         const peopleField = form.querySelector('[name="people"]');
         if (!peopleField.value) {
             showError(peopleField, "Please select number of people");
+            peopleField.focus();
             return;
         }
 
         const pickupField = form.querySelector('[name="pickup"]');
         if (!pickupField.value.trim()) {
             showError(pickupField, "Pickup location is required");
+            pickupField.focus();
             return;
         }
 
         const vehicleField = form.querySelector('[name="vehicle"]');
         if (!vehicleField.value) {
             showError(vehicleField, "Please select a vehicle type");
+            vehicleField.focus();
             return;
         }
 
@@ -583,29 +499,34 @@
         submitBtn.style.opacity = "0.6";
         submitBtn.style.cursor = "not-allowed";
 
-        // ✅ URLSearchParams so Apps Script e.postData.contents can parse correctly
-        const params = new URLSearchParams(new FormData(form));
-        fetch(SCRIPT_URL, { method: "POST", body: params })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === "success") {
-                    if (popup) popup.style.display = "block";
-                    form.reset();
-                } else {
-                    showError(submitBtn, "Submission failed: " + (data.message || "Unknown error"));
-                }
-                isSubmitting = false;
-            })
-            .catch(() => {
-                showError(submitBtn, "Something went wrong. Please try again!");
-                isSubmitting = false;
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Confirm Booking";
-                submitBtn.style.opacity = "1";
-                submitBtn.style.cursor = "pointer";
-            });
+        // Prepare form data
+        const formData = new FormData(form);
+        const params = new URLSearchParams(formData);
+
+        // Submit to Google Apps Script
+        fetch(SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            body: params
+        })
+        .then(() => {
+            // Success - show popup
+            if (popup) popup.style.display = "block";
+            form.reset();
+            isSubmitting = false;
+        })
+        .catch((error) => {
+            // Error handling
+            console.error("Submission error:", error);
+            alert("There was an error submitting your booking. Please try again or contact us directly.");
+            isSubmitting = false;
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Confirm Booking";
+            submitBtn.style.opacity = "1";
+            submitBtn.style.cursor = "pointer";
+        });
     });
 
     // ── Close popup → go home ──────────────────────────────

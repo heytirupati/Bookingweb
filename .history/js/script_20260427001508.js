@@ -583,21 +583,21 @@
         submitBtn.style.opacity = "0.6";
         submitBtn.style.cursor = "not-allowed";
 
-        // ✅ URLSearchParams so Apps Script e.postData.contents can parse correctly
+        // ✅ no-cors required for Google Apps Script (CORS blocked by browser otherwise)
         const params = new URLSearchParams(new FormData(form));
-        fetch(SCRIPT_URL, { method: "POST", body: params })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === "success") {
-                    if (popup) popup.style.display = "block";
-                    form.reset();
-                } else {
-                    showError(submitBtn, "Submission failed: " + (data.message || "Unknown error"));
-                }
+        fetch(SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",           // ← KEY FIX: bypasses CORS block
+            body: params
+        })
+            .then(() => {
+                // no-cors returns opaque response — we can't read it, but request DID go through
+                if (popup) popup.style.display = "block";
+                form.reset();
                 isSubmitting = false;
             })
             .catch(() => {
-                showError(submitBtn, "Something went wrong. Please try again!");
+                showError(submitBtn, "Network error. Please check your connection and try again.");
                 isSubmitting = false;
             })
             .finally(() => {

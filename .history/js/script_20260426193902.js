@@ -583,22 +583,19 @@
         submitBtn.style.opacity = "0.6";
         submitBtn.style.cursor = "not-allowed";
 
-        // ✅ URLSearchParams so Apps Script e.postData.contents can parse correctly
-        const params = new URLSearchParams(new FormData(form));
-        fetch(SCRIPT_URL, { method: "POST", body: params })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === "success") {
-                    if (popup) popup.style.display = "block";
-                    form.reset();
-                } else {
-                    showError(submitBtn, "Submission failed: " + (data.message || "Unknown error"));
-                }
+        fetch(SCRIPT_URL, { method: "POST", body: new FormData(form) })
+            .then(() => {
+                if (popup) popup.style.display = "block";
+                form.reset();
                 isSubmitting = false;
             })
             .catch(() => {
                 showError(submitBtn, "Something went wrong. Please try again!");
                 isSubmitting = false;
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Confirm Booking";
+                submitBtn.style.opacity = "1";
+                submitBtn.style.cursor = "pointer";
             })
             .finally(() => {
                 submitBtn.disabled = false;
