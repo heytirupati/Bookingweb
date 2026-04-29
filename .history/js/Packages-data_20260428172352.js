@@ -369,7 +369,7 @@ const PACKAGES = [
     category: "transfer",
     tag: "Airport / Railway",
     tagClass: "",
-    popular: true,
+    popular: false,
     price: 999,
     duration: "As needed",
     routeShort: "Airport / Railway ↔ Hotel / Temple",

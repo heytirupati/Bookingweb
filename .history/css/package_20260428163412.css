@@ -462,46 +462,13 @@
     margin-bottom : 6px;
 }
 
-/* STRIKETHROUGH ORIGINAL PRICE (49% markup) */
-.pkg-price-original {
-    display        : block;
-    font-size      : 22px;
-    font-weight    : 600;
-    color          : #999;
-    text-decoration: line-through;
-    line-height    : 1;
-    margin-bottom  : 4px;
-    opacity        : 0.7;
-}
-
-/* ACTUAL FINAL PRICE (bold and prominent) */
 .pkg-price-value {
     display      : block;
     font-size    : 38px;
     font-weight  : 700;
-    color        : #1a5f1a;
+    color        : var(--text-dark);
     line-height  : 1;
     margin-bottom: 6px;
-}
-
-/* DISCOUNT BADGE */
-.pkg-price-discount {
-    display       : inline-block;
-    padding       : 4px 12px;
-    border-radius : 20px;
-    font-size     : 11px;
-    font-weight   : 700;
-    background    : linear-gradient(135deg, #27ae60, #2ecc71);
-    color         : #fff;
-    letter-spacing: 0.5px;
-    margin-bottom : 8px;
-    text-transform: uppercase;
-    animation     : pulse-discount 2s ease-in-out infinite;
-}
-
-@keyframes pulse-discount {
-    0%, 100% { transform: scale(1); }
-    50%      { transform: scale(1.05); }
 }
 
 .pkg-price-sub {
@@ -691,26 +658,10 @@
     align-items    : center;
 }
 
-/* Related package pricing with strikethrough */
-.related-price-wrapper {
-    display       : flex;
-    flex-direction: column;
-    align-items   : flex-start;
-    gap           : 2px;
-}
-
-.related-price-strike {
-    font-size      : 13px;
-    font-weight    : 500;
-    color          : #999;
-    text-decoration: line-through;
-    opacity        : 0.7;
-}
-
 .related-price {
     font-size  : 17px;
     font-weight: 700;
-    color      : #1a5f1a;
+    color      : var(--primary-gold);
 }
 
 .related-btn {
@@ -773,9 +724,7 @@
     .pkg-inc-exc { grid-template-columns: 1fr; gap: 16px; }
 
     /* Price value */
-    .pkg-price-original { font-size: 18px; }
     .pkg-price-value { font-size: 32px; }
-    .pkg-price-discount { font-size: 10px; padding: 3px 10px; }
 
     /* Related cards */
     .related-track {
@@ -785,186 +734,4 @@
     }
 
     .related-card { min-width: unset; max-width: unset; }
-}
-
-
-/* ============================================================
-   PREMIUM PRICING DESIGN — DYNAMIC PRICING WITH 49% MARKUP
-   ============================================================ */
-
-/* Popular Package Cards — Index Page */
-.pop-pkg-price-wrapper {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.85) 100%);
-    backdrop-filter: blur(12px);
-    border-radius: 12px;
-    padding: 12px 16px;
-    text-align: right;
-    box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3), 
-                0 0 0 1px rgba(212, 175, 55, 0.2);
-    border: 1px solid rgba(212, 175, 55, 0.15);
-}
-
-.pop-pkg-price-strike {
-    font-size: 14px;
-    color: #999;
-    text-decoration: line-through;
-    font-weight: 400;
-    display: block;
-    margin-bottom: 4px;
-    letter-spacing: 0.5px;
-}
-
-.pop-pkg-price {
-    font-size: 26px;
-    font-weight: 700;
-    color: #d4af37;
-    display: block;
-    text-shadow: 0 2px 12px rgba(212, 175, 55, 0.4);
-    letter-spacing: 0.5px;
-}
-
-/* Tirupati Page — Full Package Cards */
-.price-box {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.old-price {
-    font-size: 18px;
-    color: #999;
-    text-decoration: line-through;
-    font-weight: 400;
-}
-
-.new-price {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--primary-gold);
-    text-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
-}
-
-.save-badge {
-    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-    color: white;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 6px;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
-}
-
-/* Package Detail Page — Sidebar Pricing Card */
-.pkg-price-comparison {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin: 12px 0;
-}
-
-.pkg-price-old {
-    font-size: 20px;
-    color: #999;
-    text-decoration: line-through;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-}
-
-.pkg-price-value {
-    font-size: 42px;
-    font-weight: 800;
-    background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1;
-    text-shadow: none;
-}
-
-.pkg-save-percent {
-    display: inline-block;
-    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-    color: white;
-    font-size: 14px;
-    font-weight: 700;
-    padding: 6px 14px;
-    border-radius: 8px;
-    letter-spacing: 0.8px;
-    box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35);
-    margin-top: 8px;
-    text-transform: uppercase;
-}
-
-/* Related Package Cards */
-.related-price-group {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    align-items: flex-start;
-}
-
-.related-price-old {
-    font-size: 13px;
-    color: #999;
-    text-decoration: line-through;
-    font-weight: 400;
-}
-
-.related-price {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--primary-gold);
-    text-shadow: 0 2px 6px rgba(212, 175, 55, 0.25);
-}
-
-/* Enhance existing booking card with better shadows */
-.pkg-book-card {
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12), 
-                0 0 0 1px rgba(212, 175, 55, 0.1);
-}
-
-.pkg-book-card:hover {
-    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.15), 
-                0 0 0 1px rgba(212, 175, 55, 0.2);
-}
-
-/* Mobile responsive adjustments */
-@media (max-width: 768px) {
-    .pop-pkg-price-wrapper {
-        padding: 10px 12px;
-    }
-    
-    .pop-pkg-price-strike {
-        font-size: 12px;
-    }
-    
-    .pop-pkg-price {
-        font-size: 22px;
-    }
-    
-    .old-price {
-        font-size: 16px;
-    }
-    
-    .new-price {
-        font-size: 24px;
-    }
-    
-    .pkg-price-old {
-        font-size: 18px;
-    }
-    
-    .pkg-price-value {
-        font-size: 36px;
-    }
-    
-    .save-badge {
-        font-size: 11px;
-        padding: 3px 8px;
-    }
 }
