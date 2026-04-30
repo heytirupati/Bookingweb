@@ -1,0 +1,461 @@
+/* ============================================================
+   booking.css — Page-specific styles for booking.html
+   Requires: style.css loaded first
+   ============================================================ */
+
+
+/* ============================================================
+   1. BOOKING SECTION LAYOUT
+   ============================================================ */
+.booking-section {
+    min-height: 100vh;
+    display   : flex;
+    align-items: center;
+    background: linear-gradient(135deg, #fff9ec, #ffffff);
+}
+
+.booking-container {
+    display    : flex;
+    gap        : 60px;
+    align-items: center;
+}
+
+
+/* ============================================================
+   2. LEFT INFO PANEL
+   ============================================================ */
+.booking-left { flex: 1; }
+
+.booking-left h1 {
+    font-size    : 42px;
+    margin-bottom: 15px;
+    line-height  : 1.2;
+}
+
+.booking-left p {
+    color        : var(--text-light);
+    margin-bottom: 20px;
+    line-height  : 1.6;
+}
+
+.booking-points span {
+    display      : block;
+    margin-bottom: 8px;
+    font-size    : 14px;
+}
+
+.booking-call {
+    margin-top : 20px;
+    color      : var(--primary-gold);
+    font-weight: 600;
+}
+
+/* Selected package banner */
+.selected-pkg-banner {
+    margin-bottom: 28px;
+    animation    : fadeSlide 0.4s ease;
+}
+
+.pkg-banner-inner {
+    padding      : 18px 22px;
+    border-radius: 16px;
+    background   : linear-gradient(135deg, rgba(212,175,55,0.12), rgba(212,175,55,0.05));
+    border       : 1.5px solid rgba(212,175,55,0.35);
+    box-shadow   : 0 4px 16px rgba(212,175,55,0.1);
+}
+
+.pkg-banner-tag {
+    display       : inline-block;
+    padding       : 3px 12px;
+    border-radius : 20px;
+    font-size     : 11px;
+    font-weight   : 600;
+    background    : rgba(212,175,55,0.2);
+    color         : #8a6500;
+    margin-bottom : 8px;
+    letter-spacing: 0.4px;
+}
+
+.pkg-banner-tag.tag-popular { background: var(--primary-gold); color: #fff; }
+.pkg-banner-tag.tag-premium { background: linear-gradient(135deg, #b8860b, #d4af37); color: #fff; }
+
+.pkg-banner-name {
+    font-size    : 18px;
+    font-weight  : 600;
+    color        : var(--text-dark);
+    margin-bottom: 8px;
+    line-height  : 1.3;
+}
+
+.pkg-banner-meta {
+    display    : flex;
+    gap        : 18px;
+    font-size  : 14px;
+    font-weight: 600;
+    color      : var(--primary-gold);
+    margin-bottom: 6px;
+}
+
+.pkg-banner-route {
+    font-size: 13px;
+    color    : var(--text-light);
+    margin   : 0;
+}
+
+
+/* ============================================================
+   3. BOOKING FORM BOX
+   ============================================================ */
+.booking-form-box {
+    flex         : 1;
+    max-width    : 420px;
+    padding      : 30px;
+    border-radius: 20px;
+    background   : #fff;
+    box-shadow   : 0 20px 50px rgba(0,0,0,0.08);
+}
+
+.booking-form-box h2 {
+    text-align   : center;
+    margin-bottom: 20px;
+    font-weight  : 600;
+}
+
+
+/* ============================================================
+   4. FORM ELEMENTS
+   ============================================================ */
+.form-group { margin-bottom: 14px; }
+
+input,
+select,
+textarea {
+    width        : 100%;
+    padding      : 12px 14px;
+    border-radius: 10px;
+    border       : 1px solid #ddd;
+    outline      : none;
+    font-size    : 14px;
+    font-family  : 'Poppins', sans-serif;
+    transition   : 0.2s;
+    background   : #fff;
+    color        : var(--text-dark);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary-gold);
+    box-shadow  : 0 0 0 2px rgba(212,175,55,0.15);
+}
+
+textarea {
+    height: 80px;
+    resize: none;
+}
+
+/* Validation states */
+input.error,
+select.error {
+    border-color: #ff4d4d !important;
+    background  : #fff5f5;
+    box-shadow  : 0 0 0 2px rgba(255, 77, 77, 0.15) !important;
+}
+
+.error-text {
+    color      : #ff4d4d;
+    font-size  : 12px;
+    margin-top : 5px;
+    display    : block;
+    font-weight: 500;
+    animation  : errorSlide 0.3s ease;
+}
+
+@keyframes errorSlide {
+    from { opacity: 0; transform: translateY(-5px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============================================================
+   5. PHONE INPUT GROUP
+   ============================================================ */
+.phone-group {
+    display      : flex;
+    border       : 1px solid #ddd;
+    border-radius: 10px;
+    overflow     : hidden;
+}
+
+.phone-group span {
+    padding   : 12px;
+    background: #f5f5f5;
+    font-size : 14px;
+    white-space: nowrap;
+}
+
+.phone-group input {
+    border       : none;
+    border-radius: 0;
+    flex         : 1;
+}
+
+.phone-group:focus-within {
+    border-color: var(--primary-gold);
+    box-shadow  : 0 0 0 2px rgba(212,175,55,0.15);
+}
+
+
+/* ============================================================
+   6. SUBMIT BUTTON
+   ============================================================ */
+.btn-book {
+    width        : 100%;
+    padding      : 14px;
+    border-radius: 12px;
+    border       : none;
+    font-size    : 15px;
+    font-weight  : 600;
+    font-family  : 'Poppins', sans-serif;
+    cursor       : pointer;
+    background   : linear-gradient(135deg, #d4af37, #f1d77a);
+    color        : #000;
+    transition   : 0.3s;
+}
+
+.btn-book:hover {
+    transform : translateY(-2px);
+    box-shadow: 0 10px 25px rgba(212,175,55,0.35);
+}
+
+.btn-book:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* ============================================================
+   7. SUCCESS POPUP
+   ============================================================ */
+.success-popup {
+    position: fixed;
+    inset   : 0;
+    display : none;
+    z-index : 999;
+}
+
+.popup-overlay {
+    position  : absolute;
+    width     : 100%;
+    height    : 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+}
+
+.popup-box {
+    position     : absolute;
+    top          : 50%;
+    left         : 50%;
+    transform    : translate(-50%, -50%) scale(0.9);
+    width        : 90%;
+    max-width    : 380px;
+    padding      : 30px;
+    border-radius: 20px;
+    background   : #fff;
+    text-align   : center;
+    box-shadow   : 0 20px 60px rgba(0,0,0,0.2);
+    animation    : popupFade 0.4s ease forwards;
+}
+
+.popup-icon {
+    font-size    : 38px;
+    margin-bottom: 10px;
+}
+
+.popup-box h3 { margin-bottom: 10px; }
+
+.popup-box p {
+    font-size: 14px;
+    color    : #555;
+}
+
+.popup-blessing {
+    display      : block;
+    margin-top   : 12px;
+    font-size    : 13px;
+    color        : var(--primary-gold);
+}
+
+.popup-btn {
+    margin-top   : 18px;
+    padding      : 12px 20px;
+    border       : none;
+    border-radius: 10px;
+    background   : linear-gradient(135deg, #d4af37, #f1d77a);
+    cursor       : pointer;
+    font-weight  : 600;
+    font-family  : 'Poppins', sans-serif;
+}
+
+@keyframes popupFade {
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+
+/* ============================================================
+   8. MOBILE (≤ 768 px)
+   ============================================================ */
+@media (max-width: 768px) {
+
+    .booking-section { align-items: flex-start; padding-top: 30px; }
+
+    .booking-container {
+        flex-direction: column;
+        padding       : 20px 16px 40px;
+        gap           : 30px;
+    }
+
+    .booking-left {
+        text-align: center;
+        width     : 100%;
+    }
+
+    .booking-left h1 { font-size: 26px; }
+
+    .booking-form-box {
+        width  : 100%;
+        padding: 20px 16px;
+    }
+
+    .btn-book {
+        font-size: 14px;
+        padding  : 12px;
+    }
+
+    .pkg-banner-name { font-size: 16px; }
+    .pkg-banner-meta { font-size: 13px; gap: 12px; }
+
+    .booking-price-strip   { justify-content: center; }
+    .booking-contact-row   { justify-content: center; }
+    .booking-points        { align-items: center; }
+}
+
+
+/* ============================================================
+   9. EXCITING LEFT PANEL STYLES
+   ============================================================ */
+
+/* Offer badge */
+.booking-offer-badge {
+    display      : inline-block;
+    background   : linear-gradient(135deg, #e74c3c, #c0392b);
+    color        : #fff;
+    font-size    : 0.8rem;
+    font-weight  : 700;
+    padding      : 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    box-shadow   : 0 4px 12px rgba(192,57,43,0.3);
+    letter-spacing: 0.3px;
+}
+
+/* Gold span in h1 */
+.booking-title-gold {
+    color: var(--primary-gold);
+}
+
+/* Price strip */
+.booking-price-strip {
+    display    : flex;
+    align-items: center;
+    gap        : 10px;
+    margin     : 14px 0 20px;
+    flex-wrap  : wrap;
+}
+
+.booking-price-from {
+    font-size : 0.9rem;
+    color     : #888;
+}
+
+.booking-price-old {
+    font-size      : 1rem;
+    text-decoration: line-through;
+    color          : #aaa;
+}
+
+.booking-price-new {
+    font-size  : 2rem;
+    font-weight: 800;
+    color      : var(--primary-gold);
+    line-height: 1;
+}
+
+/* Points list */
+.booking-points {
+    display       : flex;
+    flex-direction: column;
+    gap           : 9px;
+    margin-bottom : 24px;
+}
+
+.booking-point-item {
+    font-size  : 14px;
+    color      : var(--text-dark);
+    font-weight: 500;
+}
+
+/* Contact row — phone + whatsapp pills */
+.booking-contact-row {
+    display  : flex;
+    gap      : 12px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.booking-phone-pill {
+    display      : inline-flex;
+    align-items  : center;
+    gap          : 6px;
+    background   : linear-gradient(135deg, #d4af37, #f2d57c);
+    color        : #1a1200;
+    font-size    : 0.92rem;
+    font-weight  : 700;
+    padding      : 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow   : 0 4px 14px rgba(212,175,55,0.4);
+    transition   : 0.25s;
+}
+
+.booking-phone-pill:hover {
+    transform : translateY(-2px);
+    box-shadow: 0 8px 22px rgba(212,175,55,0.5);
+}
+
+.booking-wa-pill {
+    display      : inline-flex;
+    align-items  : center;
+    gap          : 8px;
+    background   : #25d366;
+    color        : #fff;
+    font-size    : 0.92rem;
+    font-weight  : 700;
+    padding      : 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow   : 0 4px 14px rgba(37,211,102,0.4);
+    transition   : 0.25s;
+}
+
+.booking-wa-pill:hover {
+    transform : translateY(-2px);
+    box-shadow: 0 8px 22px rgba(37,211,102,0.5);
+}
+
+.booking-wa-pill .wa-btn-icon {
+    width : 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}

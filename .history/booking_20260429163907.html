@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Tirupati Trip – Yatrahere</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/booking.css">
+    <style>
+        .footer-bottom { text-align:center; padding:12px 0 6px; border-top:1px solid rgba(255,255,255,0.1); margin-top:20px; font-size:0.82rem; color:#aaa; }
+        .footer-bottom strong { color:#d4af37; }
+        .footer-domain a { color:#d4af37; text-decoration:none; }
+        .footer-domain a:hover { text-decoration:underline; }
+    </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<section class="top-bar">
+    <div class="container">
+        <div class="top-left">
+            <span>+91 86394 29948</span>
+            <span>info@yathrahere.in</span>
+        </div>
+    </div>
+</section>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="container">
+        <div class="logo">
+            <a href="index.html" class="logo-link">
+                <h2>Yatrahere</h2>
+                <div class="hero-badge nav-badge">
+                    Padmavathi Tours and Travels
+                </div>
+            </a>
+        </div>
+
+        <div class="menu-toggle" id="menuToggle">☰</div>
+
+        <nav class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tirupathi.html">Packages</a></li>
+
+                <li class="has-dropdown">
+                    <button class="nav-trigger">
+                        Locations <span class="nav-caret">▾</span>
+                    </button>
+                    <div class="nav-dropdown">
+                        <a href="tirupathi.html">
+                            <span class="nav-dropdown-icon">🛕</span>
+                            <span class="nav-dropdown-text">
+                                <strong>Tirupati</strong>
+                                <span>Darshan · Packages · Stays</span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- BOOKING SECTION -->
+<section class="booking-section">
+    <div class="container booking-container">
+
+        <!-- LEFT INFO -->
+        <div class="booking-left">
+            <!-- Package banner — shown when coming from a specific package -->
+            <div class="selected-pkg-banner" id="selectedPkgBanner" style="display:none;"></div>
+
+            <div class="booking-offer-badge">🔥 33% OFF — Limited Time</div>
+
+            <h1>Plan Your Sacred<br><span class="booking-title-gold">Tirupati Journey</span></h1>
+
+            <p>Experience a peaceful darshan of Lord Venkateswara with trusted service, comfortable travel, and complete support — no hidden charges, no stress.</p>
+
+            <div class="booking-price-strip">
+                <span class="booking-price-from">Packages from</span>
+                <span class="booking-price-old">₹1,499</span>
+                <span class="booking-price-new">₹999/-</span>
+            </div>
+
+            <div class="booking-points">
+                <div class="booking-point-item">✅ 5000+ Happy Pilgrims</div>
+                <div class="booking-point-item">✅ No Pickup / Toll / Parking Charges</div>
+                <div class="booking-point-item">✅ Professional Drivers</div>
+                <div class="booking-point-item">✅ Smooth & Hassle-Free Darshan</div>
+                <div class="booking-point-item">✅ 10+ Years Trusted Experience</div>
+            </div>
+
+            <div class="booking-contact-row">
+                <a href="tel:+918639429948" class="booking-phone-pill">📞 +91 86394 29948</a>
+                <a href="https://wa.me/918639429948" target="_blank" class="booking-wa-pill">
+                    <img src="images/whatsapplogo.png" alt="WhatsApp" class="wa-btn-icon"> WhatsApp Us
+                </a>
+            </div>
+        </div>
+
+        <!-- BOOKING FORM -->
+        <div class="booking-form-box" id="book-form">
+            <h2>Book Your Trip</h2>
+
+            <form id="bookingForm">
+
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                </div>
+
+                <div class="form-group phone-group">
+                    <span>+91</span>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter 10-digit mobile number" maxlength="10" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email (Optional)">
+                </div>
+
+                <!-- PACKAGE SELECT — dynamically built from PACKAGES data -->
+                <div class="form-group">
+                    <select name="trip" id="tripSelect" required>
+                        <option value="">Select Package</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" name="date" id="dateInput" required>
+                </div>
+
+                <div class="form-group">
+                    <select name="people" required>
+                        <option value="">Number of People</option>
+                        <option>1–2</option>
+                        <option>3–5</option>
+                        <option>6–7</option>
+                        <option>8+</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="pickup" placeholder="Pickup Location" required>
+                </div>
+
+                <div class="form-group">
+                    <select name="vehicle" id="vehicleSelect" required>
+                        <option value="">Select Vehicle Type</option>
+                        <option value="4-seater">4 Seater (Sedan)</option>
+                        <option value="7-seater">7 Seater (SUV/MUV)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-book">Confirm Booking</button>
+
+            </form>
+
+            <!-- SUCCESS POPUP -->
+            <div class="success-popup" id="successPopup">
+                <div class="popup-overlay"></div>
+                <div class="popup-box">
+                    <div class="popup-icon">🛕</div>
+                    <h3>Booking Request Received</h3>
+                    <p>🙏 Thank you for choosing <strong>Yatrahere</strong><br>Our operator will contact you within <b>15 minutes</b></p>
+                    <span class="popup-blessing">"May Lord Venkateswara bless your journey"</span>
+                    <button class="popup-btn" id="closePopup">Back to Home</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/918639429948" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp"><img src="images/whatsapplogo.png" alt="WhatsApp"></a>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+    <div class="container">
+        <div class="footer-col">
+            <h3>Yatrahere</h3>
+            <p>Your trusted travel partner</p>
+            <p class="footer-domain">🌐 <a href="https://yatra.in" target="_blank">yatra.in</a></p>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tirupathi.html#packages">Packages</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>+91 86394 29948</p>
+            <p>info@yathrahere.in</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Powered by <strong>Padmavathi Tours and Travels</strong></p>
+    </div>
+</footer>
+
+<script src="js/packages-data.js"></script>
+<script src="js/script.js"></script>
+<script>
+    // Scroll to form if #book-form is in URL
+    window.addEventListener('load', function () {
+        if (window.location.hash === '#book-form') {
+            const form = document.getElementById('book-form');
+            if (form) {
+                setTimeout(function () {
+                    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
