@@ -1296,7 +1296,7 @@
         border-radius: 10px;
     }
 
-    .related-img-wrap { height: 150px; }
+    .related-img-wrap { height: 270px; }
     .related-footer { gap: 10px; }
     .related-btn { padding: 6px 12px !important; font-size: 12px !important; }
 }
@@ -1305,6 +1305,8 @@
     .pkg-hero-cta { grid-template-columns: 1fr; }
     .pkg-gallery-grid { aspect-ratio: 4 / 3; }
     .related-track { grid-template-columns: 1fr; }
+        height: 240px !important;}
+    
 }
 /* ============================================================
    MOBILE-FIRST PREMIUM PACKAGE HERO POLISH
@@ -1664,4 +1666,306 @@
     .pkg-gallery-grid {
         aspect-ratio: 1.28 / 1;
     }
+}
+/* ============================================================
+   DESKTOP BOOKING-FIRST PACKAGE HERO
+   Wider, shorter image with immediate booking actions visible.
+   ============================================================ */
+@media (min-width: 769px) {
+    .pkg-hero-enhanced {
+        padding-top: 16px;
+        padding-bottom: 34px;
+    }
+
+    .pkg-hero-container {
+        gap: 18px;
+    }
+
+    .pkg-gallery-grid {
+        width: min(100%, 1240px);
+        max-width: 1240px;
+        height: clamp(230px, 24vw, 315px);
+        aspect-ratio: auto;
+        border-radius: 18px;
+    }
+
+    .pkg-gallery-grid::before {
+        background:
+            linear-gradient(180deg, rgba(255,255,255,0.03), transparent 34%),
+            linear-gradient(0deg, rgba(25, 18, 3, 0.12), transparent 36%);
+    }
+
+    .pkg-gallery-price-badge {
+        right: 16px;
+        bottom: 16px;
+        padding: 8px 10px;
+        min-width: 110px;
+        background: rgba(255, 252, 244, 0.58);
+        border-color: rgba(212,175,55,0.22);
+        box-shadow: 0 8px 20px rgba(36, 26, 3, 0.10);
+        backdrop-filter: blur(18px) saturate(1.05);
+    }
+
+    .pkg-gallery-price-old {
+        font-size: 11px;
+    }
+
+    .pkg-gallery-price-new {
+        font-size: 20px;
+    }
+
+    .pkg-gallery-save {
+        margin-top: 5px;
+        font-size: 9px;
+        background: rgba(34, 197, 94, 0.68);
+    }
+
+    .pkg-hero-left {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        column-gap: 28px;
+        row-gap: 8px;
+        width: min(100%, 1120px);
+        max-width: 1120px;
+        padding: 20px 22px;
+        text-align: left;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.72);
+        border: 1px solid rgba(212,175,55,0.14);
+        box-shadow: 0 14px 36px rgba(47,35,6,0.08);
+        backdrop-filter: blur(14px);
+    }
+
+    .pkg-hero-tag-new,
+    .pkg-title-new,
+    .pkg-subtitle-new,
+    .pkg-meta-pills {
+        grid-column: 1;
+    }
+
+    .pkg-title-new {
+        font-size: clamp(34px, 3vw, 44px);
+        margin-bottom: 4px;
+    }
+
+    .pkg-subtitle-new {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    .pkg-meta-pills {
+        margin: 8px 0 0;
+    }
+
+    .pkg-meta-pill {
+        padding: 8px 13px;
+        font-size: 12px;
+    }
+
+    .pkg-hero-cta {
+        grid-column: 2;
+        grid-row: 1 / span 4;
+        align-self: center;
+        justify-self: end;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 10px;
+        margin: 0;
+    }
+
+    .pkg-btn-primary,
+    .pkg-btn-whatsapp {
+        min-height: 44px;
+        padding: 11px 18px;
+        font-size: 14px;
+        border-radius: 10px;
+        white-space: nowrap;
+    }
+
+    .pkg-trust-row {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        gap: 18px;
+        margin-top: 8px;
+        padding-top: 14px;
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 980px) {
+    .pkg-hero-left {
+        grid-template-columns: 1fr;
+    }
+
+    .pkg-hero-cta {
+        grid-column: 1;
+        grid-row: auto;
+        justify-self: start;
+        margin-top: 8px;
+    }
+}
+/* ============================================================
+   DESKTOP EXTRA-WIDE IMAGE ALIGNMENT FIX
+   Lets the hero image break out of the normal 1200px container.
+   ============================================================ */
+@media (min-width: 1025px) {
+    .pkg-hero-enhanced > .container {
+        max-width: none;
+        width: 100%;
+        padding-left: clamp(28px, 4vw, 64px);
+        padding-right: clamp(28px, 4vw, 64px);
+    }
+
+    .pkg-gallery-grid {
+        width: 100%;
+        max-width: 1440px;
+        height: clamp(220px, 21vw, 300px);
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 16px;
+    }
+
+    .pkg-gallery-main img {
+        object-position: center 45%;
+    }
+
+    .pkg-hero-left {
+        width: min(100%, 1180px);
+        max-width: 1180px;
+    }
+}
+
+@media (min-width: 1441px) {
+    .pkg-gallery-grid {
+        max-width: 1520px;
+        height: 310px;
+    }
+}
+/* ============================================================
+   DESKTOP INDEX-STYLE PACKAGE HERO RESET
+   Uses the same image shape as the index hero to avoid desktop crop.
+   ============================================================ */
+@media (min-width: 1025px) {
+    .pkg-hero-enhanced {
+        padding: 38px 0 46px;
+    }
+
+    .pkg-hero-enhanced > .container {
+        max-width: 1200px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .pkg-hero-container {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(470px, 540px);
+        gap: 46px;
+        align-items: center;
+    }
+
+    .pkg-hero-right {
+        order: 2;
+        width: 100%;
+        position: static;
+    }
+
+    .pkg-gallery-grid {
+        width: 100%;
+        max-width: 540px;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        margin: 0;
+        border-radius: 20px;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.15), 0 10px 20px rgba(212,175,55,0.15);
+    }
+
+    .pkg-gallery-main img {
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .pkg-gallery-grid::before {
+        background: linear-gradient(to top, rgba(0,0,0,0.16), rgba(0,0,0,0.04), transparent);
+    }
+
+    .pkg-hero-left {
+        order: 1;
+        display: block;
+        width: 100%;
+        max-width: 560px;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        backdrop-filter: none;
+    }
+
+    .pkg-title-new {
+        font-size: clamp(38px, 3.4vw, 50px);
+        line-height: 1.12;
+        margin-bottom: 10px;
+    }
+
+    .pkg-subtitle-new {
+        margin: 0 0 20px;
+        font-size: 17px;
+    }
+
+    .pkg-meta-pills {
+        justify-content: flex-start;
+        margin-bottom: 24px;
+    }
+
+    .pkg-hero-cta {
+        justify-content: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 22px;
+    }
+
+    .pkg-btn-primary,
+    .pkg-btn-whatsapp {
+        min-height: 46px;
+        padding: 12px 22px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+
+    .pkg-trust-row {
+        justify-content: flex-start;
+        gap: 18px;
+        padding-top: 18px;
+        font-size: 13px;
+    }
+
+    .pkg-gallery-price-badge {
+        right: 16px;
+        bottom: 16px;
+        background: rgba(255, 252, 244, 0.68);
+    }
+}
+
+@media (min-width: 1200px) {
+    .pkg-hero-container {
+        grid-template-columns: minmax(0, 1fr) 560px;
+    }
+
+    .pkg-gallery-grid {
+        max-width: 560px;
+    }
+}
+/* ============================================================
+   SHOW FULL PACKAGE HERO IMAGE
+   Keeps the same image frame size, but prevents image cropping.
+   ============================================================ */
+.pkg-gallery-main {
+    background: linear-gradient(135deg, #fff8e8, #f7f0dc);
+}
+
+.pkg-gallery-main img {
+    object-fit: contain !important;
+    object-position: center !important;
 }
