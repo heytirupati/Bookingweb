@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Details – Yatrahere</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/package.css">
+    <style>
+        .footer-bottom { text-align:center; padding:12px 0 6px; border-top:1px solid rgba(255,255,255,0.1); margin-top:20px; font-size:0.82rem; color:#aaa; }
+        .footer-bottom strong { color:#d4af37; }
+        .footer-domain a { color:#d4af37; text-decoration:none; }
+        .footer-domain a:hover { text-decoration:underline; }
+
+        /* Enhanced Package Hero Section with Image Gallery */
+        .pkg-hero-enhanced {
+            background: linear-gradient(135deg, #fff9ec, #ffffff);
+            padding: 40px 0 60px;
+        }
+
+        .pkg-hero-container {
+            display: grid;
+            grid-template-columns: 1fr 480px;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .pkg-hero-left {
+            padding-top: 20px;
+        }
+
+        .pkg-hero-right {
+            position: sticky;
+            top: 100px;
+        }
+
+        /* Image Gallery Grid */
+        .pkg-gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 280px 180px;
+            gap: 12px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        }
+
+        .pkg-gallery-main {
+            grid-column: 1 / -1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pkg-gallery-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .pkg-gallery-main:hover img {
+            transform: scale(1.05);
+        }
+
+        .pkg-gallery-thumb {
+            position: relative;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .pkg-gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .pkg-gallery-thumb:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Floating Price Badge on Gallery */
+        .pkg-gallery-price-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(0,0,0,0.85));
+            backdrop-filter: blur(12px);
+            padding: 16px 20px;
+            border-radius: 16px;
+            text-align: right;
+            box-shadow: 0 8px 32px rgba(212,175,55,0.4), 0 0 0 1px rgba(212,175,55,0.3);
+            border: 1px solid rgba(212,175,55,0.2);
+            z-index: 10;
+        }
+
+        .pkg-gallery-price-old {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
+            display: block;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .pkg-gallery-price-new {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            line-height: 1;
+        }
+
+        .pkg-gallery-save {
+            display: inline-block;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-top: 8px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        /* Enhanced Left Content */
+        .pkg-hero-tag-new {
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            margin-bottom: 16px;
+            background: rgba(212,175,55,0.15);
+            border: 1.5px solid rgba(212,175,55,0.4);
+            color: #8a6500;
+            text-transform: uppercase;
+        }
+
+        .pkg-hero-tag-new.tag-popular {
+            background: var(--primary-gold);
+            border-color: var(--primary-gold);
+            color: #000;
+        }
+
+        .pkg-hero-tag-new.tag-premium {
+            background: linear-gradient(135deg, #b8860b, #d4af37);
+            border-color: var(--primary-gold);
+            color: #fff;
+        }
+
+        .pkg-title-new {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 48px;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .pkg-subtitle-new {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        /* Meta Pills */
+        .pkg-meta-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .pkg-meta-pill {
+            padding: 10px 18px;
+            background: rgba(212,175,55,0.08);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Action Buttons */
+        .pkg-hero-cta {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .pkg-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #d4af37, #f1d77a);
+            color: #000;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 8px 24px rgba(212,175,55,0.35);
+        }
+
+        .pkg-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(212,175,55,0.45);
+        }
+
+        .pkg-btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 28px;
+            background: #25d366;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 8px 24px rgba(37,211,102,0.35);
+        }
+
+        .pkg-btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(37,211,102,0.45);
+        }
+
+        .pkg-btn-whatsapp img {
+            width: 22px;
+            height: 22px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* Trust Indicators */
+        .pkg-trust-row {
+            display: flex;
+            gap: 28px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .pkg-trust-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .pkg-hero-container {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .pkg-hero-right {
+                position: static;
+            }
+
+            .pkg-gallery-grid {
+                grid-template-rows: 240px 160px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pkg-hero-enhanced {
+                padding: 24px 0 40px;
+            }
+
+            .pkg-title-new {
+                font-size: 32px;
+            }
+
+            .pkg-subtitle-new {
+                font-size: 15px;
+            }
+
+            .pkg-gallery-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: 220px 140px 140px;
+            }
+
+            .pkg-gallery-main {
+                grid-column: 1;
+            }
+
+            .pkg-gallery-price-badge {
+                top: 12px;
+                right: 12px;
+                padding: 12px 16px;
+            }
+
+            .pkg-gallery-price-new {
+                font-size: 26px;
+            }
+
+            .pkg-hero-cta {
+                flex-direction: column;
+            }
+
+            .pkg-btn-primary,
+            .pkg-btn-whatsapp {
+                width: 75%;
+                justify-content: center;
+                padding: 14px 24px;
+                font-size: 15px;
+            }
+
+            .pkg-meta-pills {
+                gap: 8px;
+            }
+
+            .pkg-meta-pill {
+                font-size: 12px;
+                padding: 8px 14px;
+            }
+
+            .pkg-trust-row {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        /* Quick Stats Bar */
+        .pkg-quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin: 32px 0;
+            padding: 24px;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(212,175,55,0.15);
+        }
+
+        .pkg-stat-item {
+            text-align: center;
+            padding: 12px;
+        }
+
+        .pkg-stat-value {
+            display: block;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 4px;
+        }
+
+        .pkg-stat-label {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<section class="top-bar">
+    <div class="container">
+        <div class="top-left">
+            <span>+91 86394 29948</span>
+            <span>info@yathrahere.in</span>
+        </div>
+    </div>
+</section>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="container">
+        <div class="logo">
+            <a href="index.html" class="logo-link">
+                <img src="images/YHL.png" alt="Yatrahere Logo" class="logo-img">
+                <div class="logo-text-block">
+                    <span class="logo-name">Yatrahere</span>
+                    <span class="logo-sub">Padmavathi Tours and Travels</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="menu-toggle">☰</div>
+
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tirupathi.html#packages">Packages</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- PACKAGE DETAIL -->
+<main id="packageDetail">
+    <div class="pkg-loading">
+        <div class="pkg-loading-spinner"></div>
+        <p>Loading package details…</p>
+    </div>
+</main>
+
+<!-- RELATED -->
+<section class="related-section" id="relatedSection" style="display:none;">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="packages-title">You May Also Like</h2>
+            <p class="section-subtext">Handpicked packages that devotees love</p>
+        </div>
+    </div>
+
+    <div class="related-scroll-wrapper">
+        <div class="related-track" id="relatedCards"></div>
+    </div>
+</section>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/918639429948" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp"><img src="images/whatsapplogo.png" alt="WhatsApp"></a>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+    <div class="container">
+        <div class="footer-col">
+            <div class="footer-logo-row">
+                <img src="images/YHL.png" alt="Yatrahere Logo" class="footer-logo-img">
+                <h3>Yatrahere</h3>
+            </div>
+            <p>Your trusted travel partner</p>
+            <p class="footer-domain"> <a href="https://yatra.in" target="_blank">yatra.in</a></p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tirupathi.html#packages">Packages</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>+91 86394 29948</p>
+            <p>info@yathrahere.in</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Powered by <strong>Padmavathi Tours and Travels</strong></p>
+    </div>
+</footer>
+
+<script src="js/packages-data.js"></script>
+<script>
+// Enhanced Package Detail Rendering with Image Gallery
+(function initPackageDetail() {
+    const detail = document.getElementById("packageDetail");
+    if (!detail || typeof PACKAGES === "undefined") return;
+
+    const params = new URLSearchParams(window.location.search);
+    const pkg    = PACKAGES.find(p => p.id === params.get("id"));
+
+    // ── Not found ──────────────────────────────────────────
+    if (!pkg) {
+        detail.innerHTML = `
+            <div class="pkg-error">
+                <div class="pkg-error-icon"></div>
+                <h2>Package Not Found</h2>
+                <p>Please select a valid package.</p>
+                <a href="tirupathi.html#packages" class="btn btn-primary">Browse Packages</a>
+            </div>`;
+        return;
+    }
+
+    document.title = pkg.name + " – Yatrahere";
+
+    // ── Build HTML fragments ───────────────────────────────
+    const includesHTML = pkg.includes.map(i =>
+        `<li><span class="inc-icon">✓</span><span>${i}</span></li>`).join("");
+
+    const excludesHTML = pkg.excludes.map(e =>
+        `<li><span class="exc-icon">✗</span><span>${e}</span></li>`).join("");
+
+    const highlightsHTML = pkg.highlights.map(h =>
+        `<div class="hl-chip">${h}</div>`).join("");
+
+    const routeHTML = pkg.routeFull.map((stop, i) => `
+        <div class="route-node">
+            <div class="route-dot ${i === 0 || i === pkg.routeFull.length - 1 ? "route-dot-end" : ""}"></div>
+            <span>${stop}</span>
+        </div>
+        ${i < pkg.routeFull.length - 1 ? '<div class="route-connector"></div>' : ""}
+    `).join("");
+
+    const templeFlowHTML = (pkg.templeFlow || []).map((stop, i) => `
+        <div class="tf-item ${i % 2 !== 0 ? "tf-reverse" : ""}">
+            <div class="tf-icon-col">
+                <div class="tf-icon-wrap"><span>${stop.icon}</span></div>
+                ${i < pkg.templeFlow.length - 1 ? '<div class="tf-vline"></div>' : ""}
+            </div>
+            <div class="tf-content-col">
+                <div class="tf-card">
+                    <span class="tf-step">Stop ${i + 1}</span>
+                    <h3>${stop.name}</h3>
+                    <p>${stop.desc}</p>
+                </div>
+            </div>
+        </div>
+    `).join("");
+
+    // Calculate pricing
+    const markedPrice = Math.round(pkg.price * 1.49);
+    const savePercent = Math.round(((markedPrice - pkg.price) / markedPrice) * 100);
+
+    // ── Main UI with Enhanced Gallery Layout ───────────────
+    detail.innerHTML = `
+        <div class="pkg-breadcrumb">
+            <div class="container">
+                <a href="index.html">Home</a>
+                <span class="bc-sep">›</span>
+                <a href="tirupathi.html#packages">Packages</a>
+                <span class="bc-sep">›</span>
+                <span>${pkg.name}</span>
+            </div>
+        </div>
+
+        <div class="pkg-hero-enhanced">
+            <div class="container">
+                <div class="pkg-hero-container">
+                    
+                    <!-- LEFT: Content -->
+                    <div class="pkg-hero-left">
+                        <span class="pkg-hero-tag-new ${pkg.tagClass || ''}">${pkg.tag}</span>
+                        <h1 class="pkg-title-new">${pkg.name}</h1>
+                        <p class="pkg-subtitle-new">${pkg.routeShort}</p>
+
+                        <div class="pkg-meta-pills">
+                            <div class="pkg-meta-pill"> ${pkg.duration}</div>
+                            <div class="pkg-meta-pill"> Pickup Included</div>
+                            <div class="pkg-meta-pill"> 24/7 Support</div>
+                            <div class="pkg-meta-pill">✓ No Hidden Charges</div>
+                        </div>
+
+                        <div class="pkg-hero-cta">
+                            <a href="booking.html?package=${pkg.id}#book-form" class="pkg-btn-primary">
+                                 Book This Package
+                            </a>
+                            <a href="https://wa.me/918639429948?text=Hi, I'm interested in ${encodeURIComponent(pkg.name)}"
+                               target="_blank" class="pkg-btn-whatsapp">
+                                <img src="images/whatsapplogo.png" alt="WhatsApp"> WhatsApp
+                            </a>
+                        </div>
+
+                        <div class="pkg-trust-row">
+                            <div class="pkg-trust-item">
+                                <span></span>
+                                <span>5000+ Happy Customers</span>
+                            </div>
+                            <div class="pkg-trust-item">
+                                <span></span>
+                                <span>10+ Years Experience</span>
+                            </div>
+                            <div class="pkg-trust-item">
+                                <span>✓</span>
+                                <span>Verified Reviews</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: Image Gallery -->
+                    <div class="pkg-hero-right">
+                        <div class="pkg-gallery-grid">
+                            <div class="pkg-gallery-main">
+                                <img src="${pkg.cardImage}" alt="${pkg.name}">
+                                <div class="pkg-gallery-price-badge">
+                                    <span class="pkg-gallery-price-old">₹${markedPrice.toLocaleString("en-IN")}</span>
+                                    <span class="pkg-gallery-price-new">₹${pkg.price.toLocaleString("en-IN")}</span>
+                                    <span class="pkg-gallery-save">${savePercent}% OFF</span>
+                                </div>
+                            </div>
+                            <div class="pkg-gallery-thumb">
+                                <img src="images/t1.jpg" alt="Tirupati">
+                            </div>
+                            <div class="pkg-gallery-thumb">
+                                <img src="images/t2.jpg" alt="Temple">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container pkg-body">
+            <div class="pkg-left">
+                <div class="pkg-section">
+                    <h2 class="pkg-section-title">About This Package</h2>
+                    <p class="pkg-description">${pkg.description}</p>
+                    ${pkg.note ? `<div class="pkg-note">💡 ${pkg.note}</div>` : ""}
+                </div>
+
+                <div class="pkg-section">
+                    <h2 class="pkg-section-title">Highlights</h2>
+                    <div class="pkg-highlights">${highlightsHTML}</div>
+                </div>
+
+                ${pkg.templeFlow?.length ? `
+                <div class="pkg-section pkg-section-tf">
+                    <h2 class="pkg-section-title">Your Journey</h2>
+                    <div class="temple-flow">${templeFlowHTML}</div>
+                </div>` : ""}
+
+                <div class="pkg-section">
+                    <h2 class="pkg-section-title">Route</h2>
+                    <div class="pkg-route-full">${routeHTML}</div>
+                </div>
+
+                <div class="pkg-section pkg-inc-exc">
+                    <div class="pkg-inc">
+                        <h2 class="pkg-section-title">Included</h2>
+                        <ul>${includesHTML}</ul>
+                    </div>
+                    <div class="pkg-exc">
+                        <h2 class="pkg-section-title">Not Included</h2>
+                        <ul>${excludesHTML}</ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pkg-right">
+                <div class="pkg-book-card">
+                    <div class="pkg-price-block">
+                        <span class="pkg-price-label">Starting from</span>
+                        <div class="pkg-price-comparison">
+                            <span class="pkg-price-old">₹${markedPrice.toLocaleString("en-IN")}</span>
+                            <span class="pkg-price-value">₹${pkg.price.toLocaleString("en-IN")}</span>
+                        </div>
+                        <span class="pkg-save-percent">${savePercent}% OFF</span>
+                        <span class="pkg-price-sub">${pkg.duration}</span>
+                    </div>
+                    <a href="booking.html?package=${pkg.id}#book-form" class="btn-book-pkg">🛕 Book Now</a>
+                    <a href="https://wa.me/918639429948?text=Hi, I'm interested in ${encodeURIComponent(pkg.name)}" class="booking-wa-pill pkg-wa-btn" target="_blank">
+                        <img src="images/whatsapplogo.png" alt="WhatsApp" class="wa-btn-icon"> WhatsApp Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // ── Related packages ───────────────────────────────────
+    const related = PACKAGES
+        .filter(p => p.id !== pkg.id)
+        .sort((a, b) => (b.popular === true) - (a.popular === true))
+        .slice(0, 6);
+
+    if (related.length) {
+        const relatedSection = document.getElementById("relatedSection");
+        const relatedCards   = document.getElementById("relatedCards");
+
+        if (relatedSection) relatedSection.style.display = "block";
+
+        if (relatedCards) {
+            relatedCards.innerHTML = related.map(p => {
+                const markedPrice = Math.round(p.price * 1.49);
+                return `
+                <a href="package.html?id=${p.id}" class="related-card">
+                    <div class="related-img-wrap">
+                        <img src="${p.cardImage}" alt="${p.name}">
+                        ${p.tag ? `<span class="related-tag ${p.tagClass || ''}">${p.tag}</span>` : ""}
+                    </div>
+                    <div class="related-body">
+                        <h3>${p.name}</h3>
+                        <p>${p.routeShort}</p>
+                        <div class="related-footer">
+                            <div class="related-price-group">
+                                <span class="related-price-old">₹${markedPrice.toLocaleString("en-IN")}</span>
+                                <span class="related-price">₹${p.price.toLocaleString("en-IN")}</span>
+                            </div>
+                            <span class="related-btn btn btn-outline">View</span>
+                        </div>
+                    </div>
+                </a>
+                `;
+            }).join("");
+        }
+    }
+})();
+</script>
+
+</body>
+</html>

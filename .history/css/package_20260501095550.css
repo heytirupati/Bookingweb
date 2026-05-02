@@ -1,0 +1,986 @@
+/* ============================================================
+   package.css — Page-specific styles for package.html
+   Requires: style.css loaded first
+   ============================================================ */
+
+
+/* ============================================================
+   1. LOADING & ERROR STATES
+   ============================================================ */
+.pkg-loading {
+    min-height    : 60vh;
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
+    justify-content: center;
+    gap           : 16px;
+    color         : var(--text-light);
+}
+
+.pkg-loading-spinner {
+    width        : 44px;
+    height       : 44px;
+    border       : 3px solid rgba(212,175,55,0.2);
+    border-top-color: var(--primary-gold);
+    border-radius: 50%;
+    animation    : spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.pkg-error {
+    min-height    : 60vh;
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
+    justify-content: center;
+    text-align    : center;
+    gap           : 16px;
+    padding       : 40px;
+}
+
+.pkg-error-icon { font-size: 52px; }
+.pkg-error h2   { font-size: 28px; }
+.pkg-error p    { color: var(--text-light); margin-bottom: 10px; }
+
+
+/* ============================================================
+   2. BREADCRUMB
+   ============================================================ */
+.pkg-breadcrumb {
+    background     : rgba(255,255,255,0.7);
+    backdrop-filter: blur(6px);
+    padding        : 10px 0;
+    border-bottom  : 1px solid rgba(212,175,55,0.12);
+    font-size      : 13px;
+    color          : var(--text-light);
+}
+
+.pkg-breadcrumb .container {
+    display    : flex;
+    align-items: center;
+    gap        : 8px;
+}
+
+.pkg-breadcrumb a { color: var(--text-light); transition: 0.2s; }
+.pkg-breadcrumb a:hover { color: var(--primary-gold); }
+.pkg-breadcrumb span:last-child { color: var(--text-dark); font-weight: 500; }
+.bc-sep { color: var(--primary-gold); }
+
+
+/* ============================================================
+   3. HERO STRIP
+   ============================================================ */
+.pkg-hero-strip {
+    position  : relative;
+    min-height: 420px;
+    overflow  : hidden;
+}
+
+.pkg-hero-img {
+    position: absolute;
+    inset   : 0;
+}
+
+.pkg-hero-img img {
+    width          : 100%;
+    height         : 100%;
+    object-fit     : cover;
+    /* object-position: center 25%; */
+}
+
+.pkg-hero-overlay {
+    position  : absolute;
+    inset     : 0;
+    background: linear-gradient(
+        105deg,
+        rgba(0,0,0,0.82) 0%,
+        rgba(0,0,0,0.52) 55%,
+        rgba(0,0,0,0.18) 100%
+    );
+}
+
+.pkg-hero-content {
+    position      : relative;
+    z-index       : 2;
+    min-height    : 420px;
+    display       : flex;
+    flex-direction: column;
+    justify-content: center;
+    color         : #fff;
+    max-width     : 700px;
+    padding-top   : 40px;
+    padding-bottom: 40px;
+}
+
+/* Hero tags */
+.pkg-hero-tag {
+    display       : inline-block;
+    padding       : 5px 16px;
+    border-radius : 30px;
+    font-size     : 12px;
+    font-weight   : 600;
+    letter-spacing: 0.5px;
+    margin-bottom : 14px;
+    background    : rgba(212,175,55,0.25);
+    border        : 1px solid rgba(212,175,55,0.5);
+    color         : #f5e07a;
+    width         : fit-content;
+    text-transform: uppercase;
+}
+
+.pkg-hero-tag.tag-popular { background: var(--primary-gold); border-color: var(--primary-gold); color: #000; }
+.pkg-hero-tag.tag-premium { background: linear-gradient(135deg, rgba(184,134,11,0.7), rgba(212,175,55,0.7)); border-color: var(--primary-gold); color: #fff; }
+
+/* Title */
+.pkg-title {
+    font-family  : 'Playfair Display', Georgia, serif;
+    font-size    : 42px;
+    line-height  : 1.15;
+    margin-bottom: 10px;
+    color        : #fff;
+}
+
+.pkg-hero-subtitle {
+    font-size    : 15px;
+    color        : rgba(255,255,255,0.75);
+    margin-bottom: 18px;
+}
+
+/* Meta pills */
+.pkg-hero-meta {
+    display      : flex;
+    flex-wrap    : wrap;
+    gap          : 10px;
+    margin-bottom: 26px;
+    font-size    : 13px;
+    color        : rgba(255,255,255,0.85);
+}
+
+.pkg-hero-meta span {
+    background   : rgba(255,255,255,0.12);
+    padding      : 5px 14px;
+    border-radius: 30px;
+    border       : 1px solid rgba(255,255,255,0.18);
+}
+
+/* Action buttons */
+.pkg-hero-actions {
+    display  : flex;
+    gap      : 14px;
+    flex-wrap: wrap;
+}
+
+.pkg-hero-actions .btn-outline {
+    border-color: rgba(255,255,255,0.6);
+    color       : #fff;
+}
+
+.pkg-hero-actions .btn-outline:hover {
+    background  : rgba(255,255,255,0.15);
+    border-color: #fff;
+    color       : #fff;
+}
+
+
+/* ============================================================
+   4. PAGE BODY — 2-COLUMN LAYOUT
+   ============================================================ */
+.pkg-body {
+    display              : grid;
+    grid-template-columns: 1fr 330px;
+    gap                  : 36px;
+    padding-top          : 44px;
+    padding-bottom       : 70px;
+    align-items          : start;
+}
+
+
+/* ============================================================
+   5. SECTION CARDS (left column)
+   ============================================================ */
+.pkg-section {
+    margin-bottom  : 28px;
+    padding        : 30px;
+    border-radius  : 20px;
+    background     : rgba(255,255,255,0.72);
+    backdrop-filter: blur(14px);
+    border         : 1px solid rgba(255,255,255,0.35);
+    box-shadow     : 0 4px 20px rgba(0,0,0,0.04);
+}
+
+.pkg-section-title {
+    font-size    : 19px;
+    margin-bottom: 18px;
+    text-align   : left;
+    position     : relative;
+}
+
+.pkg-section-title::after {
+    content   : "";
+    display   : block;
+    width     : 32px;
+    height    : 2px;
+    background: var(--primary-gold);
+    margin-top: 8px;
+    margin-left: 0;
+}
+
+.pkg-description {
+    font-size  : 15px;
+    color      : var(--text-dark);
+    line-height: 1.8;
+}
+
+.pkg-note {
+    margin-top   : 16px;
+    padding      : 12px 16px;
+    border-radius: 10px;
+    background   : rgba(212,175,55,0.07);
+    border-left  : 3px solid var(--primary-gold);
+    font-size    : 13px;
+    color        : #7a5c00;
+    line-height  : 1.5;
+}
+
+/* Highlight chips */
+.pkg-highlights {
+    display  : flex;
+    flex-wrap: wrap;
+    gap      : 10px;
+}
+
+.hl-chip {
+    padding      : 8px 18px;
+    border-radius: 30px;
+    font-size    : 13px;
+    font-weight  : 500;
+    background   : rgba(212,175,55,0.1);
+    border       : 1px solid rgba(212,175,55,0.25);
+    color        : var(--text-dark);
+    transition   : 0.2s;
+    cursor       : default;
+}
+
+.hl-chip:hover {
+    background  : rgba(212,175,55,0.2);
+    border-color: var(--primary-gold);
+}
+
+
+/* ============================================================
+   6. TEMPLE FLOW (zig-zag itinerary)
+   ============================================================ */
+.pkg-section-tf { padding: 30px; }
+
+.temple-flow {
+    display       : flex;
+    flex-direction: column;
+    gap           : 0;
+    margin-top    : 8px;
+}
+
+.tf-item {
+    display              : grid;
+    grid-template-columns: 72px 1fr;
+    gap                  : 0 24px;
+    align-items          : start;
+}
+
+/* Alternate — content left, icon right */
+.tf-reverse { grid-template-columns: 1fr 72px; }
+.tf-reverse .tf-icon-col    { order: 2; }
+.tf-reverse .tf-content-col { order: 1; }
+
+.tf-icon-col {
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
+}
+
+.tf-icon-wrap {
+    width        : 60px;
+    height       : 60px;
+    border-radius: 50%;
+    background   : linear-gradient(135deg, rgba(212,175,55,0.18), rgba(212,175,55,0.06));
+    border       : 2px solid rgba(212,175,55,0.35);
+    display      : flex;
+    align-items  : center;
+    justify-content: center;
+    font-size    : 26px;
+    flex-shrink  : 0;
+    box-shadow   : 0 4px 14px rgba(212,175,55,0.15);
+    transition   : 0.3s;
+}
+
+.tf-item:hover .tf-icon-wrap {
+    background  : linear-gradient(135deg, rgba(212,175,55,0.35), rgba(212,175,55,0.12));
+    border-color: var(--primary-gold);
+    transform   : scale(1.05);
+}
+
+.tf-vline {
+    width     : 2px;
+    flex      : 1;
+    min-height: 40px;
+    background: linear-gradient(to bottom, var(--primary-gold), rgba(212,175,55,0.12));
+    margin    : 4px 0;
+}
+
+.tf-content-col { padding-bottom: 24px; }
+
+.tf-card {
+    padding      : 18px 22px;
+    border-radius: 14px;
+    background   : rgba(255,255,255,0.6);
+    border       : 1px solid rgba(212,175,55,0.15);
+    transition   : 0.3s;
+}
+
+.tf-item:hover .tf-card {
+    background  : rgba(255,255,255,0.9);
+    border-color: rgba(212,175,55,0.3);
+    box-shadow  : 0 6px 20px rgba(212,175,55,0.1);
+}
+
+.tf-step {
+    display       : inline-block;
+    font-size     : 11px;
+    font-weight   : 600;
+    color         : var(--primary-gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom : 5px;
+}
+
+.tf-card h3 {
+    font-size    : 17px;
+    margin-bottom: 6px;
+}
+
+.tf-card p {
+    font-size  : 14px;
+    color      : var(--text-light);
+    line-height: 1.55;
+}
+
+/* Route line */
+.route-line {
+    display       : flex;
+    flex-direction: column;
+    gap           : 0;
+    padding       : 10px 0;
+}
+
+.route-stop {
+    display    : flex;
+    align-items: center;
+    gap        : 14px;
+    font-size  : 14px;
+    font-weight: 500;
+    color      : var(--text-dark);
+}
+
+.route-dot {
+    width        : 12px;
+    height       : 12px;
+    border-radius: 50%;
+    background   : rgba(212,175,55,0.3);
+    border       : 2px solid var(--primary-gold);
+    flex-shrink  : 0;
+}
+
+.route-dot-end { background: var(--primary-gold); }
+
+.route-connector {
+    width     : 2px;
+    height    : 22px;
+    background: linear-gradient(to bottom, var(--primary-gold), rgba(212,175,55,0.2));
+    margin-left: 5px;
+}
+
+
+/* ============================================================
+   7. INCLUDES & EXCLUDES
+   ============================================================ */
+.pkg-inc-exc {
+    display              : grid;
+    grid-template-columns: 1fr 1fr;
+    gap                  : 24px;
+}
+
+.pkg-inc ul,
+.pkg-exc ul {
+    list-style    : none;
+    display       : flex;
+    flex-direction: column;
+    gap           : 10px;
+}
+
+.pkg-inc li,
+.pkg-exc li {
+    display    : flex;
+    align-items: flex-start;
+    gap        : 10px;
+    font-size  : 14px;
+    line-height: 1.5;
+}
+
+.inc-icon { color: #2e8b57; font-weight: 700; font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.exc-icon { color: #c0392b; font-weight: 700; font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+
+/* ============================================================
+   8. RIGHT COLUMN — STICKY BOOKING CARD
+   ============================================================ */
+.pkg-right {
+    position: sticky;
+    top     : 84px;
+}
+
+.pkg-book-card {
+    border-radius: 20px;
+    overflow     : hidden;
+    background   : #fff;
+    box-shadow   : 0 20px 50px rgba(0,0,0,0.1);
+    border       : 1px solid rgba(212,175,55,0.15);
+}
+
+.pkg-price-block {
+    padding      : 26px 26px 20px;
+    background   : linear-gradient(135deg, #fffbf0, #fff9e8);
+    text-align   : center;
+    border-bottom: 1px solid rgba(212,175,55,0.12);
+}
+
+.pkg-price-label {
+    display       : block;
+    font-size     : 11px;
+    color         : var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom : 6px;
+}
+
+/* STRIKETHROUGH ORIGINAL PRICE (49% markup) */
+.pkg-price-original {
+    display        : block;
+    font-size      : 22px;
+    font-weight    : 600;
+    color          : #999;
+    text-decoration: line-through;
+    line-height    : 1;
+    margin-bottom  : 4px;
+    opacity        : 0.7;
+}
+
+/* ACTUAL FINAL PRICE (bold and prominent) */
+.pkg-price-value {
+    display      : block;
+    font-size    : 38px;
+    font-weight  : 700;
+    color        : #1a5f1a;
+    line-height  : 1;
+    margin-bottom: 6px;
+}
+
+/* DISCOUNT BADGE */
+.pkg-price-discount {
+    display       : inline-block;
+    padding       : 4px 12px;
+    border-radius : 20px;
+    font-size     : 11px;
+    font-weight   : 700;
+    background    : linear-gradient(135deg, #27ae60, #2ecc71);
+    color         : #fff;
+    letter-spacing: 0.5px;
+    margin-bottom : 8px;
+    text-transform: uppercase;
+    animation     : pulse-discount 2s ease-in-out infinite;
+}
+
+@keyframes pulse-discount {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.05); }
+}
+
+.pkg-price-sub {
+    font-size: 13px;
+    color    : var(--text-light);
+}
+
+.pkg-quick-facts {
+    list-style   : none;
+    padding      : 18px 24px;
+    display      : flex;
+    flex-direction: column;
+    gap          : 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.pkg-quick-facts li {
+    display        : flex;
+    justify-content: space-between;
+    font-size      : 13px;
+}
+
+.pkg-quick-facts li span   { color: var(--text-light); }
+.pkg-quick-facts li strong { color: var(--text-dark); }
+
+/* Book button */
+.btn-book-pkg {
+    display       : block;
+    margin        : 18px 18px 10px;
+    padding       : 14px;
+    border-radius : 12px;
+    text-align    : center;
+    font-size     : 15px;
+    font-weight   : 600;
+    background    : linear-gradient(135deg, #d4af37, #f1d77a);
+    color         : #000;
+    transition    : 0.3s;
+    letter-spacing: 0.3px;
+}
+
+.btn-book-pkg:hover {
+    transform : translateY(-2px);
+    box-shadow: 0 10px 28px rgba(212,175,55,0.4);
+}
+
+/* WhatsApp button */
+.btn-whatsapp-pkg,
+.pkg-wa-btn {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    gap            : 8px;
+    margin         : 0 18px 10px;
+    padding        : 12px;
+    border-radius  : 12px;
+    text-align     : center;
+    font-size      : 14px;
+    font-weight    : 600;
+    background     : #25d366;
+    color          : #fff;
+    text-decoration: none;
+    transition     : 0.3s;
+}
+
+.btn-whatsapp-pkg:hover,
+.pkg-wa-btn:hover {
+    background: #1da855;
+    transform : translateY(-2px);
+    box-shadow: 0 6px 18px rgba(37,211,102,0.4);
+}
+
+.pkg-wa-btn .wa-btn-icon {
+    width          : 22px;
+    height         : 22px;
+    object-fit     : cover;
+    object-position: center;
+    border-radius  : 50%;
+    flex-shrink    : 0;
+}
+
+.pkg-book-note {
+    padding   : 0 18px 18px;
+    font-size : 12px;
+    color     : var(--text-light);
+    text-align: center;
+    line-height: 1.5;
+}
+
+
+/* ============================================================
+   9. RELATED PACKAGES — GRID STRIP
+   ============================================================ */
+.related-section {
+    padding        : 60px 0 70px;
+    background     : rgba(255,255,255,0.35);
+    backdrop-filter: blur(10px);
+}
+
+.related-section .section-header { margin-bottom: 36px; }
+
+.packages-title::after {
+    display    : block !important;
+    content    : "";
+    width      : 50px;
+    height     : 2px;
+    background : var(--primary-gold);
+    margin     : 10px auto 0;
+}
+
+.related-scroll-wrapper {
+    overflow: visible;
+    padding : 10px 0 20px;
+}
+
+.related-track {
+    display              : grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap                  : 24px;
+    padding              : 0 30px;
+    max-width            : 1200px;
+    margin               : 0 auto;
+}
+
+.related-track::-webkit-scrollbar { display: none; }
+
+/* Related card */
+.related-card {
+    border-radius: 20px;
+    overflow     : hidden;
+    background   : #fff;
+    border       : 1px solid rgba(0,0,0,0.06);
+    transition   : all 0.35s ease;
+    position     : relative;
+}
+
+.related-card::before {
+    content   : "";
+    position  : absolute;
+    inset     : 0;
+    background: linear-gradient(135deg, rgba(212,175,55,0.08), transparent);
+    opacity   : 0;
+    transition: 0.35s;
+}
+
+.related-card:hover::before { opacity: 1; }
+
+.related-card:hover {
+    transform : translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+
+.related-img-wrap {
+    height  : 170px;
+    position: relative;
+    overflow: hidden;
+}
+
+.related-img-wrap img {
+    width     : 100%;
+    height    : 100%;
+    object-fit: cover;
+    transition: 0.5s ease;
+}
+
+.related-card:hover img { transform: scale(1.08); }
+
+.related-tag {
+    position     : absolute;
+    top          : 10px;
+    left         : 10px;
+    padding      : 3px 10px;
+    border-radius: 20px;
+    font-size    : 11px;
+    font-weight  : 600;
+    background   : rgba(212,175,55,0.85);
+    color        : #000;
+    backdrop-filter: blur(4px);
+}
+
+.related-tag.tag-popular { background: var(--primary-gold); color: #fff; }
+.related-tag.tag-premium { background: linear-gradient(135deg, #b8860b, #d4af37); color: #fff; }
+
+.related-body { padding: 16px; }
+
+.related-body h3 {
+    font-size    : 15px;
+    font-weight  : 600;
+    margin-bottom: 4px;
+    color        : var(--text-dark);
+    line-height  : 1.3;
+}
+
+.related-body p {
+    font-size    : 12px;
+    color        : var(--text-light);
+    margin-bottom: 14px;
+    line-height  : 1.4;
+}
+
+.related-footer {
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+}
+
+/* Related package pricing with strikethrough */
+.related-price-wrapper {
+    display       : flex;
+    flex-direction: column;
+    align-items   : flex-start;
+    gap           : 2px;
+}
+
+.related-price-strike {
+    font-size      : 13px;
+    font-weight    : 500;
+    color          : #999;
+    text-decoration: line-through;
+    opacity        : 0.7;
+}
+
+.related-price {
+    font-size  : 17px;
+    font-weight: 700;
+    color      : #1a5f1a;
+}
+
+.related-btn {
+    padding  : 7px 16px !important;
+    font-size: 13px !important;
+}
+
+
+/* ============================================================
+   10. MOBILE (≤ 768 px)
+   ============================================================ */
+@media (max-width: 768px) {
+
+    /* Hero strip */
+    .pkg-hero-strip   { min-height: 320px; }
+    .pkg-hero-content { min-height: 320px; padding-top: 30px; padding-bottom: 30px; }
+    .pkg-title        { font-size: 26px; }
+    .pkg-hero-subtitle{ font-size: 13px; }
+
+    .pkg-hero-meta      { font-size: 11px; gap: 8px; }
+    .pkg-hero-meta span { padding: 4px 10px; }
+
+    .pkg-hero-actions           { gap: 10px; }
+    .pkg-hero-actions .btn      { padding: 10px 18px; font-size: 13px; }
+
+    /* Body — single column, booking card on top */
+    .pkg-body {
+        grid-template-columns: 1fr;
+        padding-top          : 24px;
+        padding-bottom       : 40px;
+        gap                  : 0;
+    }
+
+    .pkg-right {
+        position     : static;
+        order        : -1;
+        margin-bottom: 20px;
+    }
+
+    .pkg-section       { padding: 20px; }
+    .pkg-section-title { font-size: 16px; }
+
+    /* Temple flow — no zig-zag on mobile */
+    .tf-item,
+    .tf-reverse {
+        grid-template-columns: 56px 1fr;
+    }
+
+    .tf-reverse .tf-icon-col    { order: 1; }
+    .tf-reverse .tf-content-col { order: 2; }
+    .tf-reverse .tf-card        { text-align: left; }
+    .tf-reverse .tf-step        { text-align: left; display: inline-block; }
+
+    .tf-icon-wrap { width: 50px; height: 50px; font-size: 22px; }
+    .tf-card      { padding: 14px 16px; }
+    .tf-card h3   { font-size: 14px; }
+    .tf-card p    { font-size: 12px; }
+
+    /* Includes/excludes — stack vertically */
+    .pkg-inc-exc { grid-template-columns: 1fr; gap: 16px; }
+
+    /* Price value */
+    .pkg-price-original { font-size: 18px; }
+    .pkg-price-value { font-size: 32px; }
+    .pkg-price-discount { font-size: 10px; padding: 3px 10px; }
+
+    /* Related cards */
+    .related-track {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap                  : 16px;
+        padding              : 0 16px;
+    }
+
+    .related-card { min-width: unset; max-width: unset; }
+}
+
+
+/* ============================================================
+   PREMIUM PRICING DESIGN — DYNAMIC PRICING WITH 49% MARKUP
+   ============================================================ */
+
+/* Popular Package Cards — Index Page */
+.pop-pkg-price-wrapper {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.85) 100%);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 12px 16px;
+    text-align: right;
+    box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3), 
+                0 0 0 1px rgba(212, 175, 55, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.pop-pkg-price-strike {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+.pop-pkg-price {
+    font-size: 26px;
+    font-weight: 700;
+    color: #d4af37;
+    display: block;
+    text-shadow: 0 2px 12px rgba(212, 175, 55, 0.4);
+    letter-spacing: 0.5px;
+}
+
+/* Tirupati Page — Full Package Cards */
+.price-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.old-price {
+    font-size: 18px;
+    color: #999;
+    text-decoration: line-through;
+    font-weight: 400;
+}
+
+.new-price {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-gold);
+    text-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+}
+
+.save-badge {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+/* Package Detail Page — Sidebar Pricing Card */
+.pkg-price-comparison {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 12px 0;
+}
+
+.pkg-price-old {
+    font-size: 20px;
+    color: #999;
+    text-decoration: line-through;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.pkg-price-value {
+    font-size: 42px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    text-shadow: none;
+}
+
+.pkg-save-percent {
+    display: inline-block;
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 8px;
+    letter-spacing: 0.8px;
+    box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35);
+    margin-top: 8px;
+    text-transform: uppercase;
+}
+
+/* Related Package Cards */
+.related-price-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-start;
+}
+
+.related-price-old {
+    font-size: 13px;
+    color: #999;
+    text-decoration: line-through;
+    font-weight: 400;
+}
+
+.related-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-gold);
+    text-shadow: 0 2px 6px rgba(212, 175, 55, 0.25);
+}
+
+/* Enhance existing booking card with better shadows */
+.pkg-book-card {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12), 
+                0 0 0 1px rgba(212, 175, 55, 0.1);
+}
+
+.pkg-book-card:hover {
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.15), 
+                0 0 0 1px rgba(212, 175, 55, 0.2);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .pop-pkg-price-wrapper {
+        padding: 10px 12px;
+    }
+    
+    .pop-pkg-price-strike {
+        font-size: 12px;
+    }
+    
+    .pop-pkg-price {
+        font-size: 22px;
+    }
+    
+    .old-price {
+        font-size: 16px;
+    }
+    
+    .new-price {
+        font-size: 24px;
+    }
+    
+    .pkg-price-old {
+        font-size: 18px;
+    }
+    
+    .pkg-price-value {
+        font-size: 36px;
+    }
+    
+    .save-badge {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+}

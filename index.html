@@ -35,19 +35,19 @@
                 </div>
             </a>
         </div>
-        <div class="menu-toggle" id="menuToggle">☰</div>
+        <div class="menu-toggle" id="menuToggle">&#9776;</div>
         <nav class="nav-menu" id="navMenu">
             <ul>
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="tirupathi.html">Packages</a></li>
 
                 <li class="has-dropdown">
-                    <button class="nav-trigger">Locations <span class="nav-caret">▾</span></button>
+                    <button class="nav-trigger">Locations <span class="nav-caret">&#9662;</span></button>
                     <div class="nav-dropdown">
                         <a href="tirupathi.html">
                             <span class="nav-dropdown-text">
                                 <strong>Tirupati</strong>
-                                <span>Darshan · Packages</span>
+                                <span>Darshan &middot; Packages</span>
                             </span>
                         </a>
                     </div>
@@ -72,12 +72,12 @@
             <div class="hero-price-highlight">
                 <div class="hero-price-row-1">
                     <span class="hero-price-from">Packages Starting From</span>
-                    <span class="hero-price-amount">₹999<span class="hero-price-only">/-</span></span>
-                    <span class="hero-discount-badge">🔥 33% OFF</span>
+                    <span class="hero-price-amount">&#8377;999<span class="hero-price-only">/-</span></span>
+                    <span class="hero-discount-badge">33% OFF</span>
                 </div>
                 <div class="hero-price-row-2">
-                    <a href="tel:+918639429948" class="hero-phone-pill">📞 86394 29948</a>
-                    <a href="booking.html#book-form" class="hero-book-now-pill">Book Now →</a>
+                    <a href="tel:+918639429948" class="hero-phone-pill">86394 29948</a>
+                    <a href="booking.html#book-form" class="hero-book-now-pill">Book Now &rarr;</a>
                 </div>
             </div>
 
@@ -103,7 +103,7 @@
                 <a href="booking.html#book-form" class="btn btn-primary">Book Now</a>
                 <a href="https://wa.me/918639429948" target="_blank" class="booking-wa-pill"><img src="images/whatsapplogo.png" alt="WhatsApp" class="wa-btn-icon"> Contact on WhatsApp</a>
             </div>
-                <div class="hero-trust">5000+ Happy Customers • 10+ Years Experience</div>
+                <div class="hero-trust">5000+ Happy Customers &bull; 10+ Years Experience</div>
             
         </div>
 
@@ -112,7 +112,7 @@
                 <img src="images/t1.jpg" class="active" alt="Tirupati Temple">
                 <img src="images/t2.jpg" alt="Tirupati Darshan">
                 <img src="images/t3.jpg" alt="Tirupati Travel">
-                <div class="hero-price">₹2,999 onwards</div>
+                <div class="hero-price">&#8377;2,999 onwards</div>
             </div>
         </div>
 
@@ -167,15 +167,15 @@
             <div class="location-card-rich">
                 <div class="location-card-body">
                     <div class="location-card-icon"><img src="images/location.png" alt="Tirupati"></div>
-                    <span class="location-offer-badge" style="display:inline-block;margin-bottom:10px;">🔥 33% OFF</span>
+                    <span class="location-offer-badge" style="display:inline-block;margin-bottom:10px;">33% OFF</span>
                     <h3>Tirupati</h3>
                     <p class="location-card-sub">Tirumala Venkateswara Swamy Temple</p>
-                    <p class="location-card-desc">Experience the divine darshan of Lord Venkateswara — one of the most visited sacred shrines in the world. Hassle-free packages with no hidden charges.</p>
+                    <p class="location-card-desc">Experience the divine darshan of Lord Venkateswara - one of the most visited sacred shrines in the world. Hassle-free packages with no hidden charges.</p>
                     <div class="location-card-price">
-                        <span class="location-old-price">₹1,499</span>
-                        <span class="location-new-price">₹999/-</span>
+                        <span class="location-old-price">&#8377;1,499</span>
+                        <span class="location-new-price">&#8377;999/-</span>
                     </div>
-                    <a href="tirupathi.html" class="btn btn-primary location-book-btn">Book Now — 33% Off</a>
+                    <a href="tirupathi.html" class="btn btn-primary location-book-btn">Book Now - 33% Off</a>
                 </div>
             </div>
         </div>
@@ -207,24 +207,8 @@
         </div>
 
         <div class="spiritual-wrapper">
-            <div class="spiritual-track">
-
-                <div class="spiritual-item">
-                    <div class="spiritual-image"><img src="images/tirumalatemple.png" alt="Tirupati Temple"></div>
-                    <div class="spiritual-content">
-                        <h3>Tirupati</h3>
-                        <p>Home to the Tirumala Venkateswara Temple, one of the most visited pilgrimage sites known for divine blessings and spiritual significance.</p>
-                    </div>
-                </div>
-
-                <div class="spiritual-item">
-                    <div class="spiritual-image"><img src="images/tiruvannamalai.jpg" alt="Tiruvannamalai"></div>
-                    <div class="spiritual-content">
-                        <h3>Tiruvannamalai</h3>
-                        <p>A sacred destination dedicated to Lord Shiva, known for the Arunachala hill and the spiritual practice of Girivalam.</p>
-                    </div>
-                </div>
-
+            <div class="spiritual-track" id="spiritualTrack">
+                <!-- dynamically rendered from SPIRITUAL_JOURNEY in content-data.js -->
             </div>
         </div>
     </div>
@@ -236,111 +220,8 @@
         <h2>Customer Reviews</h2>
 
         <div class="testimonial-wrapper">
-            <div class="testimonial-track">
-
-                <!-- ORIGINAL SET -->
-                <div class="testimonial-card">
-                    <p>Very smooth darshan experience with timely pickup and well-organized service.</p>
-                    <h4>Ramesh Kumar</h4><span>Tirupati Package</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Comfortable journey and excellent driver support throughout the trip.</p>
-                    <h4>Suresh Reddy</h4><span>Tirumala Visit</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Simple booking process and a peaceful travel experience. Highly recommended.</p>
-                    <h4>Anita Sharma</h4><span>Complete Experience</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Driver was polite and guided us properly for darshan. Hassle-free journey.</p>
-                    <h4>Mahesh Babu</h4><span>Family Trip</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Good pricing with no hidden charges. Everything was clearly explained.</p>
-                    <h4>Priya Nair</h4><span>One Day Package</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Vehicle was clean and comfortable. Perfect for elderly parents.</p>
-                    <h4>Venkatesh Rao</h4><span>Senior Travel</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>On-time pickup and smooth coordination. Very professional service.</p>
-                    <h4>Karthik Reddy</h4><span>Darshan Ride</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Booking was super easy and support team responded quickly.</p>
-                    <h4>Sneha Patel</h4><span>Online Booking</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Best travel experience in Tirupati. Will definitely book again.</p>
-                    <h4>Rahul Verma</h4><span>Repeat Customer</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Well planned itinerary and smooth execution. Totally worth it.</p>
-                    <h4>Divya Sharma</h4><span>2-Day Yatra</span>
-                </div>
-
-
-                <!-- DUPLICATE SET (FOR INFINITE LOOP) -->
-                <div class="testimonial-card">
-                    <p>Very smooth darshan experience with timely pickup and well-organized service.</p>
-                    <h4>Ramesh Kumar</h4><span>Tirupati Package</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Comfortable journey and excellent driver support throughout the trip.</p>
-                    <h4>Suresh Reddy</h4><span>Tirumala Visit</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Simple booking process and a peaceful travel experience. Highly recommended.</p>
-                    <h4>Anita Sharma</h4><span>Complete Experience</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Driver was polite and guided us properly for darshan. Hassle-free journey.</p>
-                    <h4>Mahesh Babu</h4><span>Family Trip</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Good pricing with no hidden charges. Everything was clearly explained.</p>
-                    <h4>Priya Nair</h4><span>One Day Package</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Vehicle was clean and comfortable. Perfect for elderly parents.</p>
-                    <h4>Venkatesh Rao</h4><span>Senior Travel</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>On-time pickup and smooth coordination. Very professional service.</p>
-                    <h4>Karthik Reddy</h4><span>Darshan Ride</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Booking was super easy and support team responded quickly.</p>
-                    <h4>Sneha Patel</h4><span>Online Booking</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Best travel experience in Tirupati. Will definitely book again.</p>
-                    <h4>Rahul Verma</h4><span>Repeat Customer</span>
-                </div>
-
-                <div class="testimonial-card">
-                    <p>Well planned itinerary and smooth execution. Totally worth it.</p>
-                    <h4>Divya Sharma</h4><span>2-Day Yatra</span>
-                </div>
-
+            <div class="testimonial-track" id="testimonialTrack">
+                <!-- dynamically rendered from CUSTOMER_REVIEWS in content-data.js -->
             </div>
         </div>
     </div>
@@ -350,16 +231,16 @@
 <section class="cta">
     <div class="container">
         <div class="cta-box">
-            <div class="cta-badge">🎉 Limited Time Offer — 33% OFF</div>
+            <div class="cta-badge">Limited Time Offer - 33% OFF</div>
             <h2>Plan Your Tirupati Journey Today</h2>
             <p class="cta-subtext">Join 5000+ devotees who've trusted us for a peaceful, hassle-free darshan experience. No hidden charges. Professional drivers. Pure devotion.</p>
             <div class="cta-price-strip">
-                <span class="cta-old">₹1,499</span>
-                <span class="cta-new">₹999/-</span>
-                <span class="cta-save">You save ₹500!</span>
+                <span class="cta-old">&#8377;1,499</span>
+                <span class="cta-new">&#8377;999/-</span>
+                <span class="cta-save">You save &#8377;500!</span>
             </div>
             <div class="cta-buttons">
-                <a href="booking.html#book-form" class="btn btn-primary">🙏 Book Now</a>
+                <a href="booking.html#book-form" class="btn btn-primary">Book Now</a>
                 <a href="https://wa.me/918639429948" target="_blank" class="booking-wa-pill"><img src="images/whatsapplogo.png" alt="WhatsApp" class="wa-btn-icon"> WhatsApp Us</a>
             </div>
             <p class="cta-phone-line">Or call us directly: <a href="tel:+918639429948">+91 86394 29948</a></p>
@@ -402,9 +283,10 @@
 </footer>
 
 <a href="https://wa.me/918639429948" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp"><img src="images/whatsapplogo.png" alt="WhatsApp"></a>
-
-<script src="js/packages-data.js"></script>
+<script src="js/content-data.js"></script>
+<script src="js/Packages-data.js"></script>
 <script src="js/script.js"></script>
+
 
 </body>
 </html>
