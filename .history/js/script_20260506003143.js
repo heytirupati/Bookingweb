@@ -427,7 +427,7 @@
         const relatedCards   = document.getElementById("relatedCards");
 
         if (relatedSection) relatedSection.style.display = "block";
- 
+
         if (relatedCards) {
             relatedCards.innerHTML = related.map(p => {
                 const markedPrice = Math.round(p.price * 1.49);
