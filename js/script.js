@@ -14,6 +14,10 @@
     }
 
     function getLandingTarget() {
+        if (document.getElementById("allPackageCards")) {
+            return document.getElementById("packages");
+        }
+
         return document.querySelector(".pkg-hero-enhanced, .hero, .booking-section, main, body");
     }
 
@@ -21,7 +25,7 @@
         if (window.location.hash) return;
         const target = getLandingTarget();
         if (!target) return;
-        target.scrollIntoView({ block: "start" });
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
 })();
 
@@ -65,7 +69,59 @@
 
 
 // ============================================================
-//  2. HERO IMAGE SLIDER  (carousel)
+//  2. INDEX HERO TYPOGRAPHY
+// ============================================================
+(function initHeroTypography() {
+    const textEl = document.getElementById("heroDynamicText");
+    if (!textEl || typeof HERO_TYPOGRAPHY === "undefined") return;
+
+    const pageKey = textEl.dataset.typography || "index";
+    const config = HERO_TYPOGRAPHY[pageKey] || HERO_TYPOGRAPHY.index || {};
+    const phrases = config.phrases || [];
+    if (phrases.length < 2) return;
+
+    let index = 0;
+    let charIndex = 0;
+    let deleting = false;
+    const typeSpeed = config.typeSpeed || 38;
+    const deleteSpeed = config.deleteSpeed || 22;
+    const hold = config.hold || 1250;
+    const pause = config.pause || 180;
+
+    function typeNext() {
+        const phrase = phrases[index];
+        textEl.textContent = phrase.slice(0, charIndex);
+
+        if (!deleting && charIndex < phrase.length) {
+            charIndex += 1;
+            setTimeout(typeNext, typeSpeed);
+            return;
+        }
+
+        if (!deleting) {
+            deleting = true;
+            setTimeout(typeNext, hold);
+            return;
+        }
+
+        if (charIndex > 0) {
+            charIndex -= 1;
+            setTimeout(typeNext, deleteSpeed);
+            return;
+        }
+
+        deleting = false;
+        index = (index + 1) % phrases.length;
+        setTimeout(typeNext, pause);
+    }
+
+    textEl.textContent = "";
+    typeNext();
+})();
+
+
+// ============================================================
+//  3. HERO IMAGE SLIDER  (carousel)
 // ============================================================
 (function initCarousel() {
     const slides = document.querySelectorAll(".carousel img");
@@ -265,14 +321,18 @@
 
         container.innerHTML = list.map(p => {
             const markedPrice = Math.round(p.price * 1.49);
+            const savePercent = Math.round(((markedPrice - p.price) / markedPrice) * 100);
+            const summary = p.description.length > 130 ? `${p.description.slice(0, 130)}...` : p.description;
             return `
             <div class="package-full-card ${p.tagClass === "tag-premium" ? "highlight" : ""}">
                 <div class="package-top">
                     <img src="${p.cardImage}" alt="${p.name}">
+                    <span class="package-image-duration">${p.duration}</span>
                     <div>
                         <span class="pkg-tag ${p.tagClass || ''}">${p.tag}</span>
                         <h3>${p.name}</h3>
                         <p class="package-desc">${p.routeShort}</p>
+                        <p class="package-summary">${summary}</p>
                     </div>
                 </div>
                 <ul>${p.highlights.map(h => `<li>${h}</li>`).join("")}</ul>
@@ -280,11 +340,13 @@
                     <div class="price-box">
                         <span class="old-price">&#8377;${markedPrice.toLocaleString("en-IN")}</span>
                         <span class="new-price">&#8377;${p.price.toLocaleString("en-IN")}</span>
-                        <span class="save-badge">${Math.round(((markedPrice - p.price) / markedPrice) * 100)}% OFF</span>
+                        <span class="save-badge">${savePercent}% OFF</span>
                     </div>
-                    <span class="pkg-duration">${p.duration}</span>
                 </div>
-                <a href="package.html?id=${p.id}" class="btn btn-primary">View Details</a>
+                <div class="package-card-actions">
+                    <a href="package.html?id=${p.id}" class="btn btn-primary">View Details</a>
+                    <a href="booking.html?package=${p.id}#book-form" class="btn btn-outline">Book Now</a>
+                </div>
             </div>
             `;
         }).join("");

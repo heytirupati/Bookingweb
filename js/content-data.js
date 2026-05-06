@@ -32,7 +32,37 @@ const IMAGE_PATHS = {
 
 
 /* ============================================================
-   2. SPIRITUAL JOURNEY DATA
+   2. HERO TYPOGRAPHY DATA
+   ============================================================ */
+const HERO_TYPOGRAPHY = {
+  index: {
+    typeSpeed: 70,
+    deleteSpeed: 42,
+    hold: 1700,
+    pause: 260,
+    phrases: [
+      "Best Devotional Travel Service",
+      "Transparent Prices",
+      "Affordable Prices Start With ₹999",
+      "Currently Operating In Tirupati"
+    ]
+  },
+  tirupathi: {
+    typeSpeed: 70,
+    deleteSpeed: 42,
+    hold: 1700,
+    pause: 260,
+    phrases: [
+      "Tirupati Travel Made Simple",
+      "Trip Starts With ₹999 Only",
+      "Customized Devotional Travel Planner"
+    ]
+  }
+};
+
+
+/* ============================================================
+   3. SPIRITUAL JOURNEY DATA
    ============================================================ */
 const SPIRITUAL_JOURNEY = [
   {
@@ -81,7 +111,7 @@ const SPIRITUAL_JOURNEY = [
 
 
 /* ============================================================
-   3. CUSTOMER REVIEWS / TESTIMONIALS
+   4. CUSTOMER REVIEWS / TESTIMONIALS
    ============================================================ */
 const CUSTOMER_REVIEWS = [
   {
@@ -178,7 +208,7 @@ const CUSTOMER_REVIEWS = [
 
 
 /* ============================================================
-   4. HELPER FUNCTIONS
+   5. HELPER FUNCTIONS
    ============================================================ */
 
 /**
