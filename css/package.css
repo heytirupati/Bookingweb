@@ -1541,7 +1541,16 @@
 
 @media (max-width: 420px) {
     .pkg-hero-cta {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 8px;
+    }
+
+    .pkg-btn-primary,
+    .pkg-btn-whatsapp {
+        min-width: 0;
+        padding: 9px 8px;
+        font-size: 11px;
+        white-space: nowrap;
     }
 }
 
