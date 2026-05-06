@@ -409,7 +409,7 @@
                     </div>
                     <a href="booking.html?package=${pkg.id}#book-form" class="btn-book-pkg">Book Now</a>
                     <a href="https://wa.me/918639429948?text=Hi, I'm interested in ${encodeURIComponent(pkg.name)}" class="booking-wa-pill pkg-wa-btn" target="_blank">
-                        <img src="images/whatsapplogo.webp" alt="WhatsApp" class="wa-btn-icon"> WhatsApp Us
+                        <img src="images/whatsapplogo." alt="WhatsApp" class="wa-btn-icon"> WhatsApp Us
                     </a>
                 </div>
             </div>

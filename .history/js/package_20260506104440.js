@@ -92,7 +92,7 @@
                         <div class="pkg-hero-cta">
                             <a href="booking.html?package=${pkg.id}#book-form" class="pkg-btn-primary">Book This Package</a>
                             <a href="https://wa.me/918639429948?text=Hi, I'm interested in ${encodeURIComponent(pkg.name)}" target="_blank" class="pkg-btn-whatsapp">
-                                <img src="images/whatsapplogo.webp" alt="WhatsApp"> WhatsApp
+                                <img src="images/whatsapplogo.png" alt="WhatsApp"> WhatsApp
                             </a>
                         </div>
 
