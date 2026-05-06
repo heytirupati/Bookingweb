@@ -903,99 +903,99 @@
 }
 
 /* ============================================================
-   ENHANCED PACKAGE HERO — desktop matches mobile style
-   Image on top (full-width, tall banner), content below
+   ENHANCED PACKAGE HERO
+   Desktop : side-by-side — content LEFT, image RIGHT
+             BOTH visible on screen, no scrolling needed
+   Mobile  : stacked — image top (compact), content below
    ============================================================ */
 .pkg-hero-enhanced {
     background:
-        radial-gradient(ellipse at 50% 20%, rgba(212,175,55,0.08), transparent 60%),
+        radial-gradient(ellipse at 30% 50%, rgba(212,175,55,0.10), transparent 55%),
         linear-gradient(160deg, #fffaf0 0%, #ffffff 60%, #fff7df 100%);
     padding: 0;
 }
 
-/* Single column, no side-by-side */
+/* ── DESKTOP: true 50/50 side-by-side, fills viewport ── */
 .pkg-hero-container {
-    display              : grid;
-    grid-template-columns: 1fr;
-    gap                  : 0;
-    align-items          : start;
-    min-height           : 0;
-    max-height           : none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: stretch;
+    min-height: calc(100vh - 105px);
+    max-height: 680px;
 }
 
-/* Image: top — full-width banner */
+/* LEFT column: all text + CTAs */
+.pkg-hero-left {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 36px 40px 36px 30px;
+    text-align: left;
+}
+
+/* RIGHT column: image fills the column */
 .pkg-hero-right {
-    order          : 1;
-    position       : relative;
-    width          : 100%;
-    height         : min(55vw, 480px);
-    overflow       : hidden;
+    order: 2;
+    position: relative;
+    overflow: hidden;
 }
 
 .pkg-gallery-grid {
-    position     : absolute;
-    inset        : 0;
-    width        : 100%;
-    height       : 100%;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     border-radius: 0;
-    overflow     : hidden;
-    isolation    : isolate;
+    overflow: hidden;
+    isolation: isolate;
 }
 
 .pkg-gallery-grid::before {
-    content  : "";
-    position : absolute;
-    inset    : 0;
-    z-index  : 1;
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
     pointer-events: none;
-    background: linear-gradient(to bottom, transparent 55%, rgba(10,7,1,0.30) 100%);
+    background: linear-gradient(to right, rgba(255,250,240,0.15), transparent 25%),
+                linear-gradient(0deg, rgba(20,14,2,0.18), transparent 38%);
 }
 
 .pkg-gallery-main {
-    width : 100%;
+    width: 100%;
     height: 100%;
 }
 
 .pkg-gallery-main img {
-    width         : 100%;
-    height        : 100%;
-    object-fit    : cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     object-position: center;
-    display       : block;
-    transition    : transform 0.5s ease;
+    display: block;
 }
 
-.pkg-gallery-grid:hover .pkg-gallery-main img { transform: scale(1.03); }
+@media (hover: hover) {
+    .pkg-gallery-main img { transition: transform 0.5s ease; }
+    .pkg-gallery-grid:hover .pkg-gallery-main img { transform: scale(1.04); }
+}
 
-/* Price badge — bottom-right of image */
+/* Price badge overlay on image */
 .pkg-gallery-price-badge {
-    position      : absolute;
-    right         : 20px;
-    bottom        : 20px;
-    z-index       : 2;
-    padding       : 12px 16px;
-    background    : rgba(255,252,240,0.93);
-    border        : 1px solid rgba(212,175,55,0.5);
-    border-radius : 16px;
-    box-shadow    : 0 8px 28px rgba(41,30,4,0.18);
-    backdrop-filter: blur(16px);
-    display       : flex;
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 2;
+    padding: 10px 14px;
+    background: rgba(255,252,240,0.92);
+    border: 1px solid rgba(212,175,55,0.5);
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(41,30,4,0.18), inset 0 1px 0 rgba(255,255,255,0.9);
+    backdrop-filter: blur(16px) saturate(1.1);
+    display: flex;
     flex-direction: column;
-    align-items   : flex-end;
-    gap           : 4px;
-}
-
-/* Content: below image */
-.pkg-hero-left {
-    order          : 2;
-    display        : flex;
-    flex-direction : column;
-    justify-content: flex-start;
-    padding        : 28px 40px 32px;
-    text-align     : left;
-    max-width      : 900px;
-    margin         : 0 auto;
-    width          : 100%;
+    align-items: flex-end;
+    gap: 3px;
 }
 
 .pkg-gallery-price-old {
@@ -1324,89 +1324,116 @@
 }
 
 /* ============================================================
-   MOBILE OVERRIDES (≤ 768px) — hero already stacks, just resize
+   MOBILE OVERRIDES (≤ 768px)
    ============================================================ */
 @media (max-width: 768px) {
 
+    /* Hero — stack vertically, image top, content below */
+    .pkg-hero-enhanced { padding: 0; }
+
+    .pkg-hero-container {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        max-height: none;
+    }
+
+    /* Image on top */
     .pkg-hero-right {
-        height    : 52vw;
+        order: 1;
+        position: relative;
+        height: 48vw;          /* ~190px on a 400px screen */
         min-height: 180px;
         max-height: 260px;
     }
 
+    .pkg-gallery-grid {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+    }
+
     .pkg-gallery-price-badge {
-        right        : 10px;
-        bottom       : 10px;
-        padding      : 7px 10px;
+        right: 10px;
+        bottom: 10px;
+        padding: 7px 10px;
         border-radius: 10px;
     }
 
-    .pkg-gallery-price-new { font-size: 15px; }
+    .pkg-gallery-price-new { font-size: 16px; }
     .pkg-gallery-price-old { font-size: 10px; }
-    .pkg-gallery-save      { font-size: 8px; }
+    .pkg-gallery-save { font-size: 8px; }
 
+    /* Content below */
     .pkg-hero-left {
-        padding: 16px 16px 20px;
+        order: 2;
+        padding: 18px 16px 20px;
+        text-align: left;
+        justify-content: flex-start;
     }
 
-    .pkg-hero-tag-new  { font-size: 10px; margin-bottom: 8px; }
-    .pkg-title-new     { font-size: 21px; line-height: 1.2; margin-bottom: 6px; }
-    .pkg-subtitle-new  { font-size: 13px; margin-bottom: 12px; }
+    .pkg-hero-tag-new { font-size: 10px; margin-bottom: 8px; }
+    .pkg-title-new { font-size: 22px; line-height: 1.2; margin-bottom: 6px; }
+    .pkg-subtitle-new { font-size: 13px; margin-bottom: 12px; }
 
     .pkg-meta-pills { gap: 6px; margin-bottom: 14px; }
-    .pkg-meta-pill  { font-size: 10px; padding: 5px 10px; }
+    .pkg-meta-pill { font-size: 10px; padding: 5px 10px; }
 
-    .pkg-hero-cta   { gap: 8px; margin-bottom: 14px; }
-    .pkg-btn-primary   { padding: 9px 18px; font-size: 13px; }
-    .pkg-btn-whatsapp  { padding: 9px 16px; font-size: 13px; }
-    .pkg-trust-row  { gap: 10px; font-size: 11px; padding-top: 12px; }
+    .pkg-hero-cta { gap: 8px; margin-bottom: 14px; }
+    .pkg-btn-primary { padding: 9px 18px; font-size: 13px; }
+    .pkg-btn-whatsapp { padding: 9px 16px; font-size: 13px; }
+
+    .pkg-trust-row { gap: 10px; font-size: 11px; padding-top: 12px; }
 
     /* Body layout */
     .pkg-body {
         grid-template-columns: 1fr;
-        padding-top          : 16px;
-        padding-bottom       : 32px;
-        gap                  : 0;
+        padding-top: 16px;
+        padding-bottom: 32px;
+        gap: 0;
     }
 
+    /* Booking card after content on mobile */
     .pkg-right {
-        position    : static;
-        order       : 10;
-        margin-top  : 16px;
+        position: static;
+        order: 10;
+        margin-top: 16px;
+        margin-bottom: 0;
     }
 
-    .pkg-section       { border-radius: 14px; padding: 16px; }
+    .pkg-section { border-radius: 14px; padding: 16px; }
     .pkg-section-title { font-size: 14px; }
 
     /* Temple flow */
     .tf-item,
     .tf-reverse { grid-template-columns: 48px 1fr; }
-    .tf-reverse .tf-icon-col    { order: 1; }
+    .tf-reverse .tf-icon-col { order: 1; }
     .tf-reverse .tf-content-col { order: 2; }
     .tf-icon-wrap { width: 44px; height: 44px; font-size: 19px; }
-    .tf-card      { padding: 11px 13px; }
-    .tf-card h3   { font-size: 13px; }
-    .tf-card p    { font-size: 11px; }
+    .tf-card { padding: 11px 13px; }
+    .tf-card h3 { font-size: 13px; }
+    .tf-card p { font-size: 11px; }
 
-    .pkg-inc-exc   { grid-template-columns: 1fr; gap: 12px; }
+    .pkg-inc-exc { grid-template-columns: 1fr; gap: 12px; }
     .pkg-price-value { font-size: 32px; }
 
-    /* Related cards */
+    /* Related cards — stay horizontal */
     .related-track { gap: 12px; padding: 4px 14px; }
-    .related-card  { flex: 0 0 190px; width: 190px; border-radius: 13px; }
-    .related-body  { padding: 10px 12px 12px; }
+    .related-card { flex: 0 0 190px; width: 190px; border-radius: 13px; }
+    .related-body { padding: 10px 12px 12px; }
     .related-body h3 { font-size: 12px; }
-    .related-body p  { font-size: 11px; }
+    .related-body p { font-size: 11px; }
     .related-price { font-size: 14px; }
-    .related-btn   { padding: 5px 10px !important; font-size: 11px !important; }
+    .related-btn { padding: 5px 10px !important; font-size: 11px !important; }
 
+    /* Booking card */
     .btn-book-pkg { margin: 12px 12px 8px; font-size: 14px; }
-    .pkg-wa-btn   { margin: 0 12px 8px; font-size: 13px; }
+    .pkg-wa-btn { margin: 0 12px 8px; font-size: 13px; }
 }
 
 @media (max-width: 420px) {
-    .pkg-hero-right { height: 56vw; }
-    .pkg-title-new  { font-size: 19px; }
+    .pkg-hero-right { height: 52vw; }
+    .pkg-title-new { font-size: 20px; }
     .pkg-btn-primary, .pkg-btn-whatsapp { font-size: 12px; padding: 8px 14px; }
     .related-card { flex: 0 0 165px; width: 165px; }
 }

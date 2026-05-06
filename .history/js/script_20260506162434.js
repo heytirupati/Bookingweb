@@ -213,39 +213,78 @@
         </a>`;
     }).join("");
 
-    // Mobile-only: scroll-snap dot indicator
-    const dotsEl  = document.getElementById("pkgDots");
-    const cards   = Array.from(container.querySelectorAll(".pop-pkg-card"));
-    const isMobile = () => window.innerWidth <= 768;
+    // Carousel logic
+    const cards  = Array.from(container.querySelectorAll(".pop-pkg-card"));
+    const dotsEl = document.getElementById("pkgDots");
+    const prevBtn = document.getElementById("pkgPrev");
+    const nextBtn = document.getElementById("pkgNext");
+    let current  = 0;
+    const total  = cards.length;
 
-    function buildDots() {
-        if (!dotsEl || !isMobile()) { if (dotsEl) dotsEl.innerHTML = ""; return; }
+    // Build dots
+    if (dotsEl) {
         dotsEl.innerHTML = cards.map((_, i) =>
-            `<button class="pkg-dot${i === 0 ? " active" : ""}" data-i="${i}"></button>`
+            `<button class="pkg-dot${i === 0 ? " active" : ""}" data-i="${i}" aria-label="Go to slide ${i+1}"></button>`
         ).join("");
         dotsEl.querySelectorAll(".pkg-dot").forEach(d =>
-            d.addEventListener("click", () => {
-                cards[+d.dataset.i].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-            })
+            d.addEventListener("click", () => goTo(+d.dataset.i))
         );
     }
 
-    function syncDots() {
-        if (!dotsEl || !isMobile()) return;
-        const mid  = container.scrollLeft + container.offsetWidth / 2;
-        let closest = 0, minDist = Infinity;
+    function goTo(index) {
+        current = (index + total) % total;
         cards.forEach((c, i) => {
-            const dist = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid);
-            if (dist < minDist) { minDist = dist; closest = i; }
+            c.classList.toggle("is-active", i === current);
         });
-        dotsEl.querySelectorAll(".pkg-dot").forEach((d, i) =>
-            d.classList.toggle("active", i === closest)
-        );
+        // Scroll active card to centre
+        const card = cards[current];
+        const wrap = container;
+        const cardLeft = card.offsetLeft;
+        const cardWidth = card.offsetWidth;
+        const wrapWidth = wrap.offsetWidth;
+        const scrollTarget = cardLeft - (wrapWidth / 2) + (cardWidth / 2);
+        wrap.scrollTo({ left: scrollTarget, behavior: "smooth" });
+        // Dots
+        if (dotsEl) {
+            dotsEl.querySelectorAll(".pkg-dot").forEach((d, i) =>
+                d.classList.toggle("active", i === current)
+            );
+        }
     }
 
-    buildDots();
-    container.addEventListener("scroll", syncDots, { passive: true });
-    window.addEventListener("resize", buildDots);
+    // Init
+    goTo(0);
+
+    // Arrow buttons
+    prevBtn?.addEventListener("click", () => goTo(current - 1));
+    nextBtn?.addEventListener("click", () => goTo(current + 1));
+
+    // Touch/drag scroll detection
+    let dragStartX = 0, isDragging = false;
+    container.addEventListener("mousedown", e => { isDragging = true; dragStartX = e.clientX; });
+    container.addEventListener("mouseup", e => {
+        if (!isDragging) return;
+        isDragging = false;
+        const dx = dragStartX - e.clientX;
+        if (Math.abs(dx) > 40) goTo(dx > 0 ? current + 1 : current - 1);
+    });
+    container.addEventListener("mouseleave", () => { isDragging = false; });
+
+    // Touch swipe
+    let touchStartX = 0;
+    container.addEventListener("touchstart", e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    container.addEventListener("touchend", e => {
+        const dx = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(dx) > 40) goTo(dx > 0 ? current + 1 : current - 1);
+    });
+
+    // Auto-advance every 4s
+    let autoTimer = setInterval(() => goTo(current + 1), 4000);
+    container.addEventListener("mouseenter", () => clearInterval(autoTimer));
+    container.addEventListener("mouseleave", () => {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => goTo(current + 1), 4000);
+    });
 })();
 
 

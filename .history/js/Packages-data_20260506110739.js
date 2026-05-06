@@ -209,7 +209,7 @@ const PACKAGES = [
     duration: "Full Day",
     routeShort: "Tirupati → Kanipakam → Golden Temple → Arunachalam → Tirupati",
     routeFull: ["Tirupati", "Kanipakam", "Sripuram Golden Temple", "Tiruvannamalai", "Tirupati"],
-    cardImage: "images/Gemini.png",
+    cardImage: "images/images/Gemini_Generated_Image_gh0ghgh0ghgh0ghg1.jpg",
     highlights: ["Kanipakam", "Golden Temple (Vellore)", "Arunachaleswara"],
     description: "Our most immersive one-day spiritual circuit — three legendary shrines covering Ganesha, Goddess Lakshmi, and Lord Shiva in a single blessed day.",
     note: "Long route. Early start recommended.",

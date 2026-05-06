@@ -814,23 +814,34 @@ section { padding: 80px 0; }
 
 .packages-title::after { display: none; }
 
-/* ── POPULAR PACKAGES — Desktop: 3-col grid, Mobile: swipe carousel ── */
+/* ── PREMIUM 3D CAROUSEL for Popular Packages (index.html) ── */
 .package-cards-carousel {
-    position: relative;
-    width   : 100%;
-    padding : 8px 0 16px;
+    position  : relative;
+    width     : 100%;
+    overflow  : hidden;
+    padding   : 40px 0 60px;
 }
 
-/* DESKTOP: true 3-column grid, full width, no carousel */
+/* Viewport — shows 3 cards, centre one full-size */
 .package-cards {
-    display              : grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap                  : 28px;
+    display          : flex;
+    gap              : 24px;
+    transition       : transform 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change      : transform;
+    padding          : 0 calc(50% - 200px);   /* centre the active card */
+    cursor           : grab;
+    user-select      : none;
 }
 
-/* Dots + arrows — desktop hidden, shown only on mobile */
-.pkg-carousel-dots { display: none; }
-.pkg-carousel-btn  { display: none; }
+.package-cards:active { cursor: grabbing; }
+
+/* Dots */
+.pkg-carousel-dots {
+    display        : flex;
+    justify-content: center;
+    gap            : 8px;
+    margin-top     : 22px;
+}
 
 .pkg-dot {
     width        : 8px;
@@ -844,10 +855,42 @@ section { padding: 80px 0; }
 }
 
 .pkg-dot.active {
-    background   : var(--primary-gold);
-    width        : 24px;
+    background: var(--primary-gold);
+    width     : 24px;
     border-radius: 4px;
 }
+
+/* Arrow buttons */
+.pkg-carousel-btn {
+    position     : absolute;
+    top          : 50%;
+    transform    : translateY(-50%);
+    width        : 44px;
+    height       : 44px;
+    border-radius: 50%;
+    border       : 1.5px solid rgba(212,175,55,0.4);
+    background   : rgba(255,255,255,0.85);
+    backdrop-filter: blur(8px);
+    font-size    : 18px;
+    cursor       : pointer;
+    z-index      : 10;
+    display      : flex;
+    align-items  : center;
+    justify-content: center;
+    transition   : 0.25s;
+    box-shadow   : 0 4px 14px rgba(0,0,0,0.08);
+    color        : var(--text-dark);
+}
+
+.pkg-carousel-btn:hover {
+    background  : var(--primary-gold);
+    color       : #fff;
+    border-color: var(--primary-gold);
+    box-shadow  : 0 6px 20px rgba(212,175,55,0.35);
+}
+
+.pkg-carousel-btn.prev { left:  12px; }
+.pkg-carousel-btn.next { right: 12px; }
 
 /* Flip card wrapper */
 .package-card {
@@ -967,25 +1010,36 @@ section { padding: 80px 0; }
    ============================================================ */
 .pop-pkg-card {
     display        : block;
-    width          : 100%;
-    border-radius  : 20px;
+    flex           : 0 0 340px;
+    width          : 340px;
+    border-radius  : 22px;
     overflow       : hidden;
-    background     : rgba(255,255,255,0.88);
+    background     : rgba(255,255,255,0.82);
     backdrop-filter: blur(10px);
-    border         : 1px solid rgba(212,175,55,0.12);
-    transition     : transform 0.3s ease, box-shadow 0.3s ease;
+    border         : 1px solid rgba(212,175,55,0.1);
+    transition     : transform 0.45s cubic-bezier(0.25,0.8,0.25,1),
+                     box-shadow 0.45s ease,
+                     opacity 0.45s ease,
+                     scale 0.45s ease;
     text-decoration: none;
     color          : var(--text-dark);
+    opacity        : 0.65;
+    scale          : 0.87;
+    pointer-events : none;
 }
 
-.pop-pkg-card:hover {
-    transform  : translateY(-8px);
-    box-shadow : 0 22px 50px rgba(0,0,0,0.12), 0 0 0 1.5px rgba(212,175,55,0.25);
-    border-color: rgba(212,175,55,0.3);
+.pop-pkg-card.is-active {
+    opacity      : 1;
+    scale        : 1;
+    pointer-events: auto;
+    box-shadow   : 0 24px 60px rgba(0,0,0,0.13), 0 0 0 2px rgba(212,175,55,0.18);
+    border-color : rgba(212,175,55,0.35);
 }
 
-/* is-active used only on mobile carousel */
-.pop-pkg-card.is-active { pointer-events: auto; }
+.pop-pkg-card.is-active:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.16), 0 0 0 2px rgba(212,175,55,0.3);
+}
 
 .pop-pkg-img {
     position    : relative;
@@ -1920,44 +1974,23 @@ section { padding: 80px 0; }
 
     .extra-note { font-size: 10px; margin-bottom: 8px; }
 
-    /* -- Popular package cards (index.html — swipe carousel on mobile) -- */
-    .package-cards-carousel {
-        overflow: hidden;
-        padding : 4px 0 20px;
-    }
-
+    /* -- Popular package cards (index.html — carousel) -- */
     .package-cards {
-        display        : flex;
-        grid-template-columns: none;
-        gap            : 16px;
-        overflow-x     : auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        padding        : 4px 20px 8px;
+        padding: 0 calc(50% - 155px);
+        gap    : 16px;
     }
-
-    .package-cards::-webkit-scrollbar { display: none; }
 
     .pop-pkg-card {
-        flex           : 0 0 82vw;
-        max-width      : 320px;
-        width          : 82vw;
-        scroll-snap-align: center;
-        border-radius  : 18px;
-        opacity        : 1;
-        scale          : 1;
-        transform      : none;
+        flex           : 0 0 310px;
+        width          : 310px;
+        opacity        : 0.6;
+        scale          : 0.88;
+        border-radius  : 16px;
     }
 
-    .pop-pkg-card:hover { transform: none; }
-
-    /* Dots indicator on mobile */
-    .pkg-carousel-dots {
-        display        : flex;
-        justify-content: center;
-        gap            : 8px;
-        margin-top     : 14px;
+    .pop-pkg-card.is-active {
+        opacity: 1;
+        scale  : 1;
     }
 
     .pkg-carousel-btn { display: none; }
@@ -1966,7 +1999,8 @@ section { padding: 80px 0; }
     .pop-pkg-body    { padding: 12px 14px 14px; }
     .pop-pkg-body h3 { font-size: 15px; line-height: 1.3; }
     .pop-pkg-body > p{ font-size: 12px; }
-    .pop-pkg-highlights li { font-size: 12px; margin-bottom: 3px; }
+    .pop-pkg-highlights { padding-left: 16px; margin: 6px 0; }
+    .pop-pkg-highlights li { font-size: 11px; margin-bottom: 3px; }
 
     /* -- Spiritual -- */
     .spiritual-wrapper { height: 260px; }

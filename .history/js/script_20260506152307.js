@@ -187,15 +187,13 @@
     if (!container || typeof PACKAGES === "undefined") return;
 
     const popular = PACKAGES.filter(p => p.popular);
-    if (!popular.length) return;
 
-    // Build cards
     container.innerHTML = popular.map(p => {
         const markedPrice = Math.round(p.price * 1.49);
         return `
         <a href="package.html?id=${p.id}" class="pop-pkg-card">
             <div class="pop-pkg-img">
-                <img src="${p.cardImage}" alt="${p.name}" loading="lazy">
+                <img src="${p.cardImage}" alt="${p.name}">
                 <span class="pop-pkg-tag ${p.tagClass || ''}">${p.tag}</span>
                 <div class="pop-pkg-price-wrapper">
                     <div class="pop-pkg-price-strike">&#8377;${markedPrice.toLocaleString("en-IN")}</div>
@@ -210,42 +208,9 @@
                 </ul>
                 <span class="pop-pkg-cta">View Details &rarr;</span>
             </div>
-        </a>`;
+        </a>
+        `;
     }).join("");
-
-    // Mobile-only: scroll-snap dot indicator
-    const dotsEl  = document.getElementById("pkgDots");
-    const cards   = Array.from(container.querySelectorAll(".pop-pkg-card"));
-    const isMobile = () => window.innerWidth <= 768;
-
-    function buildDots() {
-        if (!dotsEl || !isMobile()) { if (dotsEl) dotsEl.innerHTML = ""; return; }
-        dotsEl.innerHTML = cards.map((_, i) =>
-            `<button class="pkg-dot${i === 0 ? " active" : ""}" data-i="${i}"></button>`
-        ).join("");
-        dotsEl.querySelectorAll(".pkg-dot").forEach(d =>
-            d.addEventListener("click", () => {
-                cards[+d.dataset.i].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-            })
-        );
-    }
-
-    function syncDots() {
-        if (!dotsEl || !isMobile()) return;
-        const mid  = container.scrollLeft + container.offsetWidth / 2;
-        let closest = 0, minDist = Infinity;
-        cards.forEach((c, i) => {
-            const dist = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid);
-            if (dist < minDist) { minDist = dist; closest = i; }
-        });
-        dotsEl.querySelectorAll(".pkg-dot").forEach((d, i) =>
-            d.classList.toggle("active", i === closest)
-        );
-    }
-
-    buildDots();
-    container.addEventListener("scroll", syncDots, { passive: true });
-    window.addEventListener("resize", buildDots);
 })();
 
 
@@ -738,4 +703,31 @@
     });
 })();
 
-// (drag handled inside initPopularPackages carousel)
+// ============================================================
+// MOBILE SWIPE MOMENTUM FIX (optional)
+// ============================================================
+(function () {
+    const container = document.querySelector(".package-cards");
+    if (!container) return;
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    container.addEventListener("mousedown", (e) => {
+        isDown = true;
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+    });
+
+    container.addEventListener("mouseleave", () => isDown = false);
+    container.addEventListener("mouseup", () => isDown = false);
+
+    container.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        container.scrollLeft = scrollLeft - walk;
+    });
+})();
